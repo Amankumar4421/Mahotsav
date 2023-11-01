@@ -1,0 +1,293 @@
+*{
+    margin: 0;
+    padding: 0;
+   
+}
+body{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+.whole{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+@media  (max-width: 500px){
+    .detail{
+        width: 68vw !important;
+
+    }
+    #event{
+     
+      margin-top: 19% !important;
+      width: 100vw !important;
+      margin-left: 7% !important;
+      padding-left: 5% !important;
+    }
+     #text{
+      margin-top: 20% !important;
+        margin-left: -10% !important;
+        width: 100% !important;
+       
+    }
+    .info{
+        width: 80vw !important;
+        line-height: 2vh !important;
+        margin-left: -30%;
+        padding-left: 9% !important;
+    } 
+    img{
+        display: none;
+        
+    }
+    #butto {
+      width: 20% !important;
+    }
+
+    .decor{
+    margin-left: -160% !important;
+    
+    }
+   #main{
+    
+    width: 90% !important;
+   }
+   #text1{
+    margin-bottom: 200% !important;
+    width: 50% !important;
+   }
+
+   .side_div{
+          margin-top: 15% !important;
+          margin-left: 0px !important;
+          min-width: 80% !important;
+          
+   }
+   #butt1{
+    position: fixed !important;
+    
+    left: 60vw !important;
+   }
+}
+#main{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #d9d9d9;
+    padding: 5%;
+    padding-top: 8%;
+    border-radius: 15px;
+}
+#event{
+    width: 250px;
+    height: 400px;
+    background-color: rgb(245, 244, 228);
+    border-radius: 10px;
+    text-align:left;
+    padding-top: 1px;
+    text-shadow: 10px 10px 10px rgb(231, 230, 241);
+    line-height: 2vh;
+    overflow-y: scroll;
+    margin-left: 2%;
+}
+
+#event::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.side_div{
+    width: 800px;
+    min-height: 400px;
+    margin-left: 50px;
+    border-radius: 3%;
+    background-color: rgb(245, 244, 228);
+}
+h4{
+    margin:7px;
+    padding:2px;
+}
+
+.right{
+ display: flex;
+ flex-direction: row;
+ text-align: center;
+   margin-left: 90%;
+   text-align: center;
+
+}
+
+.detail {
+    background-color: #d9d9d9; 
+    padding-left: 110px;
+    padding-top: 20px;
+    padding-bottom: 20px; 
+    border-radius: 10px; 
+   
+  
+    display: flex;
+  flex-direction: column;
+    width: 190vb;
+    min-height: 35%;
+    
+}
+  
+ 
+  #text {
+    font-size: 4vb;
+    width: 50vb;
+    height: 5vh;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    margin-left: 60vb;
+    color: #131111; /* Text color */
+    margin-bottom: 20px; /* Spacing below the heading */
+    
+    
+  }
+  #text1 {
+    font-size: 4vb;
+    width: 50vb;
+    height: 5vh;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    margin-left: 90vb;
+    color: #131111; /* Text color */
+    margin-bottom: 20px; /* Spacing below the heading */
+    
+    
+  }
+  
+  /* Style for h4 elements */
+  .detail h4 {
+    font-size: 18px;
+    color: #555; /* Text color */
+    margin: 10px 0; /* Spacing around each h4 element */
+  }
+  
+  /* Style for the button */
+   #butto {
+    background-color: #2d7ef6; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    top:25px;
+    left: 80%;
+  }
+  #butt1 {
+    background-color: #2d7ef6; 
+    color: #181616; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    bottom:5px;
+    left: 80vw;
+  }
+  /* Hover effect for the button */
+  #butto:hover {
+    background-color: #518fec;
+  }
+  .info{
+    background-color: rgb(245, 244, 228);
+    border-radius: 15px;
+    padding-left:  10% ;
+    min-height: 80vh;
+    line-height: 10px;
+    width: 100vb;
+  }
+  .im{
+    position: absolute;
+    left: 50%;
+    top:27%;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .custom-image:hover{
+    transform: scale(1.2); 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+  }
+
+  /* .custom-image {
+    width: 50px;
+    height: 150px;
+  } */
+  /* input[type="button"] {
+    display: flex;
+    justify-content: center;
+    background-color: #e1f461;
+    color: #121010;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: -190%;
+  } */
+  
+  
+  /* Add this to your external CSS file or in a <style> tag in the HTML document */
+.event-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.event-item {
+    width: 200px; 
+    height: 40px; 
+    background-color: rgb(245, 244, 228); 
+    color: #100d0d; 
+    text-align: center;
+    line-height: 50px; 
+    cursor: pointer;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 10px; 
+    border-radius: 10px; 
+}
+
+.event-item:hover {
+    background-color: #e8e8f7; 
+    box-shadow:5px 5px 10px rgb(205, 195, 225);
+
+}
+.event-item.selected {
+  background-color: #dddde8;
+  box-shadow: 5px 5px 10px rgb(205, 195, 225);
+  width: 90%;
+}
+
+#main h3{
+
+ 
+    position: absolute;
+    margin-left: 25%;
+    margin-top: -40%;
+}
+.decor{
+  color: #013114;
+  /* background-color: #fafafa; */
+  padding: 2px;
+  width: 50vw !important;
+ 
+position: relative;
+left:50vb;
+line-height: 5vh;
+  border-radius: 5px;
+  font-family: 'Ubuntu', sans-serif;
+}
+.decor::before{
+ content: "★" !important;
+ font-weight: bold;
+ 
+}
+
+

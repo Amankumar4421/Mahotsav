@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+
+ 
+ <body>
+	<!-- <br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div >
+<div id="main">
+	<div id="admin_login" >
+		<form name="f" action="admin.php" onclick="return chkfn()" >
+			<tr>
+				<td> UName: </td>
+				<td> <input type="text" id="uname" name="uname"> </td>
+			</tr>
+			<br>
+	<br>
+			<tr>
+				<td> PWord: </td>
+				<td> <input type="password" id="pword" name="pword"> </td>
+			</tr>
+			<br>
+	<br>
+			<tr>
+				<td> <input type="Submit"> </td>
+			</tr>
+		</form>
+	</div>
+</div>
+
+	
+
+	
+</div> -->
+<!-- <form name="f" action="admin.php" onclick="return chkfn()" >
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card" style="background-color: #f7f7f7; border: 1px solid #dcdcdc;">
+                <div class="card-header">
+                    Admin Login
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="uname" name="uname" class="form-control" id="username" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Password</label>
+                            <input type="password" id="pword" name="pword" class="form-control" id="dob">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form> -->
+
+<div class="container mt-5">
+    <h2 class="text-center">Admin Login</h2><br>
+	<form name="f" action="admin.php" onclick="return chkfn()" >
+        <div class="form-group form-row">
+            <label for="regNo" class="col-md-4 col-form-label"><b>UserName</b></label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="uname" name="uname" placeholder="UserName">
+                <p id="ckd" clas="form-control" hidden></p>
+               
+
+            </div>
+        </div>
+        <div class="form-group form-row">
+            <label for ="dob" class="col-md-4 col-form-label"><b>Password</b></label>
+            <div class="col-md-8">
+                <input type="password" id="pword" name="pword" class="form-control"  placeholder="Password">
+            </div>
+        </div>
+		<br>
+        <div class="form-group form-row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <button type="submit" id="slogin" class="btn btn-primary">Submit</button>
+                
+            </div>
+        </div>
+</form>					
+ </body>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script>
+
+ function chkfn()
+ {
+ if(f.uname.value=="")
+ {
+	f.uname.focus();
+	return false;
+ }
+
+ else if(f.pword.value=="")
+ {
+	f.pword.focus();
+	return false;
+ }
+ else{
+	return true;
+ }
+ }
+
+
+
+
+
+ </script>
+</html>

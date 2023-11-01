@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #f6f6f6; /* Light gray background */
+    font-family: Arial, sans-serif;
+    
+}
+
+#main {
+    display: flex;
+    justify-content:space-evenly; /* Center content horizontally */
+    align-items: start;
+    min-height: 88vh;
+    
+}
+
+#already {
+    padding: 50px;
+    background-color: #c1dedb; /* White background */
+    border-radius: 10px;
+    color: #241414;
+    
+}
+#createpid {
+    background-color: #a7c7c4; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+#createpid form {
+    text-align: center; /* Center the form elements */
+}
+
+#createpid label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#createpid input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px;
+    outline: none;
+}
+
+#createpid input[type="text"]:focus {
+    border-color: #007ab3; /* Blue border on focus */
+    border-width: 1px;
+}
+
+#createpid input[type="submit"] {
+    background-color: #0d6efd; /* Blue background for the "Create" button */
+    color: white; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#createpid input[type="submit"]:hover {
+    background-color: #005689; /* Darker blue on hover */
+}
+
+
+
+ #sevent, #payad, #report, #report5 {
+    margin-left: 20%;
+    width: 100vb;
+    height: 88vb;
+    background-color: #c1dedb; /* Blue background */
+    border-radius: 10px;
+    color: #070606; /* White text color */
+    padding: 20px;
+    /* margin-top: 20px; */
+    /* margin-right: 40%; */
+}
+
+#report, #report5 {
+    height: 400vh;
+    /* margin-left: 20%; Adjusted height for report containers */
+}
+
+#payad {
+    background-color: #c1dedb;
+    min-height: 50vh; /* Light blue background for payad */
+}
+
+#report5 {
+    padding-top: 100px;
+    min-height: 500vh;
+}
+
+#list_of_events1 {
+    padding-top: 50px;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 500px;
+    height: 400px;
+    background-color: #a7c7c4; /* Light green background */
+    border-radius: 10px;
+    padding: 10px;
+    color: #333; /* Dark text color */
+}
+
+li {
+    list-style: none; /* Remove bullet points from list items */
+    margin-bottom: 15px;
+}
+
+/* Add hover effect for links */
+a {
+    color: #007ab3; /* Blue link color */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #005689; /* Darker blue on hover */
+}
+#side{
+    background-color: #c1dedb;
+    padding: 2%;
+    border-radius: 10px;
+    line-height: 3%;
+    margin-left: 5%;
+    margin-bottom: 25%;
+    position: fixed;
+        top:40vh;
+        right: 140vb;
+}
+#side li{
+    width: 200px; 
+    height: 40px; 
+    background-color: #a7c7c4; 
+    color: #100d0d; 
+    text-align: center;
+    line-height: 50px; 
+    cursor: pointer;
+    
+    margin: 10px; 
+    border-radius: 10px; 
+}
+
+#side li:hover {
+    background-color: #81a3a0; 
+}
+h3{
+font-size: 4vb;
+    width: 50vb;
+    height: 5vh;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    margin-left: 10vb;
+    margin-top: 2%;
+    color: #241414; /* Text color */
+    margin-bottom: 20px; /* Spacing below the heading */
+    }
+
+
+ #log {
+        
+        background-color: #0d6efd;
+        color: white;
+        padding: 10px 20px;
+        height: 6%;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: fixed;
+        top:20px;
+        right: 50px;
+      }
+      
+    #log:hover {
+        background-color: #6c9ce3;
+      }
+      #event{
+        background-color:#c1dedb;
+        min-height: 30vh;
+        margin-left: 20%;
+        width: 100vb;
+        border-radius: 4px;
+        padding-bottom: 30px;
+      }
+      #edito{
+        background-color: #0d6efd;
+        color: white;
+        padding: 10px 20px;
+        height: 2%;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      #edito:hover{
+        background-color: #6c9ce3;
+      }
+      #deleto{
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        height: 2%;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      #deleto:hover{
+        background-color: #c4606a;
+      }
+
+      .btn12{
+        width: 60px;
+        height: 40px;
+        color: white;
+        border-radius: 5px;
+        background-color: #0d6efd ;
+      }
+      .btn13{
+        width: 60px;
+        height: 40px;
+        color: white;
+        
+        border-radius: 5px;
+        background-color: #dc3545 ;
+      }
+
+      .sedited {
+        height: 35px;
+      }
