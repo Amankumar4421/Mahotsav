@@ -80,7 +80,7 @@ body {
  #sevent, #payad, #report, #report5 {
     margin-left: 20%;
     width: 100vb;
-    height: 88vb;
+    min-height: 88vb;
     background-color: #c1dedb; /* Blue background */
     border-radius: 10px;
     color: #070606; /* White text color */
@@ -191,7 +191,7 @@ font-size: 4vb;
       }
       #event{
         background-color:#c1dedb;
-        min-height: 30vh;
+        min-height: 40%;
         margin-left: 20%;
         width: 100vb;
         border-radius: 4px;
