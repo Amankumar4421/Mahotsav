@@ -8,31 +8,70 @@ $total_count = $c['count(*)'];
 
 echo "<div id='total'>Total Registered Student: " . $total_count . "<br><br></div>";
 ?>
-<div class="container">
-    <form method="post">
-        <label for="event">Select Event:</label>
-        <select name="event" id="event">
-            <option value="">Select an event</option>
-            <?php
-            $sql = "SELECT * FROM eventheader";
-            $result = $con->query($sql);
-            if (!$result) {
-                die("Query failed: " . $con->error);
-            }
-            while ($row = $result->fetch_assoc()) {
-                echo "<option value='" . $row['no'] . "'>" . $row['name'] . "</option>";
-            }
-            ?>
-        </select>
-        <br>
+<!DOCTYPE html>
+<html lang="en">
 
-        <label for="subevent">Select Subevent:</label>
-        <select name="subevent" id="subevent">
-            <option value="">Select a subevent</option>
-        </select>
-        <input type="submit" value="Submit">
-    </form>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+            /* Adjust padding as needed */
+        }
+
+        /* Style the table header row */
+        th,tr {
+            background-color: #f2f2f2;
+            /* Light gray background for headers */
+        }
+
+
+        
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <form method="post">
+            <label for="event">Select Event:</label>
+            <select name="event" id="event">
+                <option value="">Select an event</option>
+                <?php
+                $sql = "SELECT * FROM eventheader";
+                $result = $con->query($sql);
+                if (!$result) {
+                    die("Query failed: " . $con->error);
+                }
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row['no'] . "'>" . $row['name'] . "</option>";
+                }
+                ?>
+            </select>
+            <br>
+
+            <label for="subevent">Select Subevent:</label>
+            <select name="subevent" id="subevent">
+                <option value="">Select a subevent</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>
+
 <script>
     document.getElementById('event').addEventListener('change', function () {
         var eventId = this.value;
@@ -62,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_id = $_POST['event'];
 
     // Validate and sanitize input
-    
+
     $subevent_id = mysqli_real_escape_string($con, $subevent_id);
     $event_id = mysqli_real_escape_string($con, $event_id);
 
@@ -99,20 +138,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo "<h2>Registered Students for the Selected Subevent:</h2>";
 
     if ($result->num_rows > 0) {
-        echo "<table style='border-collapse: collapse; width: 100%; border: 1px solid black;'>";
+        echo "<table>";
         echo "<tr>";
-        echo "<th style='border: 1px solid black;'>Mahotsav Id</th><th style='border: 1px solid black;'>Reg Id</th><th style='border: 1px solid black;'>Name</th><th style='border: 1px solid black;'>College</th><th style='border: 1px solid black;'>Gender</th><th style='border: 1px solid black;'>Phone</th><th style='border: 1px solid black;'>Email</th>";
+        echo "<th >Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th><th>Email</th>";
         echo "</tr>";
 
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['sno'] . "</td>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['regno'] . "</td>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['name'] . "</td>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['college'] . "</td>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['gender'] . "</td>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['phone'] . "</td>";
-            echo "<td style='border: 1px solid black; text-align: center;'>" . $row['email'] . "</td>";
+            echo "<td>" . $row['sno'] . "</td>";
+            echo "<td>" . $row['regno'] . "</td>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['college'] . "</td>";
+            echo "<td>" . $row['gender'] . "</td>";
+            echo "<td>" . $row['phone'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
