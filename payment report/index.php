@@ -75,7 +75,8 @@ $mysqli->close();
         }
 
         tbody tr:hover {
-            background-color: #f5f5f5;
+            background-color: #d9d8d7;
+  box-shadow: 5px 5px 10px rgb(205, 195, 225);
             cursor: pointer;
         }
 
@@ -92,6 +93,11 @@ $mysqli->close();
             width: 80%;
             border: 1px solid #ddd;
         }
+        .selected {
+  background-color: #babab8;
+  box-shadow: 5px 5px 10px rgb(205, 195, 225);
+  width: 90%;
+}
     </style>
 <body>
     <h1>Payment Details</h1>
@@ -100,6 +106,7 @@ $mysqli->close();
             <tr>
                 <th>Payment ID (PID)</th>
                 <th>Amount</th>
+                
             </tr>
         </thead>
         <tbody id="paymentTable">
@@ -114,6 +121,7 @@ $mysqli->close();
                 <th>Amount</th>
                 <th>Time</th>
                 <th>Mahotsav Id</th>
+                <th>Phone Number<td>
                 
             </tr>
         </thead>
@@ -131,19 +139,54 @@ $mysqli->close();
                     paymentTable.innerHTML = "";
 
                     for (let pid in data) {
+                        if(pid!='SUM'){
                         const row = paymentTable.insertRow();
+                        
                         row.insertCell(0).textContent = pid;
                         row.insertCell(1).textContent = data[pid];
-
-                        row.addEventListener("click", () => showStdRegDetails(pid));
+                        
+                        row.addEventListener("click", function(){
+                            showStdRegDetails(pid);
+                            selectEvent(this);
+                        }  );
                     }
+
+                    }
+
+                    const totalSumRow = paymentTable.insertRow();
+const totalSumCell0 = totalSumRow.insertCell(0);
+const totalSumCell1 = totalSumRow.insertCell(1);
+
+// Set the text and apply the bold style
+totalSumCell0.textContent = "TOTAL SUM";
+totalSumCell1.textContent = data['SUM'];
+totalSumCell0.style.fontWeight = 'bold';
+totalSumCell0.style.color = '#6b3c02';
+totalSumCell1.style.fontWeight = 'bold';
+totalSumCell1.style.color = '#4a2a01';
+                   
                 })
                 .catch(error => console.error(error));
         }
 
-       
+
+
+ //hover pause
+let selectedEvent = null; 
         // Function to show student registration details when a PID is clicked
+        function selectEvent(eventItem) {
+    // Deselect the previously selected item 
+    if (selectedEvent) {
+        selectedEvent.classList.remove("selected");
+    }
+
+    // Select the clicked item
+    eventItem.classList.add("selected");
+    selectedEvent = eventItem;
+}
 function showStdRegDetails(pid) {
+
+
     fetch(`index.php?action=getStdRegDetails&pid=${pid}`)
         .then(response => response.json())
         .then(data => {
@@ -160,9 +203,20 @@ if (data[pid] && data[pid].length > 0) {
                         row.insertCell(1).textContent = data[pid][k]['amount'];
                         row.insertCell(2).textContent = data[pid][k]['time'];
                         row.insertCell(3).textContent = data[pid][k]['mohid'];
-
+                        row.insertCell(4).textContent = data[pid][k]['phone'];
                         
                     }
+                    const totalSumRow = stdregDetails.insertRow();
+const totalSumCell0 = totalSumRow.insertCell(0);
+const totalSumCell1 = totalSumRow.insertCell(1);
+
+// Set the text and apply the bold style
+totalSumCell0.textContent = "TOTAL SUM";
+totalSumCell1.textContent = data['sum'];
+totalSumCell0.style.fontWeight = 'bold';
+totalSumCell0.style.color = '#6b3c02';
+totalSumCell1.style.fontWeight = 'bold';
+totalSumCell1.style.color = '#4a2a01';
  }
  else {
     stdregDetails.textContent = "No student registration details found for this PID";
