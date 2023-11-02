@@ -17,16 +17,19 @@ $dob =  $_GET['dob'];
 $name =  $_GET['sname'];
 $regid =  $_GET['sid'];
 $coll = null;
-
+include("connection.php");
 if(isset($_GET['other']))
 {
-$coll = $_GET['other'];
+    $coll = $_GET['other'];
+    $s1 = "insert into college(dno,name) values('".$district."', '".$coll."')";
+    mysqli_query($con, $s1);
+
 }
-else{
-$coll = $college;
+    else{
+    $coll = $college;
 }
 
-include("connection.php");
+
 
 
 $strc = "select * from student where regno='".$name."'";
@@ -35,7 +38,7 @@ $d = mysqli_fetch_assoc($ds);
 if(isset($d))
 {
     echo "Already exits";
-    $url = "sreg.html";
+    $url = "sfreg.html";
     header( "refresh:2;URL=".$url);
 }
 else
