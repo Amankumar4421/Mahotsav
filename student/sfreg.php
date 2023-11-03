@@ -114,84 +114,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
-<!-- master ka hai ye code--->
-<!-- <center>
-	<div style="border:2px solid #FFEEF4; margin-left:25%; margin-right:25%; padding:45px; color:#4C4B16">
-		<form name="f" action="sreg.php">
-			<table>
-				<tr>
-					<td width="40%">Reg No:</td>
-					<td><input type="text" name="sid" id ="sid" required="required"> </td>
-                    <td> <p id="ckd"></p></td>
-				</tr>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" name="sname"> </td>
-				</tr>
-				<tr>
-					<td>Date of Birth:</td>
-					<td><input type="date" name="dob" required="required"> </td>
-				</tr>
-                <tr>
-					<td>Cell No:</td>
-					<td><input type="text" oninput="numberOnly(this.id);" id="number" name="number" required="required" pattern="\d*" maxlength="10"> </td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td><input type="email" name="mail" required="required"> </td>
-				</tr>
-				<tr>
-					<td>Gender:</td>
-					<td><input type="radio" name ="gender" value="1" checked="checked">Male<br><input type="radio" name="gender" value="0">Female </td>
-					
-				</tr>
-                <tr>
-					<td>Branch:</td>
-					<td><select id="branch_option" name="branch_option">
-                        <option value="ECE">ECE</option>
-                        <option value="CSE">CSE</option>
-                        <option value="MEC">MEC</option>
-                        <option value="CIVIL">CIVIL</option>
-                    </select></td>
-					
-				</tr>
-				<tr>
-                    <td><label for="">State</label></td>
-                    <td><select name="slctl1" id ="slctl1" required="required" onchange="populate1()">
-                        <option value=""> -- Choose State --</option>
-                        
-                    </select></td>
-				</tr>
-                <tr>
-                <td><label for="">District</label>
-                <td><div id="slctl21"></div></td>
-                </tr>
-                <tr>
-                    <td><label for="">College</label></td>
-                <td><div id="slctl31"></div></td>
-                </tr>
-                <tr>
-                    <td> <label for="">&nbsp;</label></td>
-                    <td>  <input type="text" name="other" id="other" disabled hidden placeholder="Others"></td>
-                </tr>
-				<tr style="margin-top: 15px;">
-					<td align="center"><input type="reset"></td>
-					<td align="center"><input type="submit" value="Register" id="registered" disabled></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-</center> -->
-
-
-
-</ul>
-
+</body>
 <script>
-
 function sl()
     {
         var a = document.getElementById('slctl1');
@@ -199,6 +123,7 @@ function sl()
         const optionArray = [];
         <?php
             include("connection.php");
+            //console.log("hello world");
             $str = "select no,name from state";
             $rs = mysqli_query($con, $str);
             while($r = mysqli_fetch_assoc($rs))
@@ -346,5 +271,5 @@ var eleval = element.value;
 });
 
 </script>
-</body>
+
 </html>
