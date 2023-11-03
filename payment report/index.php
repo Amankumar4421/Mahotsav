@@ -39,6 +39,16 @@ $mysqli->close();
     <title>Payment Details</title>
 </head>
 <style>
+
+/* @media print {
+    table tbody tr {
+        background-color: #d9d8d7 !important; 
+        box-shadow: 5px 5px 10px rgb(205, 195, 225) !important;
+        cursor: pointer !important;
+    }
+} */
+
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -98,9 +108,32 @@ $mysqli->close();
   box-shadow: 5px 5px 10px rgb(205, 195, 225);
   width: 90%;
 }
+
+.print-button{
+            text-align: center;
+        }
+        .print-button button {
+            background-color: #362c22;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+           /* margin-left: 45%; */
+           
+        }
+
+        .print-button button:hover {
+            background-color: #9c6f40;
+            color:black;
+        }
     </style>
 <body>
     <h1>Payment Details</h1>
+    <div class="print-button">
+        <button id="print">Print</button>
+    </div>
     <table>
         <thead>
             <tr>
@@ -113,7 +146,7 @@ $mysqli->close();
         </tbody>
     </table>
     
-    <h2>Student Registration Details:</h2>
+    <h2>Registered Student Details by PID:<span id="payid">)</span></h2>
     <table>
         <thead>
             <tr>
@@ -148,6 +181,8 @@ $mysqli->close();
                         row.addEventListener("click", function(){
                             showStdRegDetails(pid);
                             selectEvent(this);
+                            var oay=document.getElementById("payid");
+                            oay.innerText=pid;
                         }  );
                     }
 
@@ -228,6 +263,19 @@ totalSumCell1.style.color = '#4a2a01';
 
         
         loadPaymentDetails();
+//printing
+
+document.getElementById("print").addEventListener("click", function() {
+    const printButton = document.getElementById("print");
+    printButton.style.display = "none";
+
+    window.print();
+    printButton.style.display = "block";
+printButton.style.marginLeft="47%";
+    
+});
+
+
     </script>
 </body>
 </html>
