@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="slctl31" class="col-md-3 col-form-label"><b>College:<b></label>
+                <label for="slctl31" class="col-md-3 col-form-label"><b>College:</b></label>
                 <div class="col-md-9">
                     <div id="slctl31"></div>
                 </div>
