@@ -385,13 +385,13 @@
             <!-- Start of Report1 form block -->
             <div>
                 <div id="report">
-                    <?php
-                    echo '<div style="padding-top:85px;"><table>
+                    
+                    <div style="padding-top:85px;"><table>
         <thead style="font-size:24px">
-            <td width="45%" style="">
+            <td width="45%">
                 Event
             </td>
-            <td width="45%" style="">
+            <td width="45%">
                 Sub Event
             </td>
             <td width="10%" style="text-align: center;">
@@ -399,7 +399,8 @@
             </td>
             <tr><td>-----------</td><td>-------------</td><td>---------</td></tr>
             
-        </thead>';
+        </thead>
+                <?php
                     $abc = "select * from eventheader";
                     $eveqr = mysqli_query($con, $abc);
 

@@ -62,11 +62,22 @@ th,td{
               while ($row1 = mysqli_fetch_assoc($result1)) {
 
                 $college = $row1['clg'];
-                echo "<tr><td>".$college.", ";
+                echo "<tr><td>".$college."<br> ";
                 $s = "SELECT state,district FROM `student` where college='$college'";
                 $r = mysqli_query($con, $s);
                 $r1 = mysqli_fetch_assoc($r);
-                echo $r1['district'].", ".$r1['state']."</td>";
+                $dist = $r1['district'];
+                $state = $r1['state'];
+
+                $s = "SELECT name FROM `district` where no='$dist'";
+                $r = mysqli_query($con, $s);
+                if($r1 = mysqli_fetch_assoc($r))
+                  echo $r1['name'].", ";
+
+                $s = "SELECT name FROM `state` where no='$state'";
+                $r = mysqli_query($con, $s);
+                if($r1 = mysqli_fetch_assoc($r))
+                  echo $r1['name']."</td>";
 
                 for ($i = 1; $i <= $totalEvents; $i++) {
                   // fetch the total
@@ -104,7 +115,7 @@ th,td{
         ?>
       </tbody>
     </table>
-  </>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

@@ -3,23 +3,122 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-    select{
-            border: 1px solid #555;
-            height: 20px;
-            width: 170px;
-            padding: 1px 2px;
-            margin-right:20px;
-        }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sreg.css">
+
 
 </head>
 <body onload="sl()">
-	<br>
-	<br>
-	<br>
-<center>
+	
+<div class="container mt-5">
+<h2 class="text-center">Registration Form</h2>
+    <div class="border p-5 text-dark">
+        <form name="f" action="sreg.php">
+            <div class="form-group row">
+                <label for="sid" class="col-md-3 col-form-label"><b>Reg No:</b></label>
+                <div class="col-md-9">
+                    <input type="text" name="sid" id="sid" class="form-control" required="required">
+                    <p id="ckd"></p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="sname" class="col-md-3 col-form-label"><b>Name:</b></label>
+                <div class="col-md-9">
+                    <input type="text" name="sname" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dob" class="col-md-3 col-form-label"><b>Date of Birth:</b></label>
+                <div class="col-md-9">
+                    <input type="date" name="dob" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="number" class="col-md-3 col-form-label"><b>Cell No:</b></label>
+                <div class="col-md-9">
+                    <input type="text" oninput="numberOnly(this.id);" id="number" name="number" class="form-control" required="required" pattern="\d*" maxlength="10">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mail" class="col-md-3 col-form-label"><b>Email:</b></label>
+                <div class="col-md-9">
+                    <input type="email" name="mail" class="form-control" required="required">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label"><b>Gender:</b></label>
+                <div class="col-md-9">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" value="1" checked="checked" class="form-check-input">
+                        <label class="form-check-label"><b>Male</b></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" value="0" class="form-check-input">
+                        <label class="form-check-label"><b>Female</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="branch_option" class="col-md-3 col-form-label"><b>Branch:</b></label>
+                <div class="col-md-9">
+                    <select id="branch_option" name="branch_option" class="form-control">
+                        <option value="ECE">ECE</option>
+                        <option value="CSE">CSE</option>
+                        <option value="MEC">MEC</option>
+                        <option value="CIVIL">CIVIL</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Add Bootstrap classes to the following dropdowns -->
+            <div class="form-group row">
+                <label for="slctl1" class="col-md-3 col-form-label"><b>State:</b></label>
+                <div class="col-md-9">
+                    <select name="slctl1" id="slctl1" class="form-control" required="required" onchange="populate1()">
+                        <option value=""> -- Choose State --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="slctl21" class="col-md-3 col-form-label"><b>District:</b></label>
+                <div class="col-md-9">
+                    <div id="slctl21"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="slctl31" class="col-md-3 col-form-label"><b>College:<b></label>
+                <div class="col-md-9">
+                    <div id="slctl31"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">&nbsp;</label>
+                <div class="col-md-9">
+                    <input type="text" name="other" id="other" disabled hidden placeholder="Others" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row mt-3">
+                <div class="col-md-4 text-right">
+                    <input type="reset" class="btn btn-secondary">
+                </div>
+                <div class="col-md-8 text-start">
+                    <input type="submit" value="Register" id="registered" disabled class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+ 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<!-- master ka hai ye code--->
+<!-- <center>
 	<div style="border:2px solid #FFEEF4; margin-left:25%; margin-right:25%; padding:45px; color:#4C4B16">
 		<form name="f" action="sreg.php">
 			<table>
@@ -85,7 +184,7 @@
 			</table>
 		</form>
 	</div>
-</center>
+</center> -->
 
 
 
@@ -232,7 +331,7 @@ var eleval = element.value;
             }
             else{
                 document.getElementById("ckd").hidden=false;
-                document.getElementById("ckd").innerHTML="-";
+                document.getElementById("ckd").innerHTML="User Already Registered";
                 document.getElementById("registered").disabled=true;
             }
             if(element.value=="")

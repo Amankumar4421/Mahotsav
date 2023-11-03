@@ -45,7 +45,7 @@ while($sr = mysqli_fetch_assoc($srs))
 }
 
 echo $sd;
-echo '</select>';
+echo '<option value="others"> other</option> </select>';
 }
 
 ?>
