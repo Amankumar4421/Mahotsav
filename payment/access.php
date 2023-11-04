@@ -36,9 +36,13 @@ $stevrs = mysqli_query($con, $stevq);
     <div class="row justify-content-center mt-5">
       <div class="col-6">
         <table class="table">
-          <tr class="table-primary">
+          <tr class="table-secondary">
             <th>NAME: </th>
             <th><?php echo $srsd['name']; ?></th>
+          </tr>
+          <tr class="table-secondary" >
+            <th>M Id: </th>
+            <th><?php echo $srsd['sno']; ?></th>
           </tr>
           <tr>
             <td>EVENTS:</td>
