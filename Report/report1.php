@@ -128,11 +128,32 @@ $total_count = $c['count(*)'];
 
     </style>
 
+<style type="text/css" media="print">
+  .container{
+    display: none;
+  }
+  th {
+            background-color:#968e84;
+            color: black;
+        }
+h3 ,h1 , h2{
+    color: black;
+}
+  /* table {
+    display: table;
+  } */
+</style>
+
 </head>
 
 <body>
     <div class="container">
+        
+    <div class="print-button"style="float:left">
+        <button id="print">Print</button>
+    </div>
         <form method="post">
+
             <label for="event"><h3>Select Event:</h3></label>
             <select name="event" id="event">
                 <option value="">Select an event</option>
@@ -153,7 +174,7 @@ $total_count = $c['count(*)'];
             <select name="subevent" id="subevent">
                 <option value="">Select a subevent</option>
             </select></br></br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onclick=" return fun()">
         </form>
     </div>
     
@@ -162,6 +183,15 @@ $total_count = $c['count(*)'];
 </html>
 
 <script>
+    function fun(){
+        var eve=document.getElementById("event");
+        var sub=document.getElementById("subevent");
+        if(eve.value==0 || sub.value==0){
+            alert("Please select event and subevent");
+            return false;
+        }
+        
+    }
     document.getElementById('event').addEventListener('change', function () {
         var eventId = this.value;
         var subeventDropdown = document.getElementById('subevent');
@@ -235,9 +265,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<h2>Registered Students for the Selected Event: " . $event_name . " and Subevent: " . $subevent_name . "</h2>";
     ?>
 
-    <div class="print-button">
-        <button id="print">Print</button>
-    </div>
     <?php
     // echo "<h2>Registered Students for the Selected Subevent:</h2>";
 

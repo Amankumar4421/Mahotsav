@@ -129,12 +129,31 @@ $mysqli->close();
             color:black;
         }
     </style>
+
+<style type="text/css" media="print">
+  .pad{
+    display: none;
+  }
+  th {
+            background-color:#968e84;
+            color: black;
+        }
+        h1 {
+            background-color: #968e84;
+            color: black;
+           
+        }
+
+  /* table {
+    display: table;
+  } */
+</style>
 <body>
     <h1>Payment Details</h1>
     <div class="print-button">
         <button id="print">Print</button>
     </div>
-    <table>
+    <table class="pad">
         <thead>
             <tr>
                 <th>Payment ID (PID)</th>
