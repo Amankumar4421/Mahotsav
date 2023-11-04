@@ -104,7 +104,7 @@
                     <input type="reset" class="btn btn-secondary">
                 </div>
                 <div class="col-md-8 text-start">
-                    <input type="submit" value="Register" id="registered" disabled class="btn btn-primary">
+                    <input type="submit" value="Register"   id="registered"  disabled class="btn btn-primary">
                 </div>
             </div>
         </form>
