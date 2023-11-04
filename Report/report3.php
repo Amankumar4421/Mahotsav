@@ -16,7 +16,8 @@
 <body>
 
   <div class="container">
-    <div class="row mt-5">
+    <h2 class="text-center mt-4">Overall Report</h2>
+    <div class="row mt-3">
       <table class="table">
         <thead class=" table-dark">
           <td><b>Event</b></td>
