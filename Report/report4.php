@@ -11,15 +11,26 @@
   <title>EventWise College Count</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <style>
+    *{
+      box-sizing: border-box;
+    }
     th,td{
       text-align: center;
+    }
+    @media print {
+      #printButton {
+          display: none;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <table class="table">
+    <h3 class="text-center">Event Wise College Count</h3>
+    <button type="button" class="btn btn-secondary m-2" id="printButton">Print</button>
+
+  <table class="table table-bordered">
     <?php
     $sql = "SELECT * FROM `subeventheader`";
     $result = mysqli_query($con, $sql);
@@ -42,12 +53,13 @@
           echo "<tr><th colspan='3'>" . $subEventName ." (". $gendertype .")</th></tr>";
           echo "</thead>";
 
-          echo "<tr><th width='10%'>S.No</th><th width='80%'>College</th><th width='10%'>Count</th></tr>";
+          echo "<tr><th width='10%'>S.No</th><th width='80%'>College Name</th><th width='10%'>Count</th></tr>";
 
           $sql1 = "select distinct(college) as clg from student where regno in (select stdreg from ser where sen ='$subEventNo')";
           $result1 = mysqli_query($con, $sql1);
 
           $sl=1;
+          $total = 0;
           if ($result) {
             if (mysqli_num_rows($result) > 0) {
               while ($row1 = mysqli_fetch_assoc($result1)) {
@@ -58,7 +70,9 @@
                 $row2 = mysqli_fetch_assoc($result2);
 
                 echo "<tr><td width='10%'>".$sl++."</td><td width='80%'>".$collegeName."</td><td width='10%'>".$row2['cnt']."</td></tr>";
+                $total += $row2['cnt'];
               }
+              echo "<tr><th colspan='2' class='text-end'>Total : </th><th>".$total."</th></tr>";
             } else {
               echo "No records found in the table.";
             }
@@ -77,6 +91,11 @@
     ?>
   </table>
 
+  <script>
+    document.getElementById('printButton').addEventListener('click', function() {
+        window.print();
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
