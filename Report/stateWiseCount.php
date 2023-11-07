@@ -6,7 +6,12 @@
     $row = mysqli_fetch_assoc($result);
     $total_students = $row['total_students'];
 
-    $sql="SELECT college, COUNT(*) AS student_count FROM student GROUP BY college ORDER BY college ASC";
+    $sql="SELECT st.name as state_name, COUNT(s.state) AS student_count
+    FROM state st
+    JOIN student s ON st.no = s.state
+    GROUP BY st.name
+    ORDER BY st.name ASC";
+    
     $result = mysqli_query($con, $sql);
     // $row = mysqli_fetch_assoc($result);
     // $student_count = $row['student_count'];
@@ -18,7 +23,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College wise count</title>
+    <title>State wise count</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +42,7 @@
         }
 
         table {
-            width: 70%;
+            width: 40%;
             margin: 20px auto;
             border-collapse: collapse;
             background-color: white;
@@ -90,18 +95,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>College wise count</h1>
+        <h1>State wise count</h1>
         <?php 
         if (mysqli_num_rows($result) > 0){?>
             <table>
                 <thead>
-                    <th>College</th>
+                    <th>State</th>
                     <th>Count</th>
                 </thead>
                 <?php 
                 while ($row = mysqli_fetch_assoc($result)) {?>
                     <tr>
-                        <td><?php echo $row["college"]; ?></td>
+                        <td><?php echo $row["state_name"]; ?></td>
                         <td><?php echo $row["student_count"]; ?></td>
                     </tr> 
                 <?php } ?>
