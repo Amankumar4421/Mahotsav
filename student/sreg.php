@@ -1,9 +1,6 @@
 <?php
 //download phpmailer zip from github and extract it in this folder , copy the path of phpmailer and paste it here.
-<<<<<<< HEAD
-=======
 
->>>>>>> 2042ee162d64556f348bff152071960fff48cfb5
 require 'C:\xampp\htdocs\Mahotsav\student\PHPMailer-master/src/PHPMailer.php';
 require 'C:\xampp\htdocs\Mahotsav\student\PHPMailer-master/src/SMTP.php';
 require 'C:\xampp\htdocs\Mahotsav\student\PHPMailer-master/src/Exception.php';
