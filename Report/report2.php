@@ -17,13 +17,21 @@ th,td{
   white-space: nowrap;
     overflow: hidden; 
 }
+@media print {
+  #printButton {
+      display: none;
+  }
+  th,td{
+    font-size: 0.5rem;
+    white-space:break-spaces; 
+  }
+  }
 </style>
 
 <body>
 
-  <div class="text-center">
-    <h1>College Wise Report</h1>
-  </div>
+  <h1 class="text-center">College Wise Report</h1>
+  <button type="button" class="btn btn-secondary m-2 text-right" onclick="fun()"  id="printButton">Print</button>
 
   <div style="overflow-x: auto;">
     <table class="table table-striped table-bordered">
@@ -116,6 +124,13 @@ th,td{
       </tbody>
     </table>
   </div>
+
+
+  <script>
+      document.getElementById('printButton').addEventListener('click', function() {
+          window.print();
+      });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

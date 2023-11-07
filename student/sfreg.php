@@ -110,7 +110,11 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
                     <input type="reset" class="btn btn-secondary">
                 </div>
                 <div class="col-md-8 text-start">
+<<<<<<< HEAD
                     <input type="submit" value="Register" id="registered"  disabled class="btn btn-primary">
+=======
+                    <input type="submit" value="Register"   id="registered"  disabled class="btn btn-primary">
+>>>>>>> c82f745ef58b0722218c668e4179d2132f224a72
                 </div>
             </div>
         </form>

@@ -6,8 +6,12 @@ $cs = mysqli_query($con, $st23);
 $c = mysqli_fetch_assoc($cs);
 $total_count = $c['count(*)'];
 
-echo "<div id='total'>Total Registered Student: " . $total_count . "<br><br></div>";
 ?>
+<div id='total'>
+    <h1>Total Registered Student:
+        <?php echo $total_count ?>
+    </h1>
+</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,37 +19,142 @@ echo "<div id='total'>Total Registered Student: " . $total_count . "<br><br></di
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            /* background-color: #fff; */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 10%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #362c22;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #9c6f40;
+            color: black;
+        }
+
+        
+
+        h1,
+        h2 {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
         table {
+            width: 80%;
+            margin: 20px auto;
             border-collapse: collapse;
-            width: 100%;
-            border: 1px solid black;
+            background-color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
         }
 
         th,
         td {
-            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tbody tr:hover {
+            background-color: #d9d8d7;
+            box-shadow: 5px 5px 10px rgb(205, 195, 225);
+            cursor: pointer;
+        }
+
+        .print-button {
             text-align: center;
-            padding: 8px;
-            /* Adjust padding as needed */
         }
 
-        /* Style the table header row */
-        th,tr {
-            background-color: #f2f2f2;
-            /* Light gray background for headers */
+        .print-button button {
+            background-color: #362c22;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            /* margin-left: 45%; */
+
         }
 
+        .print-button button:hover {
+            background-color: #9c6f40;
+            color: black;
+        }
 
-        
     </style>
+
+<style type="text/css" media="print">
+  .container{
+    display: none;
+  }
+  th {
+            background-color:#968e84;
+            color: black;
+        }
+h3 ,h1 , h2{
+    color: black;
+}
+  /* table {
+    display: table;
+  } */
+</style>
 
 </head>
 
 <body>
     <div class="container">
+        
+    <div class="print-button"style="float:left">
+        <button id="print">Print</button>
+    </div>
         <form method="post">
-            <label for="event">Select Event:</label>
+
+            <label for="event"><h3>Select Event:</h3></label>
             <select name="event" id="event">
                 <option value="">Select an event</option>
                 <?php
@@ -61,18 +170,28 @@ echo "<div id='total'>Total Registered Student: " . $total_count . "<br><br></di
             </select>
             <br>
 
-            <label for="subevent">Select Subevent:</label>
+            <label for="subevent"><h3>Select Subevent:</h3></label>
             <select name="subevent" id="subevent">
                 <option value="">Select a subevent</option>
-            </select>
-            <input type="submit" value="Submit">
+            </select></br></br>
+            <input type="submit" value="Submit" onclick=" return fun()">
         </form>
     </div>
+    
 </body>
 
 </html>
 
 <script>
+    function fun(){
+        var eve=document.getElementById("event");
+        var sub=document.getElementById("subevent");
+        if(eve.value==0 || sub.value==0){
+            alert("Please select event and subevent");
+            return false;
+        }
+        
+    }
     document.getElementById('event').addEventListener('change', function () {
         var eventId = this.value;
         var subeventDropdown = document.getElementById('subevent');
@@ -88,6 +207,16 @@ echo "<div id='total'>Total Registered Student: " . $total_count . "<br><br></di
         } else {
             subeventDropdown.innerHTML = "<option value=''>Select a subevent</option>";
         }
+    });
+
+    document.getElementById("print").addEventListener("click", function () {
+        const printButton = document.getElementById("print");
+        printButton.style.display = "none";
+
+        window.print();
+        printButton.style.display = "block";
+        printButton.style.marginLeft = "47%";
+
     });
 </script>
 
@@ -134,7 +263,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     echo "<h2>Registered Students for the Selected Event: " . $event_name . " and Subevent: " . $subevent_name . "</h2>";
+    ?>
 
+    <?php
     // echo "<h2>Registered Students for the Selected Subevent:</h2>";
 
     if ($result->num_rows > 0) {
