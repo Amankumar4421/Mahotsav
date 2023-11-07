@@ -11,8 +11,8 @@
   <title>EventWise College Count</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <style>
-    *{
-      box-sizing: border-box;
+    h3{
+      color: white;
     }
     th,td{
       text-align: center;
@@ -27,8 +27,8 @@
 
 <body>
 
-    <h3 class="text-center mt-2">Event Wise College Count</h3>
-    <button type="button" class="btn btn-secondary m-2" id="printButton">Print</button>
+    <h3 class="text-center p-2 bg-dark">Event Wise College Count</h3>
+    <button type="button" class="btn btn-secondary m-1" id="printButton">Print</button>
 
   <table class="table table-bordered">
     <?php
