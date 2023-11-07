@@ -76,6 +76,11 @@ $str = "insert into student(regno, name, phone, gender, email, branch, dob, stat
 ('".$regid."','".$name."',".$cell.",".$gender.", '".$mail."','".$branch."','". $dob."', '".$state."', '".$district."', '".$coll."', '".$snon."')";
 
 
+<<<<<<< HEAD
+$res=mysqli_query($con, $str);
+if($res){
+$url = "index.php?reg=1";
+=======
 mysqli_query($con, $str);
 
  //sending mail
@@ -101,7 +106,13 @@ mysqli_query($con, $str);
 
 
 $url = "index.html";
+>>>>>>> c82f745ef58b0722218c668e4179d2132f224a72
 header( "refresh:2;URL=".$url);
+}
+else{
+    $url = "sfreg.php?reg=0";
+   header( "refresh:2;URL=".$url);
+}
 
 }
 
