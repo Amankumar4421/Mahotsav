@@ -56,10 +56,15 @@ $str = "insert into student(regno, name, phone, gender, email, branch, dob, stat
 ('".$regid."','".$name."',".$cell.",".$gender.", '".$mail."','".$branch."','". $dob."', '".$state."', '".$district."', '".$coll."', '".$snon."')";
 
 
-mysqli_query($con, $str);
-
-$url = "index.html";
+$res=mysqli_query($con, $str);
+if($res){
+$url = "index.php?reg=1";
 header( "refresh:2;URL=".$url);
+}
+else{
+    $url = "sfreg.php?reg=0";
+   header( "refresh:2;URL=".$url);
+}
 
 }
 

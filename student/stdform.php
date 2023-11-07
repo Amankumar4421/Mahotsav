@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION['stdreg'])){
-    header("Location:index.html");
+    header("Location:index.php");
 }
 $stdreg = $_SESSION['stdreg'];
 

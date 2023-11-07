@@ -1,3 +1,22 @@
+
+
+<?php
+
+$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
+$queryString = parse_url($currentURL, PHP_URL_QUERY);
+
+
+parse_str($queryString, $queryParameters);
+
+
+if (isset($queryParameters['reg']) && $queryParameters['reg'] === '1') {
+    echo "<script>alert('Registration successful');</script>";
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,7 +160,6 @@ var eleval = element.value;
         xhr.send();
 
 });
-
 
 
 
