@@ -27,7 +27,7 @@
 
 <body>
 
-    <h3 class="text-center">Event Wise College Count</h3>
+    <h3 class="text-center mt-2">Event Wise College Count</h3>
     <button type="button" class="btn btn-secondary m-2" id="printButton">Print</button>
 
   <table class="table table-bordered">
@@ -49,7 +49,7 @@
           else{
             $gendertype = "Both";
           }
-          echo "<thead class=table-dark>";
+          echo "<thead class=table-secondary>";
           echo "<tr><th colspan='3'>" . $subEventName ." (". $gendertype .")</th></tr>";
           echo "</thead>";
 
@@ -68,11 +68,12 @@
                 $sql2 = "SELECT count(stdreg) as cnt from ser where sen ='$subEventNo' and stdreg in (select regno from student where college = '$collegeName')";
                 $result2 = mysqli_query($con, $sql2);
                 $row2 = mysqli_fetch_assoc($result2);
-
+                
                 echo "<tr><td width='10%'>".$sl++."</td><td width='80%'>".$collegeName."</td><td width='10%'>".$row2['cnt']."</td></tr>";
                 $total += $row2['cnt'];
               }
               echo "<tr><th colspan='2' class='text-end'>Total : </th><th>".$total."</th></tr>";
+              echo "<tr><td colspan='3'></td></tr>";
             } else {
               echo "No records found in the table.";
             }
