@@ -1,12 +1,16 @@
 <?php
 
     include("connection.php");
-    $sql = "select count(*) as total_students from student";
+    $sql = "select count(*) as total_students from ser";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $total_students = $row['total_students'];
 
-    $sql="SELECT college, COUNT(*) AS student_count FROM student GROUP BY college ORDER BY college ASC";
+    $sql="SELECT sh.subname as subevent_name, COUNT(s.sen) AS student_count
+    FROM subeventheader sh
+    JOIN ser s ON sh.no = s.sen
+    GROUP BY sh.subname
+    ORDER BY sh.subname ASC";
     $result = mysqli_query($con, $sql);
     // $row = mysqli_fetch_assoc($result);
     // $student_count = $row['student_count'];
@@ -18,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College wise count</title>
+    <title>SubEvent count</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,18 +94,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>College wise count</h1>
+        <h1>SubEvent count</h1>
         <?php 
         if (mysqli_num_rows($result) > 0){?>
             <table>
                 <thead>
-                    <th>College</th>
+                    <th>SubEvent</th>
                     <th>Count</th>
                 </thead>
                 <?php 
                 while ($row = mysqli_fetch_assoc($result)) {?>
                     <tr>
-                        <td><?php echo $row["college"]; ?></td>
+                        <td><?php echo $row["subevent_name"]; ?></td>
                         <td><?php echo $row["student_count"]; ?></td>
                     </tr> 
                 <?php } ?>
