@@ -65,7 +65,7 @@ $str = "insert into student(regno, name, phone, gender, email, branch, dob, stat
 
 mysqli_query($con, $str);
 
-
+echo '<script type="text/javascript">alert("' . $snon . '");</script>';
 $url = "index.php";
 
   
