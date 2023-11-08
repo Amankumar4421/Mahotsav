@@ -66,7 +66,7 @@ $str = "insert into student(regno, name, phone, gender, email, branch, dob, stat
 mysqli_query($con, $str);
 
 
-$url = "index.html";
+$url = "index.php";
 
   
    header( "refresh:2;URL=".$url);
