@@ -31,8 +31,8 @@ $total_count = $c['count(*)'];
         form {
             /* background-color: #fff; */
             border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
+            border-radius: 20px;
+            padding-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
@@ -44,7 +44,8 @@ $total_count = $c['count(*)'];
 
         select {
             width: 10%;
-            padding: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             border: 1px solid #ccc;
             border-radius: 3px;
             margin-bottom: 10px;
@@ -149,9 +150,6 @@ h3 ,h1 , h2{
 <body>
     <div class="container">
         
-    <div class="print-button"style="float:left">
-        <button id="print">Print</button>
-    </div>
         <form method="post">
 
             <label for="event"><h3>Select Event:</h3></label>
@@ -182,43 +180,7 @@ h3 ,h1 , h2{
 
 </html>
 
-<script>
-    function fun(){
-        var eve=document.getElementById("event");
-        var sub=document.getElementById("subevent");
-        if(eve.value==0 || sub.value==0){
-            alert("Please select event and subevent");
-            return false;
-        }
-        
-    }
-    document.getElementById('event').addEventListener('change', function () {
-        var eventId = this.value;
-        var subeventDropdown = document.getElementById('subevent');
 
-        if (eventId) {
-            // Fetch subevents based on the selected event
-            var url = "get_subevents.php?event_id=" + eventId;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    subeventDropdown.innerHTML = data.options;
-                });
-        } else {
-            subeventDropdown.innerHTML = "<option value=''>Select a subevent</option>";
-        }
-    });
-
-    document.getElementById("print").addEventListener("click", function () {
-        const printButton = document.getElementById("print");
-        printButton.style.display = "none";
-
-        window.print();
-        printButton.style.display = "block";
-        printButton.style.marginLeft = "47%";
-
-    });
-</script>
 
 
 
@@ -265,6 +227,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<h2>Registered Students for the Selected Event: " . $event_name . " and Subevent: " . $subevent_name . "</h2>";
     ?>
 
+    <div class="print-button">
+        <button id="print">Print</button>
+    </div>
+
     <?php
     // echo "<h2>Registered Students for the Selected Subevent:</h2>";
 
@@ -291,3 +257,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<script>
+    function fun(){
+        var eve=document.getElementById("event");
+        var sub=document.getElementById("subevent");
+        if(eve.value==0 || sub.value==0){
+            alert("Please select event and subevent");
+            return false;
+        }
+        
+    }
+    document.getElementById('event').addEventListener('change', function () {
+        var eventId = this.value;
+        var subeventDropdown = document.getElementById('subevent');
+
+        if (eventId) {
+            // Fetch subevents based on the selected event
+            var url = "get_subevents.php?event_id=" + eventId;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    subeventDropdown.innerHTML = data.options;
+                });
+        } else {
+            subeventDropdown.innerHTML = "<option value=''>Select a subevent</option>";
+        }
+    });
+
+    document.getElementById("print").addEventListener("click", function () {
+        const printButton = document.getElementById("print");
+        printButton.style.display = "none";
+
+        window.print();
+        printButton.style.display = "block";
+        printButton.style.marginLeft = "47%";
+
+    });
+</script>

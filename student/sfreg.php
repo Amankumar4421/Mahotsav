@@ -1,3 +1,9 @@
+
+<?php
+if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
+    echo "<script>alert('Please Try Again');</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,14 +110,23 @@
                     <input type="reset" class="btn btn-secondary">
                 </div>
                 <div class="col-md-8 text-start">
+<<<<<<< HEAD
                     <input type="submit" value="Register"   id="registered"  >
+=======
+<<<<<<< HEAD
+                    <input type="submit" value="Register" id="registered"  disabled class="btn btn-primary">
+=======
+                    <input type="submit" value="Register"   id="registered"  disabled class="btn btn-primary">
+>>>>>>> c82f745ef58b0722218c668e4179d2132f224a72
+>>>>>>> 35a360d5f1a9d96897002d49b43013abdf84dda4
                 </div>
             </div>
         </form>
     </div>
 </div>
+
  
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
@@ -212,6 +227,7 @@ function fun()
     {
     document.getElementById("pl").innerHTML= document.getElementById("other").value;
     }
+    alert("Registered successfully!");
 }
 
 function forother()
@@ -265,7 +281,7 @@ var eleval = element.value;
             }
 
         }
-
+       
         xhr.send();
 
 });

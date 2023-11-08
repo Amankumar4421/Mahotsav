@@ -32,7 +32,7 @@ if(isset($result))
     }
     else{
         echo "<script>alert('Data Mismatch');</script>";
-        $url = "index.html";
+        $url = "index.php";
         header( "URL=".$url);
         
     }
@@ -41,11 +41,11 @@ if(isset($result))
 }
 else{
     echo "REGID NOT IN LIST";
-    $url = "index.html";
+    $url = "index.php";
     header( "refresh:2;URL=".$url);
 }
 
-$url = "index.html";
+$url = "index.php";
 header( "refresh:2;URL=".$url);
 
 

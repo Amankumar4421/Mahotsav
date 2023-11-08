@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION['stdreg'])){
-    header("Location:index.html");
+    header("Location:index.php");
 }
 $stdreg = $_SESSION['stdreg'];
 
@@ -97,7 +97,7 @@ echo '<!DOCTYPE html>
             border-radius:7px;"> EVENTS </h4>';
 
 
-            $str2 = "select * from eventheader";
+            $str2 = "select distinct no, name from eventheader a join ser b on a.no=b.even where b.stdreg='".$stdreg."'";
             $eventts = mysqli_query($con, $str2);
             $eventt = null;
             echo '<div class="event-list">';
@@ -140,7 +140,7 @@ if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 3
     // last request was more than 15 minutes ago
     session_unset(); // unset $_SESSION variable for the run-time
     session_destroy(); // destroy session data in storage
-    header("Location: login.php"); // redirect to login page
+    header("Location: index.html"); // redirect to login page
   }
   $_SESSION['last_activity'] = time(); // update last activity time stamp
 

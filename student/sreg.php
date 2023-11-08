@@ -1,5 +1,5 @@
 <?php
-
+ 
 
 
 $others = null;
@@ -65,13 +65,14 @@ $str = "insert into student(regno, name, phone, gender, email, branch, dob, stat
 
 mysqli_query($con, $str);
 
- 
-
 
 $url = "index.html";
-header( "refresh:2;URL=".$url);
 
+  
+   header( "refresh:2;URL=".$url);
 }
+
+
 
 
 
