@@ -6,14 +6,16 @@
     $row = mysqli_fetch_assoc($result);
     $total_students = $row['total_students'];
 
-    $sql="SELECT sh.subname as subevent_name, COUNT(s.sen) AS student_count
+    $sql="SELECT sh.subname as subevent_name, COUNT(s.sen) AS student_count, COUNT(DISTINCT st.college) AS unique_colleges
     FROM subeventheader sh
     JOIN ser s ON sh.no = s.sen
+    JOIN student st ON st.regno=s.stdreg
     GROUP BY sh.subname
     ORDER BY sh.subname ASC";
     $result = mysqli_query($con, $sql);
     // $row = mysqli_fetch_assoc($result);
     // $student_count = $row['student_count'];
+
 
 ?>
 
@@ -94,25 +96,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>SubEvent count</h1>
+        <h1>Unique colleges and Participants</h1>
         <?php 
         if (mysqli_num_rows($result) > 0){?>
             <table>
                 <thead>
                     <th>SubEvent</th>
-                    <th>Count</th>
+                    <th>Colleges count</th>
+                    <th>Participants Count</th>
                 </thead>
                 <?php 
                 while ($row = mysqli_fetch_assoc($result)) {?>
                     <tr>
                         <td><?php echo $row["subevent_name"]; ?></td>
+                        <td><?php echo $row["unique_colleges"]; ?></td>
                         <td><?php echo $row["student_count"]; ?></td>
                     </tr> 
                 <?php } ?>
-                <tr>
-                    <td><b>Total</b></td>
-                    <td><b><?php echo $total_students; ?></b></td>
-                </tr>
             </table>
         <?php } else {
             echo "No records found.";
