@@ -76,7 +76,7 @@
             <div class="form-group row">
                 <label for="slctl1" class="col-md-3 col-form-label"><b>State:</b></label>
                 <div class="col-md-9">
-                    <select name="slctl1" id="slctl1" class="form-control" required="required" onchange="populate1()">
+                    <select name="slctl1" id="slctl1" class="form-control"  onchange="populate1()">
                         <option value=""> -- Choose State --</option>
                     </select>
                 </div>
@@ -104,7 +104,7 @@
                     <input type="reset" class="btn btn-secondary">
                 </div>
                 <div class="col-md-8 text-start">
-                    <input type="submit" value="Register"   id="registered"  disabled class="btn btn-primary">
+                    <input type="submit" value="Register"   id="registered"  >
                 </div>
             </div>
         </form>
