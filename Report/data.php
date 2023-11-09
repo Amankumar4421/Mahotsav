@@ -1,9 +1,9 @@
 <?php
 
-$server="localhost";
-$username="root";
-$password="";
-$database="srmid1";
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "srmid";
 $mysqli = mysqli_connect($server, $username, $password, $database);
 
 
@@ -37,6 +37,6 @@ if (isset($_GET['mahotsavid'])) {
 // function submit($mysqli){
 // $res="insert into teamreg values($eamreg, "
 // }
-    
+
 
 ?>

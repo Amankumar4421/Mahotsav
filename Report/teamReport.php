@@ -1,24 +1,34 @@
 <?php
 
-    include("connection.php");
-    $sql = "select count(*) as total_students from student";
-    $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $total_students = $row['total_students'];
+// Connect to the database
+include("connection.php");
 
-    $sql="SELECT college, COUNT(*) AS student_count FROM student GROUP BY college ORDER BY college ASC";
-    $result = mysqli_query($con, $sql);
-    // $row = mysqli_fetch_assoc($result);
-    // $student_count = $row['student_count'];
+// Check connection
+if (!$con) {
+    die('Connection failed: ' . mysqli_connect_error());
+}
+
+// Create the SQL query to count the teams of each college in each subevent
+$sql = "SELECT * FROM eventheader";
+
+// Execute the query and store the result in a variable
+$result = mysqli_query($con, $sql);
+
+// Check if the query was successful
+if (!$result) {
+    die('Error executing query: ' . mysqli_error($con));
+}
+
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College wise count</title>
+    <title>College wise teamcount</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,6 +42,13 @@
         h1 {
             background-color: #333;
             color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        h2{
+            /* background-color: white; */
+            color: black;
             text-align: center;
             padding: 10px;
         }
@@ -90,29 +107,40 @@
 </head>
 <body>
     <div class="container">
-        <h1>College wise count</h1>
+        <h1>College wise team count</h1>
         <?php 
-        if (mysqli_num_rows($result) > 0){?>
-            <table>
-                <thead>
-                    <th>College</th>
-                    <th>Count</th>
-                </thead>
-                <?php 
-                while ($row = mysqli_fetch_assoc($result)) {?>
+        while ($row = mysqli_fetch_assoc($result)){
+            $eventName = $row['name'];
+
+            $sql2="SELECT college,count(DISTINCT id) AS team_count FROM teamreg WHERE event= '$eventName' GROUP BY college ORDER BY college ASC";
+            $result2=mysqli_query($con, $sql2);
+
+            $sql3="SELECT COUNT(DISTINCT id) AS total FROM teamreg WHERE event= '$eventName'";
+            $result3=mysqli_query($con, $sql3);
+            $row3 = mysqli_fetch_assoc($result3);
+
+            if (mysqli_num_rows($result2) > 0){?>
+                <h2><?php echo $row['name']; ?></h2>    
+                <table>
+                    <thead>
+                        <th>College</th>
+                        <th>Count</th>
+                    </thead>
+                    <?php 
+                    while ($row2 = mysqli_fetch_assoc($result2)) {?>
+                        <tr>
+                            <td><?php echo $row2['college']; ?></td>
+                            <td><?php echo $row2['team_count']; ?></td>
+                        </tr> 
+                    <?php } ?>
                     <tr>
-                        <td><?php echo $row["college"]; ?></td>
-                        <td><?php echo $row["student_count"]; ?></td>
-                    </tr> 
-                <?php } ?>
-                <tr>
-                    <td><b>Total</b></td>
-                    <td><b><?php echo $total_students; ?></b></td>
-                </tr>
-            </table>
-        <?php } else {
-            echo "No records found.";
+                        <td><b>Total</b></td>
+                        <td><b><?php echo $row3['total']; ?></b></td>
+                    </tr>
+                </table>
+            <?php }
         } ?>
+        
         <div class="print-button">
             <button id="print">Print</button>
         </div>
