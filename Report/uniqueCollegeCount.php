@@ -1,21 +1,22 @@
 <?php
 
     include("connection.php");
-    $sql = "select count(*) as total_students from payment where acc=1";
+    $sql = "select count(*) as total_students from ser";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $total_students = $row['total_students'];
 
-    $sql="select count(regno) as male from student s join payment p on s.regno=p.stdreg and acc=1 where s.gender=1";
+    $sql="SELECT sh.subname as subevent_name, COUNT(s.sen) AS student_count, COUNT(DISTINCT st.college) AS unique_colleges
+    FROM subeventheader sh
+    JOIN ser s ON sh.no = s.sen
+    JOIN student st ON st.regno=s.stdreg
+    GROUP BY sh.subname
+    ORDER BY sh.subname ASC";
     $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $male = $row['male'];
+    // $row = mysqli_fetch_assoc($result);
+    // $student_count = $row['student_count'];
 
-    $sql="select count(regno) as female from student s join payment p on s.regno=p.stdreg and acc=1 where s.gender=0";
-    $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $female = $row['female'];
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accommodation</title>
+    <title>SubEvent count</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,7 +43,7 @@
         }
 
         table {
-            width: 40%;
+            width: 70%;
             margin: 20px auto;
             border-collapse: collapse;
             background-color: white;
@@ -95,25 +96,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>Accommodation</h1>
-        <table>
-            <thead>
-                <th>Gender</th>
-                <th>Count</th>
-            </thead>
-            <tr>
-                <td>Male</td>
-                <td><?php echo $male; ?></td>
-            </tr>
-            <tr>
-                <td>Female</td>
-                <td><?php echo $female; ?></td>
-            </tr>
-            <tr>
-                <td><b>Total</b></td>
-                <td><b><?php echo $total_students; ?></b></td>
-            </tr>
-        </table>
+        <h1>Unique colleges and Participants</h1>
+        <?php 
+        if (mysqli_num_rows($result) > 0){?>
+            <table>
+                <thead>
+                    <th>SubEvent</th>
+                    <th>Colleges count</th>
+                    <th>Participants Count</th>
+                </thead>
+                <?php 
+                while ($row = mysqli_fetch_assoc($result)) {?>
+                    <tr>
+                        <td><?php echo $row["subevent_name"]; ?></td>
+                        <td><?php echo $row["unique_colleges"]; ?></td>
+                        <td><?php echo $row["student_count"]; ?></td>
+                    </tr> 
+                <?php } ?>
+            </table>
+        <?php } else {
+            echo "No records found.";
+        } ?>
         <div class="print-button">
         <button id="print">Print</button>
     </div>
