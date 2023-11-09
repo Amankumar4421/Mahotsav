@@ -1,17 +1,17 @@
 <?php
 
     include("connection.php");
-    $sql = "select count(*) as total_students from payment";
+    $sql = "select count(*) as total_students from payment where acc=1";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $total_students = $row['total_students'];
 
-    $sql="select count(regno) as male from student s join payment p on s.regno=p.stdreg where s.gender=1";
+    $sql="select count(regno) as male from student s join payment p on s.regno=p.stdreg and acc=1 where s.gender=1";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $male = $row['male'];
 
-    $sql="select count(regno) as female from student s join payment p on s.regno=p.stdreg where s.gender=0";
+    $sql="select count(regno) as female from student s join payment p on s.regno=p.stdreg and acc=1 where s.gender=0";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $female = $row['female'];
