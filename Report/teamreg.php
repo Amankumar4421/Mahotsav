@@ -133,35 +133,42 @@ include("connection.php");
     <div class="main"> 
     <form action="submit.php" method="post">
     <div class="dropdowns">
-        <select id="college" name="college">
-        <?php
-                $sql = "SELECT * FROM college";
-                $result = $con->query($sql);
-                if (!$result) {
-                    die("Query failed: " . $con->error);
-                }
-                echo "<option value='" . 'college' . " selected'>" . 'Select College' . "</option>";
+      <input type="text" id="searchInput" placeholder="Search for college...">
+      <select id="college" name="college">
+        <option value="" selected> College</option>
 
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
-                }
-                ?>
-        </select>
+        <?php
+        $sql = "SELECT * FROM college";
+        $result = $con->query($sql);
+        if (!$result) {
+          die("Query failed: " . $con->error);
+        }
+
+        while ($row = $result->fetch_assoc()) {
+          echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+        }
+        ?>
+      </select>
+    
+      <input type="text" id="searchInput1" placeholder="Search for event...">
         <select id="events" name="event">
+        
+        <option value="" selected>Select event</option>
 
-        <?php
-                $sql = "SELECT * FROM eventheader";
-                $result = $con->query($sql);
-                if (!$result) {
-                    die("Query failed: " . $con->error);
-                }
-                echo "<option value='" . 'college' . " selected'>" . 'Select Event' . "</option>";
+<?php
+$sql = "SELECT * FROM eventheader";
+$result = $con->query($sql);
+if (!$result) {
+  die("Query failed: " . $con->error);
+}
 
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
-                }
-                ?>
+while ($row = $result->fetch_assoc()) {
+  echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+}
+?>
+
         </select>
+    </div>
         <h1>Team Registration</h1>
         <label for="teamSize">Select the number of team members:</label>
         <input type="number" name="teamSize" id="teamSize" min="1" required>
@@ -174,6 +181,42 @@ include("connection.php");
     <button id="submitButton" style="display: none;">Submit</button>
 
     <script>
+
+           //search in dropdown
+
+           function filterDropdown() {
+            var searchInput = document.getElementById("searchInput");
+  var searchTerm = searchInput.value.toLowerCase();
+
+  var dropdownOptions = document.getElementById("college").options;
+  for (var i = 0; i < dropdownOptions.length; i++) {
+    var optionText = dropdownOptions[i].text.toLowerCase();
+    if (optionText.indexOf(searchTerm) >= 0) {
+      dropdownOptions[i].style.display = "";
+    } else {
+      dropdownOptions[i].style.display = "none";
+    }
+  }
+}
+
+function filterDropdown1() {
+            var searchInput = document.getElementById("searchInput1");
+  var searchTerm = searchInput.value.toLowerCase();
+
+  var dropdownOptions = document.getElementById("events").options;
+  for (var i = 0; i < dropdownOptions.length; i++) {
+    var optionText = dropdownOptions[i].text.toLowerCase();
+    if (optionText.indexOf(searchTerm) >= 0) {
+      dropdownOptions[i].style.display = "";
+    } else {
+      dropdownOptions[i].style.display = "none";
+    }
+  }
+}
+
+// Add an event listener to the search input field to call the JavaScript function when the user types something
+document.getElementById("searchInput").addEventListener("keyup", filterDropdown);
+document.getElementById("searchInput1").addEventListener("keyup", filterDropdown1);
         
         document.getElementById('createFormButton').addEventListener('click', function () {
             event.preventDefault();
