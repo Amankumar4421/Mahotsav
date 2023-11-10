@@ -129,7 +129,7 @@ if (!$result) {
                     <?php 
                     while ($row2 = mysqli_fetch_assoc($result2)) {?>
                         <tr>
-                            <td><?php echo '<a href="getTeamMembers.php?college='.$row2['college'].'" style="text-decoration:none;">'.$row2['college'].'</a>' ?></td>
+                            <td><?php echo '<a href="getTeamMembers.php?college='.$row2['college'].'&event='.$row['name'].'" style="text-decoration:none;">'.$row2['college'].'</a>' ?></td>
                             <td><?php echo $row2['team_count']; ?></td>
                         </tr> 
                     <?php } ?>
