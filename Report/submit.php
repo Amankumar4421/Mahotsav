@@ -17,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $col = $_POST['college'];
 
     $eve = $_POST['event'];
-    $str76 = "SELECT college,count(*)as total from teamreg where college = '" . $col . "' AND event = '" . $eve . "' GROUP BY college";
+    $str76 = "SELECT count(DISTINCT id)as total from teamreg where college = '" . $col . "' AND event = '" . $eve . "' ";
     $result = mysqli_query($mysqli, $str76);
     $data = mysqli_fetch_assoc($result);
     //echo '<script type="text/javascript">alert("' .$data['total']. '");</script>';
 
     //echo $recs;
-    $value=$data['$total']??0;
+    $value=$data['total']??0;
     $rec = $col . "_" . $eve . "_" . $value + 1;
     echo '<script type="text/javascript">alert("' . $rec . '");</script>';
     // $snon ="MR".$rec;
@@ -44,12 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Create an SQL query to insert data into the "teamreg" table
         $sql = "INSERT INTO teamreg (id, college , event, mhid, name, captain) VALUES ('$rec','$college','$event', '$mahotsavid', '$name', '$captain')";
 
-        if ($mysqli->query($sql) === TRUE) {
-            echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
+        
+    }
+    if ($mysqli->query($sql) === TRUE) {
+        echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
 
-        } else {
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
-        }
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
 
     // Close the database connection
