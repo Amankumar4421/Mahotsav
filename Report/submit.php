@@ -44,13 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Create an SQL query to insert data into the "teamreg" table
         $sql = "INSERT INTO teamreg (id, college , event, mhid, name, captain) VALUES ('$rec','$college','$event', '$mahotsavid', '$name', '$captain')";
 
-        
-    }
-    if ($mysqli->query($sql) === TRUE) {
-        echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
+        if ($mysqli->query($sql) === TRUE) {
+            echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
 
-    } else {
-        echo "Error: " . $sql . "<br>" . $mysqli->error;
+        } else {
+            echo "Error: " . $sql . "<br>" . $mysqli->error;
+        }
     }
 
     // Close the database connection
