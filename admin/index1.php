@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
         }
-
+       
         .navbar {
             background-color: #343a40;
             padding: 15px;
@@ -85,32 +85,47 @@
 <body>
 
 <div class="navbar">
-    <a href="../student/index.php">Report</a>
+    <a href="#">Report</a>
     <a href="#">Payment</a>
     <a href="#">Payment Report</a>
     <a href="index.html">Login</a>
 </div>
 
 <div class="grid-container">
-    <div class="card" onclick="window.location.href='index.html'">
+    <div class="card" onclick="window.location.href='../student/index.php'">
         <h3>Home</h3>
-        <p>Welcome to our event landing page. Discover exciting events and join the fun!</p>
-        <img src="home-image.jpg" alt="Home Image">
-        <a href="index.html">Learn More</a>
+        <img src="images/hostl.png" alt="Home Image">
+        <p>AccomodationCount Report</p>
+     
+        
+        
     </div>
 
     <div class="card" onclick="window.location.href='event1.html'">
-        <h3>Event 1</h3>
-        <p>Description of Event 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <img src="event1-image.jpg" alt="Event 1 Image">
-        <a href="event1.html">Learn More</a>
+        <h3>college</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>CollegeWise Count Report</p>
     </div>
 
     <div class="card" onclick="window.location.href='event2.html'">
-        <h3>Event 2</h3>
-        <p>Description of Event 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <img src="event2-image.jpg" alt="Event 2 Image">
-        <a href="event2.html">Learn More</a>
+        <h3>Events</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>EventWise Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Gender</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>GenderWise Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>State</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>StateWise Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
     </div>
 
     <!-- Repeat the above card structure for the remaining cards -->

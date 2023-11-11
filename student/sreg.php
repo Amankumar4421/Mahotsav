@@ -61,18 +61,6 @@ $snon ="MR".$rec;
 
 $str = "insert into student(regno, name, phone, gender, email, branch, dob, state, district, college,sno) values
 ('".$regid."','".$name."',".$cell.",".$gender.", '".$mail."','".$branch."','". $dob."', '".$state."', '".$district."', '".$coll."', '".$snon."')";
-<<<<<<< HEAD
-$res=mysqli_query($con, $str);
-if($res){
-$url = "index.php?reg=1";
-mysqli_query($con, $str);
-$url = "index.html";
-
-header( "refresh:2;URL=".$url);
-}
-else{
-    $url = "sfreg.php?reg=0";
-=======
 
 
 mysqli_query($con, $str);
@@ -81,7 +69,6 @@ echo '<script type="text/javascript">alert("Registration Successful.\nYour Mahot
 $url = "index.php";
 
   
->>>>>>> 321d2d9ec36b3ecfb38c151fb7f2f53d6ea68155
    header( "refresh:2;URL=".$url);
 }
 
