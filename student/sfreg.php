@@ -82,7 +82,7 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
             <div class="form-group row">
                 <label for="slctl1" class="col-md-3 col-form-label"><b>State:</b></label>
                 <div class="col-md-9">
-                    <select name="slctl1" id="slctl1" class="form-control" required="required" onchange="populate1()">
+                    <select name="slctl1" id="slctl1" class="form-control"  onchange="populate1()">
                         <option value=""> -- Choose State --</option>
                     </select>
                 </div>
@@ -110,11 +110,9 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
                     <input type="reset" class="btn btn-secondary">
                 </div>
                 <div class="col-md-8 text-start">
-<<<<<<< HEAD
+ 
                     <input type="submit" value="Register" id="registered"  disabled class="btn btn-primary">
-=======
-                    <input type="submit" value="Register"   id="registered"  disabled class="btn btn-primary">
->>>>>>> c82f745ef58b0722218c668e4179d2132f224a72
+
                 </div>
             </div>
         </form>
