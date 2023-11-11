@@ -9,7 +9,7 @@ if (!$con) {
 }
 
 // Create the SQL query to count the teams of each college in each subevent
-$sql = "SELECT * FROM eventheader";
+$sql = "SELECT * FROM subeventheader";
 
 // Execute the query and store the result in a variable
 $result = mysqli_query($con, $sql);
@@ -110,17 +110,17 @@ if (!$result) {
         <h1>College wise team count</h1>
         <?php 
         while ($row = mysqli_fetch_assoc($result)){
-            $eventName = $row['name'];
+            $subeventName = $row['subname'];
 
-            $sql2="SELECT college,count(DISTINCT id) AS team_count FROM teamreg WHERE event= '$eventName' GROUP BY college ORDER BY college ASC";
+            $sql2="SELECT college,count(DISTINCT id) AS team_count FROM teamreg WHERE subevent= '$subeventName' GROUP BY college ORDER BY college ASC";
             $result2=mysqli_query($con, $sql2);
 
-            $sql3="SELECT COUNT(DISTINCT id) AS total FROM teamreg WHERE event= '$eventName'";
+            $sql3="SELECT COUNT(DISTINCT id) AS total FROM teamreg WHERE subevent= '$subeventName'";
             $result3=mysqli_query($con, $sql3);
             $row3 = mysqli_fetch_assoc($result3);
 
             if (mysqli_num_rows($result2) > 0){?>
-                <h2><?php echo $row['name']; ?></h2>    
+                <h2><?php echo $row['subname']; ?></h2>    
                 <table>
                     <thead>
                         <th>College</th>
@@ -129,7 +129,7 @@ if (!$result) {
                     <?php 
                     while ($row2 = mysqli_fetch_assoc($result2)) {?>
                         <tr>
-                            <td><?php echo '<a href="getTeamMembers.php?college='.$row2['college'].'&event='.$row['name'].'" style="text-decoration:none;">'.$row2['college'].'</a>' ?></td>
+                            <td><?php echo '<a href="getTeamMembers.php?college='.$row2['college'].'&subevent='.$row['subname'].'" style="text-decoration:none;">'.$row2['college'].'</a>' ?></td>
                             <td><?php echo $row2['team_count']; ?></td>
                         </tr> 
                     <?php } ?>

@@ -12,12 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $database = "srmid";
     $mysqli = mysqli_connect($server, $username, $password, $database);
 
+    $college = $_POST['college'];
+    $subevent = $_POST['subevent'];
+
     $teamSize = $_POST['teamSize'];
     $captain = -1;
     $col = $_POST['college'];
 
-    $eve = $_POST['event'];
-    $str76 = "SELECT count(DISTINCT id)as total from teamreg where college = '" . $col . "' AND event = '" . $eve . "' ";
+    $eve = $_POST['subevent'];
+    $str76 = "SELECT count(DISTINCT id)as total from teamreg where college = '" . $col . "' AND subevent = '" . $eve . "' ";
     $result = mysqli_query($mysqli, $str76);
     $data = mysqli_fetch_assoc($result);
     //echo '<script type="text/javascript">alert("' .$data['total']. '");</script>';
@@ -27,6 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rec = $col . "_" . $eve . "_" . $value + 1;
     echo '<script type="text/javascript">alert("' . $rec . '");</script>';
     // $snon ="MR".$rec;
+
+    $sql1="SELECT eno FROM subeventheader WHERE subname='$subevent'";
+    $result1=mysqli_query($mysqli,$sql1);
+    $row1=mysqli_fetch_assoc($result1);
+    $eventno=$row1['eno'];
+
+    $sql2="SELECT no FROM subeventheader WHERE subname='$subevent'";
+    $result2=mysqli_query($mysqli,$sql2);
+    $row2=mysqli_fetch_assoc($result2);
+    $subeventno=$row2['no'];
+
     for ($i = 0; $i < $teamSize; $i++) {
         $mahotsavid = $_POST['mahotsavid'][$i];
         $name = $_POST['name'][$i];
@@ -39,10 +53,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $captain = 0;
         // $captain = !empty($_POST['captain']) && $_POST['captain'] === $mahotsavid ? 1 : 0; // Combine if statement and set captain
 
-        $college = $_POST['college'];
-        $event = $_POST['event'];
+        // $college = $_POST['college'];
+        // $subevent = $_POST['subevent'];
         // Create an SQL query to insert data into the "teamreg" table
-        $sql = "INSERT INTO teamreg (id, college , event, mhid, name, captain) VALUES ('$rec','$college','$event', '$mahotsavid', '$name', '$captain')";
+        $sql = "INSERT INTO teamreg (id, college , subevent, mhid, name, captain) VALUES ('$rec','$college','$subevent', '$mahotsavid', '$name', '$captain')";
+
+        
+
+        $sql3="SELECT regno FROM student WHERE sno='$mahotsavid'";
+        $result3=mysqli_query($mysqli,$sql3);
+        $row3=mysqli_fetch_assoc($result3);
+        $regno=$row3['regno'];
+
+        $sql4= "INSERT INTO ser (sen, even, stdreg) VALUES ('$subeventno', '$eventno', '$regno')";
+        $mysqli->query($sql4);
 
         if ($mysqli->query($sql) === TRUE) {
             echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';

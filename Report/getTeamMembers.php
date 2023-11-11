@@ -87,11 +87,11 @@
 
 include("connection.php");
 
-if (isset($_GET['college']) && isset($_GET['event'])) {
+if (isset($_GET['college']) && isset($_GET['subevent'])) {
     $college = $_GET['college'];
-    $event = $_GET['event'];
+    $subevent = $_GET['subevent'];
 
-    $sqlTeamMembers = "SELECT * FROM teamreg WHERE college = '$college' AND event = '$event' group by id";
+    $sqlTeamMembers = "SELECT * FROM teamreg WHERE college = '$college' AND subevent = '$subevent' group by id";
     $resultTeamMembers = mysqli_query($con, $sqlTeamMembers);
 
     if ($resultTeamMembers) {
