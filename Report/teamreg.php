@@ -281,9 +281,9 @@ include("connection.php");
                                 const selectedMahotsavid = this.value;
 
                                 fetch(`data.php?mahotsavid=${selectedMahotsavid}`)
-                                    .then(response => response.text())
+                                    .then(response => response.json())
                                     .then(data => {
-                                        nameInput.value = data; // Populate the "name" field with the fetched name
+                                        nameInput.value = data.name; // Populate the "name" field with the fetched name
                                     })
                                     .catch(error => console.error(error));
                             });
