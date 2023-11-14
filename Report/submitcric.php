@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //echo $recs;
     $value = $data['total'] ?? 0;
-    $rec = "Team :" . $value + 1;
+    $rec = "Team: " . $value + 1;
 
     $allQueriesSuccessful = true;
     for ($i = 0; $i < $teamSize; $i++) {
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($captain === 1)
             $sql = "INSERT INTO cricteam (id ,college,mhid,name, phone,email,bonafide, paymentcpy , utr,dateofpay,captain) VALUES ('$rec','$college','$mahotsavid','$name','$cell','$email', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain')  ";
         else
-            $sql = "INSERT INTO cricteam (id, college , mhid,name, phone,email ,dateofpay, captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email', '$dateofpay','$captain') ";
+            $sql = "INSERT INTO cricteam (id, college , mhid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
 
 
         if (!$mysqli->query($sql)) {
