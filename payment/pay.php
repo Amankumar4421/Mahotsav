@@ -25,7 +25,7 @@ $st1 = "select * from payment where stdreg='".$sid."'";
 $resds = mysqli_query($con,$st1);
 $resd = mysqli_fetch_assoc($resds);
 if(isset($resd)){
-echo "<script>alert('Already registered.');</script>";
+echo "<script>alert('Already paid.');</script>";
  include("access.php");
 // $url = "main.php";
 // header( "refresh:1;URL=".$url);
