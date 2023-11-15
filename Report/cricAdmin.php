@@ -9,8 +9,7 @@ if (!$con) {
 }
 
 // Create the SQL query to count the teams of each college in each subevent
-$sql = "SELECT * FROM subeventheader";
-
+$sql = "SELECT Distinct(id),college,status FROM cricteam GROUP BY id";
 // Execute the query and store the result in a variable
 $result = mysqli_query($con, $sql);
 
@@ -25,10 +24,11 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College wise teamcount</title>
+    <title>Cricket registration request</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +37,7 @@ if (!$result) {
             padding: 0;
         }
 
-        
+
 
         h1 {
             background-color: #333;
@@ -46,7 +46,7 @@ if (!$result) {
             padding: 10px;
         }
 
-        h2{
+        h2 {
             /* background-color: white; */
             color: black;
             text-align: center;
@@ -102,52 +102,47 @@ if (!$result) {
             background-color: #9c6f40;
             color: black;
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>College wise team count</h1>
-        <?php 
-        while ($row = mysqli_fetch_assoc($result)){
-            $subeventName = $row['subname'];
+        <h1>Cricket team registration request</h1>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) { ?>
 
-            $sql2="SELECT college,count(DISTINCT id) AS team_count FROM teamreg WHERE subevent= '$subeventName' GROUP BY college ORDER BY college ASC";
-            $result2=mysqli_query($con, $sql2);
+            <table>
+                <thead>
+                    <th>Team Id</th>
+                    <th>College</th>
+                    <th>Status</th>
+                </thead>
 
-            $sql3="SELECT COUNT(DISTINCT id) AS total FROM teamreg WHERE subevent= '$subeventName'";
-            $result3=mysqli_query($con, $sql3);
-            $row3 = mysqli_fetch_assoc($result3);
+                <tr>
+                    <td><a href="cricTeamDetail.php?id=<?php echo $row['id']; ?>" style="text-decoration:none;">
+                            <?php echo $row['id']; ?>
+                        </a>
+                    </td>
+                    <td>
+                        <?php echo $row['college']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['status']; ?>
+                    </td>
+                </tr>
 
-            if (mysqli_num_rows($result2) > 0){?>
-                <h2><?php echo $row['subname']; ?></h2>    
-                <table>
-                    <thead>
-                        <th>College</th>
-                        <th>Count</th>
-                    </thead>
-                    <?php 
-                    while ($row2 = mysqli_fetch_assoc($result2)) {?>
-                        <tr>
-                            <td><?php echo '<a href="getTeamMembers.php?college='.$row2['college'].'&subevent='.$row['subname'].'" style="text-decoration:none;">'.$row2['college'].'</a>' ?></td>
-                            <td><?php echo $row2['team_count']; ?></td>
-                        </tr> 
-                    <?php } ?>
-                    <tr>
-                        <td><b>Total</b></td>
-                        <td><b><?php echo $row3['total']; ?></b></td>
-                    </tr>
-                </table>
-            <?php }
-        } ?>
-        
-        <div class="print-button">
+            </table>
+
+        <?php } ?>
+
+        <!-- <div class="print-button">
             <button id="print">Print</button>
-        </div>
+        </div> -->
     </div>
 </body>
+
 </html>
-<script>
+<!-- <script>
     document.getElementById("print").addEventListener("click", function () {
         const printButton = document.getElementById("print");
         printButton.style.display = "none";
@@ -157,4 +152,4 @@ if (!$result) {
         printButton.style.marginLeft = "47%";
 
     });
-</script>
+</script> -->
