@@ -5,6 +5,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+<<<<<<< HEAD
     // $server = "localhost";
     // $username = "root";
     // $password = "";
@@ -18,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mysqli = mysqli_connect($server, $username, $password, $database,$port);
 
     //$mysqli = mysqli_connect($server, $username, $password, $database);
+=======
+    include("connection.php");
+>>>>>>> b9b0c19bc07680eeff319ad3c25802f176dae062
 
     $fileUpload1 = $_FILES['fileUpload1']['name'];
     $fileUpload2 = $_FILES['fileUpload2']['name'];
@@ -30,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $col = $_POST['college'];
     $captain = -1;
     $str76 = "SELECT count(DISTINCT id)as total from cricteam";
-    $result = mysqli_query($mysqli, $str76);
+    $result = mysqli_query($con, $str76);
     $data = mysqli_fetch_assoc($result);
     //echo '<script type="text/javascript">alert("' .$data['total']. '");</script>';
 
@@ -62,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO cricteam (id, college , mhid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
         }
         
-        if (!$mysqli->query($sql)) {
+        if (!$con->query($sql)) {
             $allQueriesSuccessful = false;
         }
     }
-    $mysqli->query($sql2);
+    $con->query($sql2);
     if ($allQueriesSuccessful) {
         echo '<script type="text/javascript">alert("REGISTRATION SUCCESSFUL");</script>';
     }

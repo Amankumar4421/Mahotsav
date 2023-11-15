@@ -6,11 +6,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "srmid";
-    $mysqli = mysqli_connect($server, $username, $password, $database);
+    include("connection.php");
 
     $college = $_POST['college'];
     $subevent = $_POST['subevent'];
@@ -21,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $eve = $_POST['subevent'];
     $str76 = "SELECT count(DISTINCT id)as total from teamreg where college = '" . $col . "' AND subevent = '" . $eve . "' ";
-    $result = mysqli_query($mysqli, $str76);
+    $result = mysqli_query($con, $str76);
     $data = mysqli_fetch_assoc($result);
     //echo '<script type="text/javascript">alert("' .$data['total']. '");</script>';
 
@@ -32,12 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $snon ="MR".$rec;
 
     $sql1="SELECT eno FROM subeventheader WHERE subname='$subevent'";
-    $result1=mysqli_query($mysqli,$sql1);
+    $result1=mysqli_query($con,$sql1);
     $row1=mysqli_fetch_assoc($result1);
     $eventno=$row1['eno'];
 
     $sql2="SELECT no FROM subeventheader WHERE subname='$subevent'";
-    $result2=mysqli_query($mysqli,$sql2);
+    $result2=mysqli_query($con,$sql2);
     $row2=mysqli_fetch_assoc($result2);
     $subeventno=$row2['no'];
 
@@ -61,18 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
 
         $sql3="SELECT regno FROM student WHERE sno='$mahotsavid'";
-        $result3=mysqli_query($mysqli,$sql3);
+        $result3=mysqli_query($con,$sql3);
         $row3=mysqli_fetch_assoc($result3);
         $regno=$row3['regno'];
 
         $sql4= "INSERT INTO ser (sen, even, stdreg) VALUES ('$subeventno', '$eventno', '$regno')";
-        $mysqli->query($sql4);
+        $con->query($sql4);
 
-        if ($mysqli->query($sql) === TRUE) {
+        if ($con->query($sql) === TRUE) {
             echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
 
         } else {
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
+            echo "Error: " . $sql . "<br>" . $con->error;
         }
     }
 
