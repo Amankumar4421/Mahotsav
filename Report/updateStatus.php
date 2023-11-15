@@ -16,8 +16,9 @@ if (isset($_POST['id']) && isset($_POST['status'])) {
 
     // Update the status in the database
     $sql = "UPDATE `cricteam` SET `status` = '$status' WHERE `id` = '$id'";
+    $sql2 = "UPDATE `cricket` SET `status` = '$status' WHERE `id` = '$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if (($con->query($sql) === TRUE) && ($con->query($sql2) === TRUE)) {
         echo "Status updated successfully";
     } else {
         echo "Error updating status: " . $con->error;

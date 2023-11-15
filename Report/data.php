@@ -1,10 +1,6 @@
 <?php
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "srmid";
-$mysqli = mysqli_connect($server, $username, $password, $database);
+include("connection.php");
 
 
 
@@ -17,7 +13,7 @@ if (isset($_GET['mahotsavid'])) {
     // Create a SQL query to fetch the name based on mahotsavid
     $sql = "SELECT * FROM student WHERE sno = '$mahotsavid'";
 
-    $result = $mysqli->query($sql);
+    $result = $con->query($sql);
 
     if ($result->num_rows > 0) {
         // Output the name as plain text
