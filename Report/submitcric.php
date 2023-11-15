@@ -7,12 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     include("connection.php");
 
-    $fileUpload1 = $_FILES['fileUpload1']['name'];
-    $fileUpload2 = $_FILES['fileUpload2']['name'];
+    // $fileUpload1 = $_FILES['fileUpload1'];
+    // $fileUpload2 = $_FILES['fileUpload2'];
     $utrNumber = $_POST['utrNumber'];
     $dateofpay = $_POST['dateOfPayment'];
     //$dateOfPayment = $_POST['dateOfPayment'];
-
+    $fileUpload1 = addslashes(file_get_contents($_FILES['fileUpload1']['tmp_name']));
+    $fileUpload2 = addslashes(file_get_contents($_FILES['fileUpload2']['tmp_name']));
+    $fileUpload1_name = addslashes($_FILES['fileUpload1']['name']);
+    $fileUpload2_name = addslashes($_FILES['fileUpload2']['name']);
 
     $teamSize = 15;
     $col = $_POST['college'];
@@ -44,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Create an SQL query to insert data into the "teamreg" table
         if ($captain === 1){
-            $sql = "INSERT INTO cricteam (id ,college,mhid,name,email,phone,bonafide, paymentcpy , utr,dateofpay,captain) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain')  ";
-            $sql2 = "INSERT INTO cricket (id ,college,mhid,captain,email,phone,bonafide, paymentcpy , utr,dateofpay) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay')  ";
+            $sql = "INSERT INTO cricteam (id ,college,mhid,name,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
+            $sql2 = "INSERT INTO cricket (id ,college,mhid,captain,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
         } else {
             $sql = "INSERT INTO cricteam (id, college , mhid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
         }

@@ -114,8 +114,13 @@
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['phone'] . "</td>";
                 echo "<td>" . $row['captain'] . "</td>";
-                echo "<td>" . $row['bonafide'] . "</td>";
-                echo "<td>" . $row['paymentcpy'] . "</td>";
+                ?>
+                <td><?php echo '<a href="data:application/octet-stream;base64,' .base64_encode($row['bonafide']). '" download="' . $row['bonafide_name'] . '">'.$row['bonafide_name'].'</a>' ?></td>                
+                <?php
+                // echo "<td>" . $row['paymentcpy'] . "</td>";
+                ?>
+                <td><?php echo '<a href="data:application/octet-stream;base64,' .base64_encode($row['paymentcpy']). '" download="' . $row['paymentcpy_name'] . '">'.$row['paymentcpy_name'].'</a>' ?></td>                
+                <?php
                 echo "<td>" . $row['utr'] . "</td>";
                 echo "<td>" . $row['dateofpay'] . "</td>";
                 echo "</tr>";
