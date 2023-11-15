@@ -1,7 +1,8 @@
 <?php
 $server="localhost";
 $username="root";
-$password="";
+$password="@@ramesh$$9199";
 $database="srmid";
-$con = mysqli_connect($server, $username, $password, $database);
+$port="3307";
+$con = mysqli_connect($server, $username, $password, $database,$port);
 ?>

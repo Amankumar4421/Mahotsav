@@ -5,11 +5,19 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "srmid";
-    $mysqli = mysqli_connect($server, $username, $password, $database);
+    // $server = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $database = "srmid";
+    
+    $server="localhost";
+    $username="root";
+    $password="@@ramesh$$9199";
+    $database="srmid";
+    $port="3307";
+    $mysqli = mysqli_connect($server, $username, $password, $database,$port);
+
+    //$mysqli = mysqli_connect($server, $username, $password, $database);
 
     $fileUpload1 = $_FILES['fileUpload1']['name'];
     $fileUpload2 = $_FILES['fileUpload2']['name'];
