@@ -86,13 +86,13 @@
 
 <div class="navbar">
     <a href="#">Report</a>
-    <a href="#">Payment</a>
+    <a href="../payment/index.html">Payment</a>
     <a href="#">Payment Report</a>
     <a href="index.html">Login</a>
 </div>
 
 <div class="grid-container">
-    <div class="card" onclick="window.location.href='../student/index.php'">
+    <div class="card" onclick="window.location.href='../Report/accommodationCount.php'">
         <h3>Home</h3>
         <img src="images/hostl.png" alt="Home Image">
         <p>AccomodationCount Report</p>
@@ -101,18 +101,18 @@
         
     </div>
 
-    <div class="card" onclick="window.location.href='event1.html'">
+    <div class="card" onclick="window.location.href='../Report/collegeWiseCount.php'">
         <h3>college</h3>
         <img src="home-image.jpg" alt="Home Image">
         <p>CollegeWise Count Report</p>
     </div>
 
-    <div class="card" onclick="window.location.href='event2.html'">
+    <div class="card" onclick="window.location.href='../Report/eventWiseCollegeCount.php'">
         <h3>Events</h3>
         <img src="home-image.jpg" alt="Home Image">
         <p>EventWise Report</p>
     </div>
-    <div class="card" onclick="window.location.href='event2.html'">
+    <div class="card" onclick="window.location.href='genderWiseReport.html'">
         <h3>Gender</h3>
         <img src="home-image.jpg" alt="Home Image">
         <p>GenderWise Report</p>
@@ -127,6 +127,38 @@
         <img src="home-image.jpg" alt="Home Image">
         <p>Team Report</p>
     </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
+    </div>
+    <div class="card" onclick="window.location.href='event2.html'">
+        <h3>Team</h3>
+        <img src="home-image.jpg" alt="Home Image">
+        <p>Team Report</p>
+    </div>
+    
+   
 
     <!-- Repeat the above card structure for the remaining cards -->
 
