@@ -1,17 +1,13 @@
 <?php
 
-<<<<<<< HEAD
 $server="localhost";
 $username="root";
-$password="@@ramesh$$9199";
+$password="";
 $database="srmid";
-$port="3307";
+
 //$con = mysqli_connect($server, $username, $password, $database,$port);
 
-$mysqli = mysqli_connect($server, $username, $password, $database,$port);
-=======
-include("connection.php");
->>>>>>> b9b0c19bc07680eeff319ad3c25802f176dae062
+$mysqli = mysqli_connect($server, $username, $password, $database);
 
 
 
