@@ -28,7 +28,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket registration request</title>
+    <title>Cricket teams</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -107,16 +107,16 @@ if (!$result) {
 
 <body>
     <div class="container">
-        <h1>Cricket team registration request</h1>
-        <?php
-        while ($row = mysqli_fetch_assoc($result)) { ?>
+        <h1>Cricket teams</h1>
+        <table>
 
-            <table>
-                <thead>
-                    <th>Team Id</th>
-                    <th>College</th>
-                    <th>Status</th>
-                </thead>
+            <thead>
+                <th>Team Id</th>
+                <th>College</th>
+                <th>Status</th>
+            </thead>
+            
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
                 <tr>
                     <td><a href="cricTeamDetail.php?id=<?php echo $row['id']; ?>" style="text-decoration:none;">
@@ -130,10 +130,10 @@ if (!$result) {
                         <?php echo $row['status']; ?>
                     </td>
                 </tr>
+            <?php } ?>
+        </table>
 
-            </table>
-
-        <?php } ?>
+        
 
         <!-- <div class="print-button">
             <button id="print">Print</button>
