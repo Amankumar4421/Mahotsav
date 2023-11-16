@@ -267,7 +267,7 @@ include("connection.php");
         </div>
 
         <div id="submitdiv">
-            <button id="submitButton" style="display: none;">Submit</button>
+            <button id="submitButton" style="display: none;" onclick="return validateForm();">Submit</button>
         </div>
 
         <script>
@@ -333,7 +333,7 @@ include("connection.php");
                 headerCell4.innerHTML = '<b>Email</b>';
                 headerCell5.innerHTML = '<b>Captain</b>';
 
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 2; i++) {
                     const row = table.insertRow();
                     const cell1 = row.insertCell(0);
                     const cell2 = row.insertCell(1);
@@ -413,9 +413,55 @@ include("connection.php");
 
                 // }
             });
-            document.getElementById('submitButton').addEventListener('click', function () {
-                document.querySelector('form').submit();
-            });
+            // document.getElementById('submitButton').addEventListener('click', function () {
+            //     document.querySelector('form').submit();
+            // });
+
+//validate
+function validateForm() {
+    const inputs = document.querySelectorAll('input[type="text"], input[type="integer"], input[type="date"]');
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    const radios = document.querySelectorAll('input[type="radio"]:checked');
+
+    let isValid = true;
+
+    for (const input of inputs) {
+        if (input.value.trim() === '') {
+            highlightField(input);
+            isValid = false;
+           
+        } else {
+            unhighlightField(input);
+        }
+    }
+
+    for (const fileInput of fileInputs) {
+        if (!fileInput.files || fileInput.files.length === 0) {
+            highlightField(fileInput);
+            isValid = false;
+           
+        } else {
+            unhighlightField(fileInput);
+        }
+    }
+
+    if (radios.length === 0) {
+        alert('Please select a captain.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function highlightField(element) {
+    element.style.borderColor = 'red'; 
+    element.style.borderWidth='3px';
+}
+
+function unhighlightField(element) {
+    element.style.borderColor = ''; 
+}
+
 
         </script>
     </form>
