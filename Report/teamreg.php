@@ -47,7 +47,7 @@ include("connection.php");
         }
 
         
-        .search-box {
+        .search-box1 , .search-box {
             padding: 8px;
             width: 100%;
             box-sizing: border-box;
@@ -55,13 +55,13 @@ include("connection.php");
             font-size: 90%;
         }
 
-        .dropdown-item {
+        .dropdown-item1, .dropdown-item {
             padding: 8px;
             cursor: pointer;
             border-radius: 5px;
         }
 
-        .dropdowns,
+        .dropdown,
         form {
             text-align: center;
             margin-bottom: 20px;
@@ -126,7 +126,9 @@ include("connection.php");
         .dropdown button {
             transition: 0.3s;
         }
-
+        .dropdown-item1:hover , .dropdown-item:hover {
+            background-color: #e3cccc;
+        }
         .dropdown select:hover,
         .dropdown input:hover,
         .dropdown button:hover {
@@ -139,6 +141,7 @@ include("connection.php");
             border-color: #4caf50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
+        
 
         #createFormButton,
         #submitButton {
@@ -294,7 +297,7 @@ while ($row = $result->fetch_assoc()) {
                 });
 
                 document.addEventListener('click', function (event) {
-                    if (!event.target.closest('.dropdown')) {
+                    if (!event.target.closest('.search-box1')) {
                         dropdownContent.style.display = 'none';
                     }
                 });
