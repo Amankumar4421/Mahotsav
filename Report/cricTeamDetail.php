@@ -107,15 +107,21 @@
         if ($result) {
             echo "<h2>" . $id . "</h2>";
             echo "<table>";
-            echo "<thead><th>Mahotsav ID</th><th>Email</th><th>Phone</th><th>Captain</th><th>Bonafide</th><th>Payment copy</th><th>UTR number</th><th>Date of Payment</th></thead>";
+            echo "<thead><th>Mahotsav ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Captain</th><th>Bonafide</th><th>Payment copy</th><th>UTR number</th><th>Date of Payment</th></thead>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>" . $row['mhid'] . "</td>";
+                echo "<td>" . $row['name'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['phone'] . "</td>";
                 echo "<td>" . $row['captain'] . "</td>";
-                echo "<td>" . $row['bonafide'] . "</td>";
-                echo "<td>" . $row['paymentcpy'] . "</td>";
+                ?>
+                <td><?php echo '<a href="data:application/octet-stream;base64,' .base64_encode($row['bonafide']). '" download="' . $row['bonafide_name'] . '">'.$row['bonafide_name'].'</a>' ?></td>                
+                <?php
+                // echo "<td>" . $row['paymentcpy'] . "</td>";
+                ?>
+                <td><?php echo '<a href="data:application/octet-stream;base64,' .base64_encode($row['paymentcpy']). '" download="' . $row['paymentcpy_name'] . '">'.$row['paymentcpy_name'].'</a>' ?></td>                
+                <?php
                 echo "<td>" . $row['utr'] . "</td>";
                 echo "<td>" . $row['dateofpay'] . "</td>";
                 echo "</tr>";
