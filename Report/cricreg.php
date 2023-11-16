@@ -299,6 +299,7 @@ include("connection.php");
                 });
 
                 dropdownContent.style.display = 'block';
+                console.log(dropdownContent);
             }
 
             function selectItem(item) {

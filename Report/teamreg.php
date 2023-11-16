@@ -24,6 +24,7 @@ include("connection.php");
 
 
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -45,10 +46,29 @@ include("connection.php");
             color: #333;
         }
 
+        
+        .search-box {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            font-weight: 30px;
+            font-size: 90%;
+        }
+
+        .dropdown-item {
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
         .dropdowns,
         form {
             text-align: center;
             margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+
         }
 
         select,
@@ -101,20 +121,20 @@ include("connection.php");
             background-color: #45a049;
         }
 
-        .dropdowns select,
-        .dropdowns input,
-        .dropdowns button {
+        .dropdown select,
+        .dropdown input,
+        .dropdown button {
             transition: 0.3s;
         }
 
-        .dropdowns select:hover,
-        .dropdowns input:hover,
-        .dropdowns button:hover {
+        .dropdown select:hover,
+        .dropdown input:hover,
+        .dropdown button:hover {
             border-color: #4caf50;
         }
 
-        .dropdowns select:focus,
-        .dropdowns input:focus {
+        .dropdown select:focus,
+        .dropdown input:focus {
             outline: none;
             border-color: #4caf50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
@@ -129,47 +149,67 @@ include("connection.php");
         #registrationForm {
             margin-top: 20px;
         }
+        .dropdown-content1 , .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-height: 200px;
+            width: 100%;
+            overflow-y: auto;
+            border: px solid #ddd;
+            z-index: 1;
+            border-radius: 3px;
+            text-align: left;
+        }
+        
     </style>
     <h1>College & Events</h1>
 
     <div class="main">
         <form action="submit.php" method="post">
-            <div class="dropdowns">
-                <input type="text" id="searchInput" placeholder="Search for college...">
-                <select id="college" name="college">
-                    <option value="" selected> College</option>
+            <div class="dropdown">
+            <input type="text" name="college" class="search-box" placeholder="Search College...."
+                    onclick="showDropdown()">
+                 
+                 <div class="dropdown-content" id="dropdownList">
 
-                    <?php
-                    $sql = "SELECT * FROM college";
-                    $result = $con->query($sql);
-                    if (!$result) {
-                        die("Query failed: " . $con->error);
-                    }
+               
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
-                    }
-                    ?>
-                </select>
+<?php
+$sql = "SELECT * FROM college";
+$result = $con->query($sql);
+if (!$result) {
+    die("Query failed: " . $con->error);
+}
 
-                <input type="text" id="searchInput1" placeholder="Search for event...">
-                <select id="subevents" name="subevent">
+while ($row = $result->fetch_assoc()) {
+    //   echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+    echo "<div class='dropdown-item' onclick='selectItem(this)'>" . $row['name'] . "</div>";
+}
+?>
 
-                    <option value="" selected>Select Subevent</option>
+</div>
 
-                    <?php
-                    $sql = "SELECT * FROM subeventheader";
-                    $result = $con->query($sql);
-                    if (!$result) {
-                        die("Query failed: " . $con->error);
-                    }
+ <input type="text" name="subevent" class="search-box1" placeholder="Search Subevent...."
+                    onclick="showDropdown1()">
+                
+                 <div class="dropdown-content1" id="dropdownList1">
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<option value='" . $row['subname'] . "'>" . $row['subname'] . "</option>";
-                    }
-                    ?>
+                 <?php
+$sql = "SELECT * FROM subeventheader";
+$result = $con->query($sql);
+if (!$result) {
+    die("Query failed: " . $con->error);
+}
 
-                </select>
+while ($row = $result->fetch_assoc()) {
+    //   echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+    echo "<div class='dropdown-item1' onclick='selectItem1(this)'>" . $row['subname'] . "</div>";
+}
+?>        
+
+ 
             </div>
             <h1>Team Registration</h1>
             <label for="teamSize">Select the number of team members:</label>
@@ -186,39 +226,124 @@ include("connection.php");
 
                 //search in dropdown
 
-                function filterDropdown() {
-                    var searchInput = document.getElementById("searchInput");
-                    var searchTerm = searchInput.value.toLowerCase();
+                 //filter dropbox
+            function showDropdown() {
+                
+                const searchBox = document.querySelector('.search-box');
+                
+                const dropdownContent = document.getElementById('dropdownList');
+                
+                const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-                    var dropdownOptions = document.getElementById("college").options;
-                    for (var i = 0; i < dropdownOptions.length; i++) {
-                        var optionText = dropdownOptions[i].text.toLowerCase();
-                        if (optionText.indexOf(searchTerm) >= 0) {
-                            dropdownOptions[i].style.display = "";
+                searchBox.addEventListener('input', function () {
+                    const searchTerm = searchBox.value.toLowerCase();
+
+                    dropdownItems.forEach(item => {
+                        const itemText = item.innerText.toLowerCase();
+                        if (itemText.includes(searchTerm)) {
+                            item.style.display = 'block';
                         } else {
-                            dropdownOptions[i].style.display = "none";
+                            item.style.display = 'none';
                         }
+                    });
+
+                    dropdownContent.style.display = 'block';
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (!event.target.closest('.dropdown')) {
+                        dropdownContent.style.display = 'none';
                     }
-                }
+                });
 
-                function filterDropdown1() {
-                    var searchInput = document.getElementById("searchInput1");
-                    var searchTerm = searchInput.value.toLowerCase();
+                dropdownContent.style.display = 'block ' ;
+                console.log(dropdownContent);
+            }
 
-                    var dropdownOptions = document.getElementById("events").options;
-                    for (var i = 0; i < dropdownOptions.length; i++) {
-                        var optionText = dropdownOptions[i].text.toLowerCase();
-                        if (optionText.indexOf(searchTerm) >= 0) {
-                            dropdownOptions[i].style.display = "";
+            function selectItem(item) {
+                const searchBox = document.querySelector('.search-box');
+                searchBox.value = item.innerText;
+
+                const dropdownContent = document.getElementById('dropdownList');
+                dropdownContent.style.display = 'none';
+            }
+
+
+             //filter dropbox2
+             function showDropdown1() {
+                
+                const searchBox = document.querySelector('.search-box1');
+                
+                const dropdownContent = document.getElementById('dropdownList1');
+                
+                const dropdownItems = document.querySelectorAll('.dropdown-item1');
+
+                searchBox.addEventListener('input', function () {
+                    const searchTerm = searchBox.value.toLowerCase();
+
+                    dropdownItems.forEach(item => {
+                        const itemText = item.innerText.toLowerCase();
+                        if (itemText.includes(searchTerm)) {
+                            item.style.display = 'block';
                         } else {
-                            dropdownOptions[i].style.display = "none";
+                            item.style.display = 'none';
                         }
-                    }
-                }
+                    });
 
-                // Add an event listener to the search input field to call the JavaScript function when the user types something
-                document.getElementById("searchInput").addEventListener("keyup", filterDropdown);
-                document.getElementById("searchInput1").addEventListener("keyup", filterDropdown1);
+                    dropdownContent.style.display = 'block';
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (!event.target.closest('.dropdown')) {
+                        dropdownContent.style.display = 'none';
+                    }
+                });
+
+                dropdownContent.style.display = 'block ' ;
+                console.log(dropdownContent);
+            }
+
+            function selectItem1(item) {
+                const searchBox = document.querySelector('.search-box1');
+                searchBox.value = item.innerText;
+
+                const dropdownContent = document.getElementById('dropdownList1');
+                dropdownContent.style.display = 'none';
+            }
+
+                // function filterDropdown() {
+                //     var searchInput = document.getElementById("searchInput");
+                //     var searchTerm = searchInput.value.toLowerCase();
+
+                //     var dropdownOptions = document.getElementById("college").options;
+                //     for (var i = 0; i < dropdownOptions.length; i++) {
+                //         var optionText = dropdownOptions[i].text.toLowerCase();
+                //         if (optionText.indexOf(searchTerm) >= 0) {
+                //             dropdownOptions[i].style.display = "";
+                //         } else {
+                //             dropdownOptions[i].style.display = "none";
+                //         }
+                //     }
+                // }
+
+                // function filterDropdown1() {
+                //     var searchInput = document.getElementById("searchInput1");
+                //     var searchTerm = searchInput.value.toLowerCase();
+
+                //     var dropdownOptions = document.getElementById("events").options;
+                //     for (var i = 0; i < dropdownOptions.length; i++) {
+                //         var optionText = dropdownOptions[i].text.toLowerCase();
+                //         if (optionText.indexOf(searchTerm) >= 0) {
+                //             dropdownOptions[i].style.display = "";
+                //         } else {
+                //             dropdownOptions[i].style.display = "none";
+                //         }
+                //     }
+                // }
+
+                // // Add an event listener to the search input field to call the JavaScript function when the user types something
+                // document.getElementById("searchInput").addEventListener("keyup", filterDropdown);
+                // document.getElementById("searchInput1").addEventListener("keyup", filterDropdown1);
 
                 document.getElementById('createFormButton').addEventListener('click', function () {
                     event.preventDefault();
@@ -309,5 +434,6 @@ include("connection.php");
             </script>
         </form>
 </body>
+            </div>
 
 </html>
