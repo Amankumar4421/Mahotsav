@@ -21,6 +21,15 @@ include("connection.php");
             padding: 0;
         }
 
+        h1 {
+            font-family: consolas;
+            background-color: #e4f5e7;
+            
+            /* color: black; */
+            text-align: center;
+            padding: 10px;
+        }
+
         .main {
             max-width: 800px;
             margin: 20px auto;
@@ -30,10 +39,6 @@ include("connection.php");
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
 
         .dropdown {
             position: relative;
@@ -103,11 +108,11 @@ include("connection.php");
         }
 
         #submitdiv{
+            margin-top: 10px;
             display: flex;
-            align-items: center;
+            justify-content: center;
         }
         #submitButton {
-            text-align: center;
             background-color: #4caf50;
             color: #fff;
             padding: 10px 20px;
@@ -221,7 +226,7 @@ include("connection.php");
         <div class="main">
             <div class="dropdown">
                 <input type="text" name="college" class="search-box" placeholder="Search College...."
-                    onclick="showDropdown()">
+                    onclick="showDropdown()" required>
                 <div class="dropdown-content" id="dropdownList">
 
                     <?php
@@ -240,7 +245,7 @@ include("connection.php");
                 </div>
             </div>
 
-            <h1>Team Registration</h1>
+            <h2>Team Registration</h2>
             <!-- <label for="teamSize">Select the number of team members:</label>
             <input type="number" name="teamSize" id="teamSize" min="1" required> -->
             <input type="button" value="Create Registration Form" id="createFormButton">
@@ -271,6 +276,7 @@ include("connection.php");
         </div>
 
         <script>
+            var cc=0;
             //filter dropbox
             function showDropdown() {
                 const searchBox = document.querySelector('.search-box');
@@ -369,10 +375,11 @@ include("connection.php");
                     //alert(captainInput.name);
                     captainInput.value = '0';
 
-                    captainInput.required = true;
-                    //     //captainInput.value = 'false';
+                    // captainInput.required = true;
+                        //captainInput.value = 'false';
 
                     captainInput.addEventListener('change', function () {
+                        cc=1;
                         // Uncheck all other captain inputs when one is checked
                         document.querySelectorAll('input[name^="captain"]').forEach((input) => {
                             input.checked = false;
@@ -391,11 +398,14 @@ include("connection.php");
                         fetch(`data.php?mahotsavid=${selectedMahotsavid}`)
                             .then(response => response.json())
                             .then(data => {
-                                console.log(data);
-
-                                nameInput.value = data.name;
-                                cellInput.value = data.phone;
-                                emailInput.value = data.email;
+                                 console.log(data);
+                                if(data.alr==1){
+                                    alert(` ${selectedMahotsavid}  already registered in this event!`);
+                                } else {
+                                    nameInput.value = data.name;
+                                    cellInput.value = data.phone;
+                                    emailInput.value = data.email;
+                                }
                                 // Populate the "name" field with the fetched name
                             })
                             .catch(error => console.error(error));
@@ -417,50 +427,16 @@ include("connection.php");
             //     document.querySelector('form').submit();
             // });
 
-//validate
-function validateForm() {
-    const inputs = document.querySelectorAll('input[type="text"], input[type="integer"], input[type="date"]');
-    const fileInputs = document.querySelectorAll('input[type="file"]');
-    const radios = document.querySelectorAll('input[type="radio"]:checked');
+            
+            function validateForm() {
 
-    let isValid = true;
-
-    for (const input of inputs) {
-        if (input.value.trim() === '') {
-            highlightField(input);
-            isValid = false;
-           
-        } else {
-            unhighlightField(input);
-        }
-    }
-
-    for (const fileInput of fileInputs) {
-        if (!fileInput.files || fileInput.files.length === 0) {
-            highlightField(fileInput);
-            isValid = false;
-           
-        } else {
-            unhighlightField(fileInput);
-        }
-    }
-
-    if (radios.length === 0) {
-        alert('Please select a captain.');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-function highlightField(element) {
-    element.style.borderColor = 'red'; 
-    element.style.borderWidth='3px';
-}
-
-function unhighlightField(element) {
-    element.style.borderColor = ''; 
-}
+                if(cc==0){
+                    alert("Please select a captain");
+                    return false;
+                    
+                }
+                return true;
+            }
 
 
         </script>
