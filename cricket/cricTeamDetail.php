@@ -4,92 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team detail</title>
+    <title>Team details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
-
-
-        h1 {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        h2 {
-            /* background-color: white; */
-            color: black;
-            text-align: center;
-            padding: 10px;
-        }
-
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: white;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
-
-        tbody tr:hover {
-            background-color: #d9d8d7;
-            box-shadow: 5px 5px 10px rgb(205, 195, 225);
-            cursor: pointer;
-        }
-
-        .request {
-            margin-left: 40%;
-            margin-right: 40%;
-            /* width: 15%; */
-            display: flex;
-            justify-content: space-around;
-            /* align-items: center; */
-        }
-
-        .print-button {
-            text-align: center;
-        }
-
-        .print-button button {
-            background-color: #362c22;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-
-        }
-
-        .print-button button:hover {
-            background-color: #9c6f40;
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="cricStyle.css">
 </head>
 
 <body>
@@ -129,6 +47,10 @@
 
             echo "</table>";
 
+            echo '<div class="request">
+                <button type="button" class="btn btn-success" onclick="updateStatus("Accepted")">Accept</button>
+                <button type="button" class="btn btn-danger" onclick="updateStatus("Rejected")">Decline</button>
+            </div>';
 
         } else {
             echo "Error fetching team members";
@@ -139,10 +61,7 @@
 
     
     ?>
-    <div class="request">
-        <button type="button" class="btn btn-success" onclick="updateStatus('Accepted')">Accept</button>
-        <button type="button" class="btn btn-danger" onclick="updateStatus('Rejected')">Decline</button>
-    </div>
+    
 </body>
 
 </html>
