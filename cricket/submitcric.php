@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fileUpload1_name = addslashes($_FILES['fileUpload1']['name']);
     $fileUpload2_name = addslashes($_FILES['fileUpload2']['name']);
 
-    $teamSize = 2;
+    $teamSize = 15;
     $col = $_POST['college'];
     $captain = -1;
     $str76 = "SELECT count(DISTINCT id)as total from cricteam";

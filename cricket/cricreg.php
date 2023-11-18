@@ -339,7 +339,7 @@ include("connection.php");
                 headerCell4.innerHTML = '<b>Email</b>';
                 headerCell5.innerHTML = '<b>Captain</b>';
 
-                for (let i = 0; i < 2; i++) {
+                for (let i = 0; i < 15; i++) {
                     const row = table.insertRow();
                     const cell1 = row.insertCell(0);
                     const cell2 = row.insertCell(1);
