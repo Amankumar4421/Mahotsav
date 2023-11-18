@@ -23,7 +23,7 @@ if ($resultCollege) {
     while ($rowCollege = mysqli_fetch_assoc($resultCollege)) {
         echo"<h2>".$rowCollege['college']."</h2>";
         echo "<table>";
-            echo "<thead><th>Team Id</th><th>Captain</th><th>Mahotsav ID</th><th>Email</th><th>Phone</th></thead>";
+            echo "<thead><th>Team Id</th><th>Captain</th><th>Mahotsav ID</th><th>Email</th><th>Phone</th><th>Status</th></thead>";
             $sql="select * from cricket where college='".$rowCollege['college']."'";
             $result=mysqli_query($con,$sql);
             while($row = mysqli_fetch_assoc($result)){
@@ -33,6 +33,7 @@ if ($resultCollege) {
                     echo "<td>" . $row['mhid'] . "</td>";
                     echo "<td>" . $row['email'] . "</td>";
                     echo "<td>" . $row['phone'] . "</td>";
+                    echo "<td>" . $row['status'] . "</td>";
                 echo "</tr>";
             }
         echo "</table>";

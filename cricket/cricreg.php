@@ -222,7 +222,7 @@ include("connection.php");
     <h1>Cricket</h1>
 
 
-    <form action="submitcric.php" method="post" enctype="multipart/form-data">
+    <form action="cricSubmit.php" method="post" enctype="multipart/form-data">
         <div class="main">
             <div class="dropdown">
                 <input type="text" name="college" class="search-box" placeholder="Search College...."
@@ -395,19 +395,19 @@ include("connection.php");
                     mahotsavidInput.addEventListener('change', function () {
                         const selectedMahotsavid = this.value;
 
-                        fetch(`data.php?mahotsavid=${selectedMahotsavid}`)
+                        fetch(`cricData.php?mahotsavid=${selectedMahotsavid}`)
                             .then(response => response.json())
-                            .then(data => {
-                                console.log(data);
-                                if(data.alr==-1){
+                            .then(cricData => {
+                                console.log(cricData);
+                                if(cricData.alr==-1){
                                     alert(`${selectedMahotsavid}  not registered in Mahotsav!\nFirst you have to register in Mahotsav`);
                                 }
-                                else if(data.alr==1){
+                                else if(cricData.alr==1){
                                     alert(`${selectedMahotsavid}  already registered in this event!`);
                                 } else {
-                                    nameInput.value = data.name;
-                                    cellInput.value = data.phone;
-                                    emailInput.value = data.email;
+                                    nameInput.value = cricData.name;
+                                    cellInput.value = cricData.phone;
+                                    emailInput.value = cricData.email;
                                 }
                                 // Populate the "name" field with the fetched name
                             })

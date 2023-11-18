@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $str76 = "SELECT count(DISTINCT id)as total from cricteam";
     $result = mysqli_query($con, $str76);
     $data = mysqli_fetch_assoc($result);
-    //echo '<script type="text/javascript">alert("' .$data['total']. '");</script>';
 
     //echo $recs;
     $value = $data['total'] ?? 0;

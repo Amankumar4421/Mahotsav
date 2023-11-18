@@ -34,15 +34,6 @@ if (isset($_GET['mahotsavid'])) {
         echo json_encode($row);
     }
 }
-//  else {
-//     // Return an error message if mahotsavid is not provided
-//     echo "Mahotsavid not provided";
-// }
-
-
-// function submit($mysqli){
-// $res="insert into teamreg values($eamreg, "
-// }
 
 
 ?>
