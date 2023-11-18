@@ -12,7 +12,7 @@ if (isset($_GET['mahotsavid'])) {
     $idcount=0;
     // Create a SQL query to fetch the name based on mahotsavid
     $sql = "SELECT * FROM student WHERE sno = '$mahotsavid'";
- $sql2="SELECT * FROM cricteam where mhid='$mahotsavid'";
+    $sql2 ="SELECT * FROM cricteam where mhid='$mahotsavid'";
     $result = $con->query($sql);
     $result2 = $con->query($sql2);
    
@@ -30,7 +30,8 @@ if (isset($_GET['mahotsavid'])) {
        echo json_encode($row);
     } else {
         // Return a message if no matching record is found
-        echo "Name not found";
+        $row['alr']=-1;
+        echo json_encode($row);
     }
 }
 //  else {

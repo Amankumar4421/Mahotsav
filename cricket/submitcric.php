@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $con->query($sql2);
     if ($allQueriesSuccessful) {
-        echo '<script type="text/javascript">alert("REGISTRATION SUCCESSFUL");</script>';
+        echo '<script type="text/javascript">alert("REGISTRATION SUCCESSFUL\nRequest sent to admin");</script>';
     }
     $url = "cricreg.php";
 

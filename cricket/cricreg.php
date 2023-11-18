@@ -398,9 +398,12 @@ include("connection.php");
                         fetch(`data.php?mahotsavid=${selectedMahotsavid}`)
                             .then(response => response.json())
                             .then(data => {
-                                 console.log(data);
-                                if(data.alr==1){
-                                    alert(` ${selectedMahotsavid}  already registered in this event!`);
+                                console.log(data);
+                                if(data.alr==-1){
+                                    alert(`${selectedMahotsavid}  not registered in Mahotsav!\nFirst you have to register in Mahotsav`);
+                                }
+                                else if(data.alr==1){
+                                    alert(`${selectedMahotsavid}  already registered in this event!`);
                                 } else {
                                     nameInput.value = data.name;
                                     cellInput.value = data.phone;
