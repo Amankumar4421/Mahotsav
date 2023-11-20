@@ -29,7 +29,7 @@ if (isset($_GET['id']) ) {
     
             echo "<tr>";
                 echo "<td>" . $rowTeamMembers['name'] . "</td>";
-                echo "<td>" . $rowTeamMembers['mhid'] . "</td>";
+                echo "<td>" . $rowTeamMembers['stid'] . "</td>";
                 echo "<td>" . $rowTeamMembers['captain'] . "</td>";
                 echo "<td>" . $rowTeamMembers['email'] . "</td>";
                 echo "<td>" . $rowTeamMembers['phone'] . "</td>";

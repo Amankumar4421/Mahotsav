@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fileUpload1_name = addslashes($_FILES['fileUpload1']['name']);
     $fileUpload2_name = addslashes($_FILES['fileUpload2']['name']);
 
-    $teamSize = 15;
+    $teamSize = 2;
     $col = $_POST['college'];
     $captain = -1;
     $str76 = "SELECT count(DISTINCT id)as total from cricteam";
@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Create an SQL query to insert data into the "teamreg" table
         if ($captain === 1){
-            $sql = "INSERT INTO cricteam (id ,college,mhid,name,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
-            $sql2 = "INSERT INTO cricket (id ,college,mhid,captain,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
+            $sql = "INSERT INTO cricteam (id ,college,stid,name,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
+            $sql2 = "INSERT INTO cricket (id ,college,stid,captain,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
         } else {
-            $sql = "INSERT INTO cricteam (id, college , mhid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
+            $sql = "INSERT INTO cricteam (id, college , stid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
         }
         
         if (!$con->query($sql)) {

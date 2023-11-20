@@ -30,7 +30,7 @@
             echo "<thead><th>Mahotsav ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Captain</th><th>Bonafide</th><th>Payment copy</th><th>UTR number</th><th>Date of Payment</th></thead>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['mhid'] . "</td>";
+                echo "<td>" . $row['stid'] . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['phone'] . "</td>";

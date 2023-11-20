@@ -333,13 +333,13 @@ include("connection.php");
                 const headerCell3 = headerRow.insertCell(2);
                 const headerCell4 = headerRow.insertCell(3);
                 const headerCell5 = headerRow.insertCell(4);
-                headerCell1.innerHTML = '<b>Mahotsavid</b>';
+                headerCell1.innerHTML = '<b>Student Id</b>';
                 headerCell2.innerHTML = '<b>Name</b>';
                 headerCell3.innerHTML = '<b>Cell</b>';
                 headerCell4.innerHTML = '<b>Email</b>';
                 headerCell5.innerHTML = '<b>Captain</b>';
 
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 2; i++) {
                     const row = table.insertRow();
                     const cell1 = row.insertCell(0);
                     const cell2 = row.insertCell(1);
@@ -355,19 +355,19 @@ include("connection.php");
                     nameInput.type = 'text';
                     nameInput.name = `name[]`;
                     nameInput.required = true;
-                    nameInput.setAttribute('readonly', 'true');
+                    // nameInput.setAttribute('readonly', 'true');
 
                     const cellInput = document.createElement('input');
                     cellInput.type = 'text';
                     cellInput.name = `cell[]`;
                     cellInput.required = true;
-                    cellInput.setAttribute('readonly', 'true');
+                    // cellInput.setAttribute('readonly', 'true');
 
                     const emailInput = document.createElement('input');
                     emailInput.type = 'text';
                     emailInput.name = `email[]`;
                     emailInput.required = true;
-                    emailInput.setAttribute('readonly', 'true');
+                    // emailInput.setAttribute('readonly', 'true');
 
                     const captainInput = document.createElement('input');
                     captainInput.type = 'radio';
@@ -399,17 +399,9 @@ include("connection.php");
                             .then(response => response.json())
                             .then(cricData => {
                                 console.log(cricData);
-                                if(cricData.alr==-1){
-                                    alert(`${selectedMahotsavid}  not registered in Mahotsav!\nFirst you have to register in Mahotsav`);
-                                }
-                                else if(cricData.alr==1){
+                                if(cricData.alr==1){
                                     alert(`${selectedMahotsavid}  already registered in this event!`);
-                                } else {
-                                    nameInput.value = cricData.name;
-                                    cellInput.value = cricData.phone;
-                                    emailInput.value = cricData.email;
-                                }
-                                // Populate the "name" field with the fetched name
+                                } 
                             })
                             .catch(error => console.error(error));
                     });

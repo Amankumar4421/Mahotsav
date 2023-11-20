@@ -30,7 +30,7 @@ if ($resultCollege) {
                 echo "<tr>";
                     echo "<td>" . '<a href="cricTeamMembers.php?id='.$row['id'].'" style="text-decoration:none;">'.$row['id'].'</a>'."</td>"; 
                     echo "<td>" . $row['captain'] . "</td>";
-                    echo "<td>" . $row['mhid'] . "</td>";
+                    echo "<td>" . $row['stid'] . "</td>";
                     echo "<td>" . $row['email'] . "</td>";
                     echo "<td>" . $row['phone'] . "</td>";
                     echo "<td>" . $row['status'] . "</td>";
