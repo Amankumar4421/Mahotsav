@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $row2=mysqli_fetch_assoc($result2);
     $subeventno=$row2['no'];
 
+    $count=0;
     for ($i = 0; $i < $teamSize; $i++) {
         $mahotsavid = $_POST['mahotsavid'][$i];
         $name = $_POST['name'][$i];
@@ -65,11 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $con->query($sql4);
 
         if ($con->query($sql) === TRUE) {
-            echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
+            $count++;
+            //echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
 
         } else {
             echo "Error: " . $sql . "<br>" . $con->error;
         }
+    }
+
+    if($count==$teamSize){
+        echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
     }
 
     // Close the database connection
