@@ -399,9 +399,17 @@ include("connection.php");
                             .then(response => response.json())
                             .then(cricData => {
                                 console.log(cricData);
-                                if(cricData.alr==1){
-                                    alert(`${selectedMahotsavid}  already registered in this event!`);
-                                } 
+                                // if(cricData.alr==1){
+                                //     alert(`${selectedMahotsavid}  already registered in this event!`);
+                                // } else {
+                                //     nameInput.value = cricData.name;
+                                //     cellInput.value = cricData.cell;
+                                //     emailInput.value = cricData.email;
+
+                                // }
+                                nameInput.value = cricData.name;
+                                cellInput.value = cricData.cell;
+                                emailInput.value = cricData.email;
                             })
                             .catch(error => console.error(error));
                     });

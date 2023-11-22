@@ -1,5 +1,3 @@
-<!-- cricteamsdetail: -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +11,11 @@
 </head>
 
 <body>
+    
     <?php
+
+
+
 
     include("connection.php");
 
@@ -66,14 +68,23 @@
     <div class="request">
         <button type="button" class="btn btn-success" onclick="updateStatus('Accepted')">Accept</button>
         <button type="button" class="btn btn-danger" onclick="updateStatus('Rejected')">Decline</button>
+        <button type="button" class="btn btn-warning" onclick="updateStatus('On Hold')">Hold</button>
+       
+        
+    </div>
+    <div class="remark">
+        <input type="text" name="remark" id="remark" placeholder="Enter your remarks">
     </div>
 </body>
 
 </html>
 <script>
     function updateStatus(status) {
+
         // Assuming you have the ID of the row in a variable named 'rowId'
         var rowId = "<?php echo $id; ?>"; // Replace with the actual ID
+let rem=document.getElementById("remark");
+let remval=rem.value;
 
         // Send an AJAX request to updateStatus.php
         var xhr = new XMLHttpRequest();
@@ -88,6 +99,7 @@
         };
 
         // Send the data to the server
-        xhr.send("id=" + rowId + "&status=" + status);
+        xhr.send("id=" + rowId + "&status=" + status +"&remark=" + remval);
+        
     }
 </script>

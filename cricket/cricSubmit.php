@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     include("connection.php");
 
+    
+
     // $fileUpload1 = $_FILES['fileUpload1'];
     // $fileUpload2 = $_FILES['fileUpload2'];
     $utrNumber = $_POST['utrNumber'];
@@ -45,9 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $college = $_POST['college'];
 
         // Create an SQL query to insert data into the "teamreg" table
-        if ($captain === 1){
-            $sql = "INSERT INTO cricteam (id ,college,stid,name,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
-            $sql2 = "INSERT INTO cricket (id ,college,stid,captain,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
+        if ($captain == 1){
+            $sql3="SELECT sno from criccaptain where regno='$mahotsavid'";
+            $result1 = mysqli_query($con, $sql3);
+            $data1 = mysqli_fetch_assoc($result1);
+            $mhid=$data1['sno'];
+            $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
+            $sql2 = "INSERT INTO cricket (id ,college,stid,captain,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
         } else {
             $sql = "INSERT INTO cricteam (id, college , stid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
         }

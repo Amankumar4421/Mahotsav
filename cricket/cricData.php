@@ -10,7 +10,7 @@ if (isset($_GET['mahotsavid'])) {
     $result = $con->query($sql);
    
     if($result->num_rows>0){
-        $row['alr']=1;
+        $row = $result->fetch_assoc();
         echo json_encode($row);
     }
     
