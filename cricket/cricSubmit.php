@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $captain = 0;
 
         $college = $_POST['college'];
-
+$cap="captain_$i";
         if ($result1->num_rows > 0) {
             if ($captain == 1) {
 
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result2 = mysqli_query($con, $sql3);
                 $data1 = mysqli_fetch_assoc($result2);
                 $mhid = $data1['sno'];
-                $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
+                $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name,capname) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name','$cap')  ";
                 $sql2 = "INSERT INTO cricket (id ,college,stid,captain,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
                 $con->query($sql);
                 $con->query($sql2);

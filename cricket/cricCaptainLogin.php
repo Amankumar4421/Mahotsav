@@ -3,8 +3,8 @@ include("connection.php");
 $uname = $_GET['uname'];
 $dob = $_GET['date'];
 
-//session_start();
-//$_SESSION['stdreg']=$uname;
+session_start();
+$_SESSION['stdreg']=$uname;
 
 
 

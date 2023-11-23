@@ -1,7 +1,10 @@
 <?php
 
 include("connection.php");
+session_start();
+$stdregValue = $_SESSION['stdreg'];
 
+//echo "<script>alert('$stdregValue');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -318,123 +321,162 @@ include("connection.php");
             }
 
             //end
-            document.getElementById('createFormButton').addEventListener('click', function () {
-                //event.preventDefault();
-                // const teamSize = parseInt(document.querySelector('#teamSize').value);
-                const registrationForm = document.querySelector('#registrationForm');
-                registrationForm.innerHTML = '';
+            //document.getElementById('createFormButton').addEventListener('click', function () {
 
-                // if (teamSize > 0) {
-                const table = document.createElement('table');
-                table.classList.add('registration-table');
+            var regi = '<?php echo $stdregValue; ?>';
+            // alert(regi);
+            //event.preventDefault();
+            // const teamSize = parseInt(document.querySelector('#teamSize').value);
+            const registrationForm = document.querySelector('#registrationForm');
+            registrationForm.innerHTML = '';
 
-                const headerRow = table.insertRow();
-                const headerCell1 = headerRow.insertCell(0);
-                const headerCell2 = headerRow.insertCell(1);
-                const headerCell3 = headerRow.insertCell(2);
-                const headerCell4 = headerRow.insertCell(3);
-                const headerCell5 = headerRow.insertCell(4);
-                headerCell1.innerHTML = '<b>Student Id</b>';
-                headerCell2.innerHTML = '<b>Name</b>';
-                headerCell3.innerHTML = '<b>Cell</b>';
-                headerCell4.innerHTML = '<b>Email</b>';
-                headerCell5.innerHTML = '<b>Captain</b>';
+            // if (teamSize > 0) {
+            const table = document.createElement('table');
+            table.classList.add('registration-table');
 
-                for (let i = 0; i < 2; i++) {
-                    const row = table.insertRow();
-                    const cell1 = row.insertCell(0);
-                    const cell2 = row.insertCell(1);
-                    const cell3 = row.insertCell(2);
-                    const cell4 = row.insertCell(3);
-                    const cell5 = row.insertCell(4);
-                    const studentidInput = document.createElement('input');
-                    studentidInput.type = 'text';
-                    studentidInput.name = `studentid[]`;
-                    studentidInput.required = true;
+            const headerRow = table.insertRow();
+            const headerCell1 = headerRow.insertCell(0);
+            const headerCell2 = headerRow.insertCell(1);
+            const headerCell3 = headerRow.insertCell(2);
+            const headerCell4 = headerRow.insertCell(3);
+            const headerCell5 = headerRow.insertCell(4);
+            headerCell1.innerHTML = '<b>Student Id</b>';
+            headerCell2.innerHTML = '<b>Name</b>';
+            headerCell3.innerHTML = '<b>Cell</b>';
+            headerCell4.innerHTML = '<b>Email</b>';
+            headerCell5.innerHTML = '<b>Captain</b>';
+            let a = 0;
 
-                    const nameInput = document.createElement('input');
-                    nameInput.type = 'text';
-                    nameInput.name = `name[]`;
-                    nameInput.required = true;
-                    // nameInput.setAttribute('readonly', 'true');
+            for (let i = 0; i < 2; i++) {
 
-                    const cellInput = document.createElement('input');
-                    cellInput.type = 'text';
-                    cellInput.name = `cell[]`;
-                    cellInput.required = true;
-                    // cellInput.setAttribute('readonly', 'true');
+                const row = table.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+                const cell5 = row.insertCell(4);
+                const studentidInput = document.createElement('input');
+                studentidInput.type = 'text';
+                studentidInput.name = `studentid[]`;
+                studentidInput.required = true;
+                if(a==0)
+                studentidInput.setAttribute('readonly', 'true');
 
-                    const emailInput = document.createElement('input');
-                    emailInput.type = 'text';
-                    emailInput.name = `email[]`;
-                    emailInput.required = true;
-                    // emailInput.setAttribute('readonly', 'true');
-
-                    const captainInput = document.createElement('input');
-                    captainInput.type = 'radio';
-                    captainInput.name = `captain_${i}`;
-                    //alert(captainInput.name);
-                    captainInput.value = '0';
-
-                    // captainInput.required = true;
-                    //captainInput.value = 'false';
-
-                    captainInput.addEventListener('change', function () {
-                        cc = 1;
-                        // Uncheck all other captain inputs when one is checked
-                        document.querySelectorAll('input[name^="captain"]').forEach((input) => {
-                            input.checked = false;
-                        });
-
-                        this.checked = true;
-                    });
-                    captainInput.addEventListener('change', function () {
-
-                        this.value = '1';
-
-                    });
-                    studentidInput.addEventListener('change', function () {
-                        const selectedstudentid = this.value;
-
-                        fetch(`cricData.php?studentid=${selectedstudentid}`)
-                            .then(response => response.json())
-                            .then(cricData => {
-                                console.log(cricData);
-                                if (cricData.length != 0) {
-                                    nameInput.value = cricData.name;
-                                    cellInput.value = cricData.phone;
-                                    emailInput.value = cricData.email;
-                                    //let val1=cricData.stid;
-
-                                    //document.getElementById("fileUpload1").src = 'data:image/jpeg;base64,' + cricData.bonafide_document;
-                                    //    document.getElementById("fileUpload2").src = 'data:image/jpeg;base64,' + cricData.paymentcpy_document;
-                                    if (cricData.utr)
-                                        document.getElementById("utrNumber").value = cricData.utr;
-                                    if (cricData.dateofpay)
-                                        document.getElementById("dateOfPayment").value = cricData.dateofpay;
-                                    document.getElementById("col").value = cricData.college;
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.name = `name[]`;
+                nameInput.required = true;
+                if(a==0)
+                 nameInput.setAttribute('readonly', 'true');
+                // else
+                // nameInput.setAttribute('readonly', 'false');
 
 
-                                }
-                            })
-                            .catch(error => console.error(error));
+                const cellInput = document.createElement('input');
+                cellInput.type = 'text';
+                cellInput.name = `cell[]`;
+                cellInput.required = true;
+                if(a==0)
+                cellInput.setAttribute('readonly', 'true');
+                
+                
+                const emailInput = document.createElement('input');
+                emailInput.type = 'text';
+                emailInput.name = `email[]`;
+                emailInput.required = true;
+                if(a==0)
+                emailInput.setAttribute('readonly', 'true');
+
+                const captainInput = document.createElement('input');
+                captainInput.type = 'radio';
+                captainInput.name = `captain_${i}`;
+                //alert(captainInput.name);
+                captainInput.value = '0';
+                captainInput.disabled = true;
+
+                // captainInput.required = true;
+                //captainInput.value = 'false';
+
+                captainInput.addEventListener('change', function () {
+                    cc = 1;
+                    // Uncheck all other captain inputs when one is checked
+                    document.querySelectorAll('input[name^="captain"]').forEach((input) => {
+                        input.checked = false;
                     });
 
-                    cell1.appendChild(studentidInput);
-                    cell2.appendChild(nameInput);
-                    cell3.appendChild(cellInput);
-                    cell4.appendChild(emailInput);
-                    cell5.appendChild(captainInput);
+                    this.checked = true;
+                });
+                captainInput.addEventListener('change', function () {
+
+                    this.value = '1';
+
+                });
+                studentidInput.addEventListener('change', function () {
+                    const selectedstudentid = this.value;
+
+                    fetch(`cricData.php?studentid=${selectedstudentid}`)
+                        .then(response => response.json())
+                        .then(cricData => {
+                            console.log(cricData);
+                            if (cricData.length != 0) {
+                                nameInput.value = cricData.name;
+                                cellInput.value = cricData.phone;
+                                emailInput.value = cricData.email;
+                               
+                            }
+                        })
+                        .catch(error => console.error(error));
+                });
+
+
+                if (a == 0) {
+                    cc=1;
+                    fetch(`cric2Data.php?reg=${regi}`)
+                        .then(response => response.json())
+                        .then(cricData1 => {
+                            console.log(cricData1);
+                            if (cricData1.length != 0) {
+                                studentidInput.value = cricData1.regno;
+                                nameInput.value = cricData1.name;
+                                cellInput.value = cricData1.phone;
+                                emailInput.value = cricData1.email;
+                                document.getElementById('col').value=cricData1.college;
+                                //let val1=cricData.stid;
+
+                                //document.getElementById("fileUpload1").src = 'data:image/jpeg;base64,' + cricData.bonafide_document;
+                                //    document.getElementById("fileUpload2").src = 'data:image/jpeg;base64,' + cricData.paymentcpy_document;
+                                // if (cricData1.utr)
+                                //     document.getElementById("utrNumber").value = cricData1.utr;
+                                // if (cricData1.dateofpay)
+                                //     document.getElementById("dateOfPayment").value = cricData1.dateofpay;
+
+                                captainInput.checked = true;
+
+                            }
+                        })
+                        .catch(error => console.error(error));
+
+          
                 }
+                a = a + 1;
 
-                registrationForm.appendChild(table);
-                document.getElementById('submitButton').style.display = 'block';
 
-                // }
-            });
-            // document.getElementById('submitButton').addEventListener('click', function () {
-            //     document.querySelector('form').submit();
-            // });
+
+
+
+                cell1.appendChild(studentidInput);
+                cell2.appendChild(nameInput);
+                cell3.appendChild(cellInput);
+                cell4.appendChild(emailInput);
+                cell5.appendChild(captainInput);
+
+
+            }
+
+            registrationForm.appendChild(table);
+            document.getElementById('submitButton').style.display = 'block';
+
+          
 
 
             function validateForm() {
