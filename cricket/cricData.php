@@ -11,9 +11,9 @@ if (isset($_GET['studentid'])) {
     $row1 = $result1->fetch_assoc();
     $captain = $row1['captain'];
     if ($captain) {
-        $sql = "SELECT stid,name,email,phone, utr,dateofpay,captain FROM cricteam where stid='$studentid'";
+        $sql = "SELECT college,stid,name,email,phone, utr,dateofpay,captain FROM cricteam where stid='$studentid'";
     } else {
-        $sql = "SELECT name , phone , email FROM cricteam where stid='$studentid'";
+        $sql = "SELECT college,name , phone , email FROM cricteam where stid='$studentid'";
     }
     $result = $con->query($sql);
 

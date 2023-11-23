@@ -226,7 +226,7 @@ include("connection.php");
     <form action="cricSubmit.php" method="post" enctype="multipart/form-data">
         <div class="main">
             <div class="dropdown">
-                <input type="text" name="college" class="search-box" placeholder="Search College...."
+                <input type="text" name="college" class="search-box" id="col" placeholder="Search College...."
                     onclick="showDropdown()" required>
                 <div class="dropdown-content" id="dropdownList">
 
@@ -412,6 +412,7 @@ include("connection.php");
                                         document.getElementById("utrNumber").value = cricData.utr;
                                     if (cricData.dateofpay)
                                         document.getElementById("dateOfPayment").value = cricData.dateofpay;
+                                    document.getElementById("col").value = cricData.college;
 
 
                                 }
