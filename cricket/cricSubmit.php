@@ -1,3 +1,4 @@
+<!-- cricsubmit.php -->
 <?php
 // Check if the request is a POST request
 
@@ -7,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     include("connection.php");
 
-    
+
 
     // $fileUpload1 = $_FILES['fileUpload1'];
     // $fileUpload2 = $_FILES['fileUpload2'];
@@ -30,12 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $value = $data['total'] ?? 0;
     $rec = "Team: " . $value + 1;
 
-    $allQueriesSuccessful = true;
+    $state = 1;
     for ($i = 0; $i < $teamSize; $i++) {
-        $mahotsavid = $_POST['mahotsavid'][$i];
+        $studentid = $_POST['studentid'][$i];
         $name = $_POST['name'][$i];
         $email = $_POST['email'][$i];
         $cell = $_POST['cell'][$i];
+
+        $sql4 = "SELECT * FROM cricteam where stid='$studentid' ";
+        $result1 = $con->query($sql4);
+
+
 
 
 
@@ -46,30 +52,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $college = $_POST['college'];
 
-        // Create an SQL query to insert data into the "teamreg" table
-        if ($captain == 1){
-            $sql3="SELECT sno from criccaptain where regno='$mahotsavid'";
-            $result1 = mysqli_query($con, $sql3);
-            $data1 = mysqli_fetch_assoc($result1);
-            $mhid=$data1['sno'];
-            $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
-            $sql2 = "INSERT INTO cricket (id ,college,stid,captain,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$mahotsavid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
+        if ($result1->num_rows > 0) {
+            if ($captain == 1) {
+
+                $sql = "UPDATE cricteam SET name='$name', phone='$cell', email='$email' , phone='$cell' ,bonafide='$fileUpload1' ,paymentcpy='$fileUpload2' , utr='$utrNumber',dateofpay='$dateofpay' ,bonafide_name='$fileUpload1_name' , paymentcpy_name='$fileUpload2_name'    WHERE stid='$studentid'";
+
+                $sql2 = "UPDATE cricket SET captain='$name', phone='$cell', email='$email' , phone='$cell' ,bonafide='$fileUpload1' ,paymentcpy='$fileUpload2' , utr='$utrNumber',dateofpay='$dateofpay' ,bonafide_name='$fileUpload1_name' , paymentcpy_name='$fileUpload2_name'    WHERE stid='$studentid'";
+                $con->query($sql2);
+                $con->query($sql);
+
+            } else {
+                $sql = "UPDATE cricteam SET name='$name', phone='$cell', email='$email' WHERE stid='$studentid'";
+                $con->query($sql);
+
+            }
+            // $con->query($sql);
+            $state = 0;
+
+
+
         } else {
-            $sql = "INSERT INTO cricteam (id, college , stid,name, phone,email , captain) VALUES ('$rec','$college', '$mahotsavid','$name','$cell','$email','$captain') ";
+
+            // Create an SQL query to insert data into the "teamreg" table
+            if ($captain == 1) {
+                $sql3 = "SELECT sno from criccaptain where regno='$studentid'";
+                $result2 = mysqli_query($con, $sql3);
+                $data1 = mysqli_fetch_assoc($result2);
+                $mhid = $data1['sno'];
+                $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name')  ";
+                $sql2 = "INSERT INTO cricket (id ,college,stid,captain,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
+                $con->query($sql);
+                $con->query($sql2);
+            } else {
+                $sql = "INSERT INTO cricteam (id, college , stid,name, phone,email , captain) VALUES ('$rec','$college', '$studentid','$name','$cell','$email','$captain') ";
+                $con->query($sql);
+
+            }
+            // $con->query($sql);
+            //$con->query($sql2);
+
+
         }
-        
-        if (!$con->query($sql)) {
-            $allQueriesSuccessful = false;
-        }
+
+
     }
-    $con->query($sql2);
-    if ($allQueriesSuccessful) {
+
+    if ($state === 0)
+        echo '<script type="text/javascript">alert("UPDATION SUCCESSFUL");</script>';
+    else
         echo '<script type="text/javascript">alert("REGISTRATION SUCCESSFUL\nRequest sent to admin");</script>';
-    }
+
+
+    //$con->query($sql);
+    // $con->query($sql2);
+
+    //if ($allQueriesSuccessful) {
+    // }
     $url = "cricreg.php";
 
 
-     header( "refresh:1;URL=".$url);
+    // header( "refresh:1;URL=".$url);
     // Close the database connection
 
 

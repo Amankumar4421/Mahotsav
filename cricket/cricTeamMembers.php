@@ -23,7 +23,7 @@ if (isset($_GET['id']) ) {
 
         echo"<h2>".$id."</h2>";
         echo "<table>";
-        echo "<thead><th>Team Member</th><th>Mahotsav ID</th><th>Captain</th><th>Email</th><th>Phone</th></thead>";
+        echo "<thead><th>Team Member</th><th>Student ID</th><th>Captain</th><th>Email</th><th>Phone</th></thead>";
         
         while ($rowTeamMembers = mysqli_fetch_assoc($resultTeamMembers)) {
     

@@ -13,38 +13,30 @@
 
 include("connection.php");
 
-
-
-$sqlCollege = "SELECT * FROM cricket group by college";
-$resultCollege = mysqli_query($con, $sqlCollege);
-
-if ($resultCollege) {
-
-    while ($rowCollege = mysqli_fetch_assoc($resultCollege)) {
-        echo"<h2>".$rowCollege['college']."</h2>";
-        echo "<table>";
-            echo "<thead><th>Team Id</th><th>Captain</th><th>Mahotsav ID</th><th>Email</th><th>Phone</th><th>Status</th></thead>";
-            $sql="select * from cricket where college='".$rowCollege['college']."'";
-            $result=mysqli_query($con,$sql);
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<tr>";
-                    echo "<td>" . '<a href="cricTeamMembers.php?id='.$row['id'].'" style="text-decoration:none;">'.$row['id'].'</a>'."</td>"; 
-                    echo "<td>" . $row['captain'] . "</td>";
-                    echo "<td>" . $row['stid'] . "</td>";
-                    echo "<td>" . $row['email'] . "</td>";
-                    echo "<td>" . $row['phone'] . "</td>";
-                    echo "<td>" . $row['status'] . "</td>";
-                echo "</tr>";
-            }
-        echo "</table>";
+echo "<h2>Cricket Teams</h2>";
+$sql="select * from cricket";
+$result=mysqli_query($con,$sql);
+if($result){
+    echo "<table>";
+    echo "<thead><th>Team Id</th><th>Captain</th><th>Mahotsav Id</th><th>College</th></thead>";
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr>";
+            echo "<td>" . '<a href="cricTeamMembers.php?id='.$row['id'].'" style="text-decoration:none;">'.$row['id'].'</a>'."</td>"; 
+            echo "<td>" . $row['captain'] . "</td>";
+            echo "<td>" . $row['mhid'] . "</td>";
+            // echo "<td>" . $row['email'] . "</td>";
+            // echo "<td>" . $row['phone'] . "</td>";
+            echo "<td>" . $row['college'] . "</td>";
+        echo "</tr>";
     }
-    echo '<div class="print-button">
-        <button id="print">Print</button>
-    </div>';
-    
 } else {
-    echo "Error fetching team members";
+    echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }
+echo "</table>";
+echo '<div class="print-button">
+    <button id="print">Print</button>
+</div>';
+    
 
 
 mysqli_close($con);

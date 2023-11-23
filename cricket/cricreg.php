@@ -24,7 +24,7 @@ include("connection.php");
         h1 {
             font-family: consolas;
             background-color: #e4f5e7;
-            
+
             /* color: black; */
             text-align: center;
             padding: 10px;
@@ -107,11 +107,12 @@ include("connection.php");
             text-align: left;
         }
 
-        #submitdiv{
+        #submitdiv {
             margin-top: 10px;
             display: flex;
             justify-content: center;
         }
+
         #submitButton {
             background-color: #4caf50;
             color: #fff;
@@ -272,11 +273,11 @@ include("connection.php");
         </div>
 
         <div id="submitdiv">
-            <button id="submitButton" style="display: none;" onclick="return validateForm();">Submit</button>
+            <button id="submitButton" style="display: none;" onclick="return validateForm();">Register/Update</button>
         </div>
 
         <script>
-            var cc=0;
+            var cc = 0;
             //filter dropbox
             function showDropdown() {
                 const searchBox = document.querySelector('.search-box');
@@ -346,10 +347,10 @@ include("connection.php");
                     const cell3 = row.insertCell(2);
                     const cell4 = row.insertCell(3);
                     const cell5 = row.insertCell(4);
-                    const mahotsavidInput = document.createElement('input');
-                    mahotsavidInput.type = 'text';
-                    mahotsavidInput.name = `mahotsavid[]`;
-                    mahotsavidInput.required = true;
+                    const studentidInput = document.createElement('input');
+                    studentidInput.type = 'text';
+                    studentidInput.name = `studentid[]`;
+                    studentidInput.required = true;
 
                     const nameInput = document.createElement('input');
                     nameInput.type = 'text';
@@ -376,10 +377,10 @@ include("connection.php");
                     captainInput.value = '0';
 
                     // captainInput.required = true;
-                        //captainInput.value = 'false';
+                    //captainInput.value = 'false';
 
                     captainInput.addEventListener('change', function () {
-                        cc=1;
+                        cc = 1;
                         // Uncheck all other captain inputs when one is checked
                         document.querySelectorAll('input[name^="captain"]').forEach((input) => {
                             input.checked = false;
@@ -392,29 +393,33 @@ include("connection.php");
                         this.value = '1';
 
                     });
-                    mahotsavidInput.addEventListener('change', function () {
-                        const selectedMahotsavid = this.value;
+                    studentidInput.addEventListener('change', function () {
+                        const selectedstudentid = this.value;
 
-                        fetch(`cricData.php?mahotsavid=${selectedMahotsavid}`)
+                        fetch(`cricData.php?studentid=${selectedstudentid}`)
                             .then(response => response.json())
                             .then(cricData => {
                                 console.log(cricData);
-                                // if(cricData.alr==1){
-                                //     alert(`${selectedMahotsavid}  already registered in this event!`);
-                                // } else {
-                                //     nameInput.value = cricData.name;
-                                //     cellInput.value = cricData.cell;
-                                //     emailInput.value = cricData.email;
+                                if (cricData.length != 0) {
+                                    nameInput.value = cricData.name;
+                                    cellInput.value = cricData.phone;
+                                    emailInput.value = cricData.email;
+                                    //let val1=cricData.stid;
 
-                                // }
-                                nameInput.value = cricData.name;
-                                cellInput.value = cricData.cell;
-                                emailInput.value = cricData.email;
+                                    //document.getElementById("fileUpload1").src = 'data:image/jpeg;base64,' + cricData.bonafide_document;
+                                    //    document.getElementById("fileUpload2").src = 'data:image/jpeg;base64,' + cricData.paymentcpy_document;
+                                    if (cricData.utr)
+                                        document.getElementById("utrNumber").value = cricData.utr;
+                                    if (cricData.dateofpay)
+                                        document.getElementById("dateOfPayment").value = cricData.dateofpay;
+
+
+                                }
                             })
                             .catch(error => console.error(error));
                     });
 
-                    cell1.appendChild(mahotsavidInput);
+                    cell1.appendChild(studentidInput);
                     cell2.appendChild(nameInput);
                     cell3.appendChild(cellInput);
                     cell4.appendChild(emailInput);
@@ -430,13 +435,13 @@ include("connection.php");
             //     document.querySelector('form').submit();
             // });
 
-            
+
             function validateForm() {
 
-                if(cc==0){
+                if (cc == 0) {
                     alert("Please select a captain");
                     return false;
-                    
+
                 }
                 return true;
             }

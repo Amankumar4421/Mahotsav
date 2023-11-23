@@ -13,7 +13,7 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
     <title>Registration Form</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/cricCaptainReg.css">
+    <link rel="stylesheet" href="./style/cricCaptainReg.css">
 
 
 </head>

@@ -76,10 +76,11 @@ tbody tr:hover {
     display: flex;
     justify-content: space-around;
 }
-#remark{
+#remark{  
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+.remark{
     display: flex;
-    justify-content: center;    
-    margin-top: 33%;
-    margin-bottom: 5px;
-    margin-left: 42%;
+    justify-content: center;  
 }
