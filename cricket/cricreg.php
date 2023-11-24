@@ -219,6 +219,26 @@ $stdregValue = $_SESSION['stdreg'];
         .other input[type="file"]:hover {
             background-color: #f9f9f9;
         }
+
+        .existing-file-label {
+            margin-top: 0px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Add this style to format the links for existing files */
+        .existing-file-link {
+            display: block;
+            margin-top: 0px;
+            color: #007bff;
+            /* Link color */
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .existing-file-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -262,8 +282,8 @@ $stdregValue = $_SESSION['stdreg'];
 
 
         </div>
-        <div class="other">
-            <label for="fileUpload1">Upload Bonafide:</label>
+        <div class="other" id="othercont">
+            <label for="fileUpload1" id="fileUpload1label">Upload Bonafide:</label>
             <input type="file" name="fileUpload1" id="fileUpload1" required>
             <label for="fileUpload2">Upload Payment Copy:</label>
             <input type="file" name="fileUpload2" id="fileUpload2" required>
@@ -355,19 +375,20 @@ $stdregValue = $_SESSION['stdreg'];
                 const cell3 = row.insertCell(2);
                 const cell4 = row.insertCell(3);
                 const cell5 = row.insertCell(4);
+
                 const studentidInput = document.createElement('input');
                 studentidInput.type = 'text';
                 studentidInput.name = `studentid[]`;
                 studentidInput.required = true;
-                if(a==0)
-                studentidInput.setAttribute('readonly', 'true');
+                if (a == 0)
+                    studentidInput.setAttribute('readonly', 'true');
 
                 const nameInput = document.createElement('input');
                 nameInput.type = 'text';
                 nameInput.name = `name[]`;
                 nameInput.required = true;
-                if(a==0)
-                 nameInput.setAttribute('readonly', 'true');
+                if (a == 0)
+                    nameInput.setAttribute('readonly', 'true');
                 // else
                 // nameInput.setAttribute('readonly', 'false');
 
@@ -376,16 +397,16 @@ $stdregValue = $_SESSION['stdreg'];
                 cellInput.type = 'text';
                 cellInput.name = `cell[]`;
                 cellInput.required = true;
-                if(a==0)
-                cellInput.setAttribute('readonly', 'true');
-                
-                
+                if (a == 0)
+                    cellInput.setAttribute('readonly', 'true');
+
+
                 const emailInput = document.createElement('input');
                 emailInput.type = 'text';
                 emailInput.name = `email[]`;
                 emailInput.required = true;
-                if(a==0)
-                emailInput.setAttribute('readonly', 'true');
+                if (a == 0)
+                    emailInput.setAttribute('readonly', 'true');
 
                 const captainInput = document.createElement('input');
                 captainInput.type = 'radio';
@@ -422,7 +443,7 @@ $stdregValue = $_SESSION['stdreg'];
                                 nameInput.value = cricData.name;
                                 cellInput.value = cricData.phone;
                                 emailInput.value = cricData.email;
-                               
+
                             }
                         })
                         .catch(error => console.error(error));
@@ -430,7 +451,7 @@ $stdregValue = $_SESSION['stdreg'];
 
 
                 if (a == 0) {
-                    cc=1;
+                    cc = 1;
                     fetch(`cric2Data.php?reg=${regi}`)
                         .then(response => response.json())
                         .then(cricData1 => {
@@ -440,15 +461,50 @@ $stdregValue = $_SESSION['stdreg'];
                                 nameInput.value = cricData1.name;
                                 cellInput.value = cricData1.phone;
                                 emailInput.value = cricData1.email;
-                                document.getElementById('col').value=cricData1.college;
-                                //let val1=cricData.stid;
+                                document.getElementById('col').value = cricData1.college;
 
-                                //document.getElementById("fileUpload1").src = 'data:image/jpeg;base64,' + cricData.bonafide_document;
-                                //    document.getElementById("fileUpload2").src = 'data:image/jpeg;base64,' + cricData.paymentcpy_document;
-                                // if (cricData1.utr)
-                                //     document.getElementById("utrNumber").value = cricData1.utr;
-                                // if (cricData1.dateofpay)
-                                //     document.getElementById("dateOfPayment").value = cricData1.dateofpay;
+                                //console.log(cricData1.bonafide_file);
+                                if (cricData1.bonafide_file) {
+                                    var fileanchor = document.createElement("a");
+                                    fileanchor.href = cricData1.bonafide_file;
+                                    fileanchor.download = cricData1.bonafide_name;
+                                    fileanchor.textContent = cricData1.bonafide_name;
+                                    fileanchor.classList.add("existing-file-link"); // Add this class
+                                    divElement = document.getElementById("othercont");
+                                    divElement.appendChild(document.createElement("br")); // Add a line break
+                                    divElement.appendChild(document.createElement("br")); // Add another line break
+                                    var labelforbonafide = document.createElement('label');
+                                    labelforbonafide.innerHTML = "Existing Bonafide:";
+                                    labelforbonafide.classList.add("existing-file-label"); // Add this class
+                                    divElement.appendChild(labelforbonafide); // Append the label
+                                    divElement.appendChild(fileanchor); // Append the file link
+                                    console.log("hi")
+                                }
+
+                                if (cricData1.paymentcpy_file) {
+                                    var paymentcpyanchor = document.createElement("a");
+                                    paymentcpyanchor.href = cricData1.paymentcpy_file;
+                                    paymentcpyanchor.download = cricData1.paymentcpy_name;
+                                    paymentcpyanchor.textContent = cricData1.paymentcpy_name;
+                                    paymentcpyanchor.classList.add("existing-file-link"); // Add this class
+                                    divElement.appendChild(document.createElement("br")); // Add a line break
+                                    divElement.appendChild(document.createElement("br")); // Add another line break
+                                    var labelforpaymentcpy = document.createElement('label');
+                                    labelforpaymentcpy.innerHTML = "Existing Payment copy:";
+                                    labelforpaymentcpy.classList.add("existing-file-label"); // Add this class
+                                    divElement.appendChild(labelforpaymentcpy); // Append the label
+                                    divElement.appendChild(paymentcpyanchor); // Append the file link
+                                    console.log("hi");
+                                }
+
+
+
+
+                                if (cricData1.utr)
+                                    document.getElementById("utrNumber").value = cricData1.utr;
+                                if (cricData1.dateofpay)
+                                    document.getElementById("dateOfPayment").value = cricData1.dateofpay;
+
 
                                 captainInput.checked = true;
 
@@ -456,7 +512,7 @@ $stdregValue = $_SESSION['stdreg'];
                         })
                         .catch(error => console.error(error));
 
-          
+
                 }
                 a = a + 1;
 
@@ -476,7 +532,7 @@ $stdregValue = $_SESSION['stdreg'];
             registrationForm.appendChild(table);
             document.getElementById('submitButton').style.display = 'block';
 
-          
+
 
 
             function validateForm() {

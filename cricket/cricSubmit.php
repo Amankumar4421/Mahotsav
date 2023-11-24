@@ -41,22 +41,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql4 = "SELECT * FROM cricteam where stid='$studentid' ";
         $result1 = $con->query($sql4);
 
-
-
-
-
         if (isset($_POST["captain_$i"]) && $_POST["captain_$i"] == '1')
             $captain = 1;
         else
             $captain = 0;
 
         $college = $_POST['college'];
-$cap="captain_$i";
+        $cap = "captain_$i";
         if ($result1->num_rows > 0) {
-            if ($captain == 1) {
+            if ($cap=="captain_0") {
 
                 $sql = "UPDATE cricteam SET name='$name', phone='$cell', email='$email' , phone='$cell' ,bonafide='$fileUpload1' ,paymentcpy='$fileUpload2' , utr='$utrNumber',dateofpay='$dateofpay' ,bonafide_name='$fileUpload1_name' , paymentcpy_name='$fileUpload2_name'    WHERE stid='$studentid'";
-
                 $sql2 = "UPDATE cricket SET captain='$name', phone='$cell', email='$email' , phone='$cell' ,bonafide='$fileUpload1' ,paymentcpy='$fileUpload2' , utr='$utrNumber',dateofpay='$dateofpay' ,bonafide_name='$fileUpload1_name' , paymentcpy_name='$fileUpload2_name'    WHERE stid='$studentid'";
                 $con->query($sql2);
                 $con->query($sql);
@@ -74,17 +69,17 @@ $cap="captain_$i";
         } else {
 
             // Create an SQL query to insert data into the "teamreg" table
-            if ($captain == 1) {
+            if ($cap=="captain_0") {
                 $sql3 = "SELECT sno from criccaptain where regno='$studentid'";
                 $result2 = mysqli_query($con, $sql3);
                 $data1 = mysqli_fetch_assoc($result2);
                 $mhid = $data1['sno'];
-                $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name,capname) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$captain','$fileUpload1_name','$fileUpload2_name','$cap')  ";
+                $sql = "INSERT INTO cricteam (id ,college,stid,name,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,captain,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay',1,'$fileUpload1_name','$fileUpload2_name')  ";
                 $sql2 = "INSERT INTO cricket (id ,college,stid,captain,mhid,email,phone,bonafide, paymentcpy , utr,dateofpay,bonafide_name,paymentcpy_name) VALUES ('$rec','$college','$studentid','$name','$mhid','$email','$cell', '$fileUpload1','$fileUpload2', '$utrNumber','$dateofpay','$fileUpload1_name','$fileUpload2_name')  ";
                 $con->query($sql);
                 $con->query($sql2);
             } else {
-                $sql = "INSERT INTO cricteam (id, college , stid,name, phone,email , captain) VALUES ('$rec','$college', '$studentid','$name','$cell','$email','$captain') ";
+                $sql = "INSERT INTO cricteam (id, college , stid,name, phone,email , captain) VALUES ('$rec','$college', '$studentid','$name','$cell','$email',0) ";
                 $con->query($sql);
 
             }
@@ -111,7 +106,7 @@ $cap="captain_$i";
     $url = "cricreg.php";
 
 
-    // header( "refresh:1;URL=".$url);
+    header( "refresh:1;URL=".$url);
     // Close the database connection
 
 

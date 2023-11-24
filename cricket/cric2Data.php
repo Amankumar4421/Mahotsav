@@ -2,32 +2,61 @@
 
 include("connection.php");
 
-// Check if the 'studentid' parameter was sent via POST
-
+// Check if the 'reg' parameter was sent via GET
 if (isset($_GET['reg'])) {
     $reg = $_GET['reg'];
-    // $sql2 = "SELECT * from cricket where stid='$reg'";
-    // $result1 = $con->query($sql2);
-    // $row1 = $result1->fetch_assoc();
-    // $tid = $row1['id'];
-    // if ($captain) {
-        $sql = "SELECT  college,regno,name,email,phone FROM criccaptain where regno='$reg'";
-    // } else {
-    //     $sql = "SELECT college,name , phone , email FROM cricteam where stid='$studentid'";
-    // }
-    $result = $con->query($sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+    try {
+        // Perform the first SQL query
+        $sql = "SELECT college, regno, name, email, phone FROM criccaptain WHERE regno='$reg'";
+        $result = $con->query($sql);
 
+        // Perform the second SQL query
+        $sql2 = "SELECT * FROM cricket WHERE stid='$reg'";
+        $result2 = $con->query($sql2);
 
-        echo json_encode($row);
-    } else {
-        // If no rows were returned, echo an empty JSON object
-        echo json_encode([]);
+        // Check if the first query returned any rows
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            $result1 = array(
+                'college' => $row['college'],
+                'email' => $row['email'],
+                'name' => $row['name'],
+                'phone' => $row['phone'],
+                'regno' => $row['regno']
+            );
+
+            // Check if the second query returned any rows
+            if ($result2->num_rows > 0) {
+                $row2 = $result2->fetch_assoc();
+
+                $result2 = array(
+                    'utr' => $row2['utr'],
+                    'dateofpay' => $row2['dateofpay'],
+                    'bonafide_file' => "data:application/octet-stream;base64," . base64_encode($row2['bonafide']),
+                    'paymentcpy_file' => "data:application/octet-stream;base64," . base64_encode($row2['paymentcpy']),
+                    'bonafide_name' => $row2['bonafide_name'],
+                    'paymentcpy_name' => $row2['paymentcpy_name']
+                );
+
+                // Combine the results into a single associative array
+                $combinedResult = array_merge($result1, $result2);
+
+            } else {
+                // If no rows were returned by the second query, set an empty array
+                $combinedResult = $result1;
+            }
+
+            // Encode the combined result as JSON
+            echo json_encode($combinedResult);
+        } else {
+            // If no rows were returned by the first query, echo an empty JSON object
+            echo json_encode([]);
+        }
+    } catch (Exception $e) {
+        // Handle exceptions (add more specific handling if needed)
+        echo json_encode(['error' => $e->getMessage()]);
     }
-
 }
-
-
 ?>
