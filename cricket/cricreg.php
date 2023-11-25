@@ -3,6 +3,19 @@
 include("connection.php");
 session_start();
 $stdregValue = $_SESSION['stdreg'];
+echo "<script>alert('$stdregValue')</script>";
+
+if (isset($_POST['logout'])) {
+    // Unset all of the session variables
+    $_SESSION = array();
+
+    // Destroy the session.
+    session_destroy();
+
+    // Redirect to the login page or any other page as needed
+    header("Location: index.php"); // Replace 'login.php' with your actual login page
+    exit();
+}
 
 //echo "<script>alert('$stdregValue');</script>";
 ?>
@@ -239,12 +252,36 @@ $stdregValue = $_SESSION['stdreg'];
         .existing-file-link:hover {
             text-decoration: underline;
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin-left: 45%;
+        }
+
+        #logoutButton {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 2%;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Cricket</h1>
-
+    
+    
+    <form class="header" action="" method="post">
+        <h1>Cricket</h1>
+        <button id="logoutButton" type="submit" name="logout">Logout</button>
+    </form>
 
     <form action="cricSubmit.php" method="post" enctype="multipart/form-data">
         <div class="main">
@@ -367,7 +404,7 @@ $stdregValue = $_SESSION['stdreg'];
             headerCell5.innerHTML = '<b>Captain</b>';
             let a = 0;
 
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 15; i++) {
 
                 const row = table.insertRow();
                 const cell1 = row.insertCell(0);
