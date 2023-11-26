@@ -3,19 +3,6 @@
 include("connection.php");
 session_start();
 $stdregValue = $_SESSION['stdreg'];
-// echo "<script>alert('$stdregValue')</script>";
-
-if (isset($_POST['logout'])) {
-    // Unset all of the session variables
-    $_SESSION = array();
-
-    // Destroy the session.
-    session_destroy();
-
-    // Redirect to the login page or any other page as needed
-    header("Location: index.php"); // Replace 'login.php' with your actual login page
-    exit();
-}
 
 //echo "<script>alert('$stdregValue');</script>";
 ?>
@@ -278,10 +265,10 @@ if (isset($_POST['logout'])) {
 <body>
     
     
-    <form class="header" action="" method="post">
+    <div class="header">
         <h1>Cricket</h1>
         <button id="logoutButton" type="submit" name="logout">Logout</button>
-    </form>
+    </div>
 
     <form action="cricSubmit.php" method="post" enctype="multipart/form-data">
         <div class="main">
@@ -338,6 +325,10 @@ if (isset($_POST['logout'])) {
 
         <script>
             var cc = 0;
+
+            document.getElementById("logoutButton").addEventListener("click", function() {
+                window.location.href = "logout.php";
+            });
             //filter dropbox
             function showDropdown() {
                 const searchBox = document.querySelector('.search-box');

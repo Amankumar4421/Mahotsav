@@ -25,24 +25,25 @@ if (isset($result)) {
         //$url = "studentform.html";
         //$url = "stdform.php";
         //header( "refresh:2;URL=".$url);
-        $sql="select * from cricket where stid='$uname' and (status='Pending' or status='On Hold')";
-        $result=mysqli_query($con,$sql);
-        if ($result) {
-            if (mysqli_num_rows($result) > 0) {
-                // header("Location: cricreg.php");
-            }
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($con);
-        }
+        
 
         $sql="select * from cricket where stid='$uname' and status='Rejected'";
         $result=mysqli_query($con,$sql);
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
-                echo "<script>alert('Your team has rejected. If you want to register again, Register here');</script>";
-                // $url = "cricreg.php";
-                // header("refresh:1;URL=" . $url);
-                header("Location: cricreg.php");
+
+                // echo "<script>alert('Your team has been rejected. If you want to register again, register here');</script>";
+                // echo "<script>window.location.href='cricreg.php';</script>";
+                // exit;
+
+                echo "<script>";
+                echo "if (window.confirm('Your team has been rejected. Do you want to register again?')) {";
+                echo "  window.location.href='cricreg.php';";
+                echo "} else {";
+                echo "  window.location.href='logout.php';"; // Assuming there is a logout.php page
+                echo "}";
+                echo "</script>";
+                exit;
                 
             }
         } else {
@@ -54,10 +55,33 @@ if (isset($result)) {
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
                 header("Location: cricCaptainreport.php");
-                
-                
-            } else {
-                header("Location: cricreg.php");
+            }
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($con);
+        }
+
+        $sql="select * from cricket where stid='$uname' and (status='Pending' or status='On Hold')";
+        $result=mysqli_query($con,$sql);
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                echo "<script>";
+                echo "if (window.confirm('Your team status is pending. Do you want to edit details?')) {";
+                echo "  window.location.href='cricreg.php';";
+                echo "} else {";
+                echo "  window.location.href='logout.php';"; // Assuming there is a logout.php page
+                echo "}";
+                echo "</script>";
+                exit;
+            }
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($con);
+        }
+
+        $sql="select * from cricket where stid='$uname'";
+        $result=mysqli_query($con,$sql);
+        if ($result) {
+            if (mysqli_num_rows($result) == 0) {
+                header("Location: cricCaptainreport.php");
             }
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($con);
@@ -73,7 +97,7 @@ if (isset($result)) {
 
 
 } else {
-    echo "REGID NOT IN LIST";
+    echo "<script>alert('Id doesn't exits.');</script>";
     $url = "index.php";
     header("refresh:1;URL=" . $url);
 }
