@@ -56,6 +56,8 @@ if (isset($result)) {
                 header("Location: cricCaptainreport.php");
                 
                 
+            } else {
+                header("Location: cricreg.php");
             }
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($con);

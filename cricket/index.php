@@ -42,7 +42,7 @@
                 <div class="col-md-10">
 
                     <a href="cricCaptainReg.php"> Create new Account
-                        <img src="images/new.gif" id="image" alt="Image description">
+                        <img src="new.gif" id="image" alt="Image description">
                     </a>
 
                 </div>

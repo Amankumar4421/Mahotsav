@@ -3,7 +3,7 @@
 include("connection.php");
 session_start();
 $stdregValue = $_SESSION['stdreg'];
-echo "<script>alert('$stdregValue')</script>";
+// echo "<script>alert('$stdregValue')</script>";
 
 if (isset($_POST['logout'])) {
     // Unset all of the session variables
