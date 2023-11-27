@@ -326,8 +326,8 @@ $stdregValue = $_SESSION['stdreg'];
         </div>
         <h2>Payment details</h2>
         <div class="bankDetails">   
-            <img src="./QR.jpg" alt="">
-            <img style="height:100%" src="./bankDetails.jpg" alt="">
+            <img src="./assets/QR.jpg" alt="">
+            <img style="height:100%" src="./assets/bankDetails.jpg" alt="">
         </div>
         <div class="other" id="othercont">
             <label for="fileUpload1" id="fileUpload1label">Upload Bonafide:</label>

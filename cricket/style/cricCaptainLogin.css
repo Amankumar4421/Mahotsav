@@ -1,25 +1,65 @@
-body {
-    background: linear-gradient(45deg, #f6f6f6, #e9e9e9, #c7c5c5);
-    
+
+body{
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.nav{
+    /* width: 100vb; */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.nav #logo{
+    width: 180px;
+    height: 60px;
+}
+.nav #cricketLogo{
+    width: 280px;
+    height: 250px;
+}
+.nav #mahotsavLogo{
+    width: 200px;
+    height: 80px;
+}
+
+.brochure{
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+}
+.download{
+    padding: 10px; border: 1px solid #3498db; 
+    cursor: pointer; 
+    display: inline-block; 
+    font-family: 'Verdana', sans-serif; font-size: 18px; 
+    color: #fff; 
+    text-decoration: none; 
+    background-color: #3498db;
+    transition: background-color 0.3s; 
+    border-radius:5px
+}
+.login {
+    /* background: linear-gradient(45deg, #f6f6f6, #e9e9e9, #c7c5c5); */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 100vh; */
 }
 .container {
+    margin-top: 3%;
+    margin-bottom: 3%;
     background: #d3e7f570;
     width: 400px; /* Increase the width */
-    height: 350px; /* Increase the height */
+    height: 330px; /* Increase the height */
     border-radius: 15px;
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
     animation: fadeIn 2s;
     padding: 20px;
 }
-@media (max-width:775px) {
-    .container{
-        height: 450px;
-    }
-}
+
 
 @keyframes fadeIn {
     0% {
@@ -55,4 +95,49 @@ h2{
     width: 40px;
     height: inherit;
     /* color:#e3e2d7; */
+}
+
+.cash{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottom .cash img{
+    width: 25%;
+    height: auto;
+}
+
+@media (max-width:775px){
+    .nav #logo{
+        width: 80px;
+        height: 25px;
+    }
+    .nav #cricketLogo{
+        width: 140px;
+        height: 105px;
+    }
+    .nav #mahotsavLogo{
+        width: 90px;
+        height: 40px;
+    }
+
+    .container {
+        background: #d3e7f570;
+        width: 250px; /* Increase the width */
+        height: 400px; /* Increase the height */
+        padding: 20px;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+    #image{
+        display: none;
+        /* width: 30px; */
+    }
+    .bottom .cash img{
+        width: 150px;
+    }
+    #sponser{
+        display: none;
+    }
 }

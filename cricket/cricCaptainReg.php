@@ -44,7 +44,7 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="number" class="col-md-3 col-form-label"><b>Cell No:</b></label>
+                    <label for="number" class="col-md-3 col-form-label"><b>Mobile:</b></label>
                     <div class="col-md-9">
                         <input type="text" oninput="numberOnly(this.id);" id="number" name="number" class="form-control"
                             required="required" pattern="\d*" maxlength="10">
