@@ -7,12 +7,21 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./style/cricCaptainLogin.css">
+    <style>
+        body{
+            background-image: url('./assets/bck41.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 
 <body>
     <!----------------------Login form start from here-->
     <div class="container mt-5">
-        <h2 class="text-center">Login Form</h2><br>
+        <h2 class="text-center">Captain Login</h2><br>
         <form action="cricCaptainLogin.php" name="f" onclick="return fun()">
             <div class="form-group form-row">
                 <label for="regNo" class="col-md-4 col-form-label"><b>Reg Number</b></label>
@@ -41,8 +50,8 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
 
-                    <a href="cricCaptainReg.php"> Create new Account
-                        <img src="new.gif" id="image" alt="Image description">
+                    <a style="margin-left:30%" href="cricCaptainReg.php"> <b>Create new Account</b>
+                        <img src="./assets/new.gif" id="image" alt="Image description">
                     </a>
 
                 </div>

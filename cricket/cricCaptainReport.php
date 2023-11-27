@@ -30,6 +30,12 @@ if (isset($_POST['logout'])) {
             align-items: center;
         }
 
+        .header img{
+            margin-left: 8%;
+            height: 60px;
+            width: 180px;
+        }
+
         /* h2 {
             margin-left: 45%;
         } */
@@ -60,8 +66,9 @@ if (isset($_POST['logout'])) {
     $tid=$id['id']; ?>
 
     <form class="header" action="" method="post">
-        <h2 style='margin-left:45%'><?php echo $tid; ?></h2>
-        <button style='margin-right:10%'id="logoutButton" type="submit" name="logout">Logout</button>
+        <img src="./assets/logo.png" alt="">
+        <h2 ><?php echo $tid; ?></h2>
+        <button style='margin-right:8%'id="logoutButton" type="submit" name="logout">Logout</button>
     </form>
 
     <?php 

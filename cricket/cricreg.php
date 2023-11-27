@@ -246,9 +246,12 @@ $stdregValue = $_SESSION['stdreg'];
             align-items: center;
         }
 
-        h1 {
-            margin-left: 45%;
+        .header img{
+            margin-left: 2%;
+            height: 60px;
+            width: 180px;
         }
+
 
         #logoutButton {
             background-color: #f44336;
@@ -259,6 +262,20 @@ $stdregValue = $_SESSION['stdreg'];
             cursor: pointer;
             margin-right: 2%;
         }
+
+        .bankDetails {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .bankDetails img {
+            max-width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -266,6 +283,7 @@ $stdregValue = $_SESSION['stdreg'];
     
     
     <div class="header">
+        <img src="./assets/logo.png" alt="">
         <h1>Cricket</h1>
         <button id="logoutButton" type="submit" name="logout">Logout</button>
     </div>
@@ -305,6 +323,11 @@ $stdregValue = $_SESSION['stdreg'];
             <!-- <button id="submitButton" style="display: none;">Submit</button> -->
 
 
+        </div>
+        <h2>Payment details</h2>
+        <div class="bankDetails">   
+            <img src="./QR.jpg" alt="">
+            <img style="height:100%" src="./bankDetails.jpg" alt="">
         </div>
         <div class="other" id="othercont">
             <label for="fileUpload1" id="fileUpload1label">Upload Bonafide:</label>
