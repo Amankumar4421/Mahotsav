@@ -26,7 +26,7 @@ $mail->Port = 587; // Use 465 for SSL
 $mail->setFrom('jethalal.tmkoc45@gmail.com', 'Vignan');
 
 
-
+$p=0;
 // Check connection
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
@@ -38,6 +38,9 @@ if (isset($_POST['id']) && isset($_POST['status'])) {
     $id = mysqli_real_escape_string($con, $_POST['id']);
     $status = mysqli_real_escape_string($con, $_POST['status']);
     $remark = $_POST['remark'];
+    if($remark=="")
+    $p=1;
+    $remark.="\nFor any Queries Contact:\nStudent Co-ordinators:\nT. Bharath(9491503169)\nP. Akesh Reddy(7893088070)\nK. Naveen(9398154200)";
     // Update the status in the database
     $sql = "UPDATE cricteam SET status = '$status' WHERE id = '$id'";
     $sql2 = "UPDATE cricket SET status = '$status' WHERE id = '$id'";
@@ -48,12 +51,6 @@ if (isset($_POST['id']) && isset($_POST['status'])) {
     $row1 = mysqli_fetch_assoc($capmail);
     $camp = $row1['email'];
 
-    if (($con->query($sql) === TRUE) && ($con->query($sql2) === TRUE)) {
-
-        echo "Status updated successfully";
-    } else {
-        echo "Error updating status: " . $con->error;
-    }
 } else {
     echo "Invalid request";
 }
@@ -63,13 +60,18 @@ $mail->addAddress($camp, 'captain');
 $mail->Subject = 'Cricket registration info.';
 $mail->Body = $remark;
 
-
-try {
-    $mail->send();
-    echo 'Email sent successfully!';
-} catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo;
+if($p==0){
+    try {
+        $mail->send();
+        echo "<script>alert('Email sent successfully!');</script>";
+    } catch (Exception $e) {
+        echo 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo;
+    }
 }
+else{
+    echo "<script>alert('Please Enter Remarks');</script>";
+}
+
 
 // Close the connection
 $con->close();

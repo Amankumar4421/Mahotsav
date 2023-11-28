@@ -64,7 +64,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-10">
 
-                        <a style="margin-left:20%;" href="cricCaptainReg.php"> <b>Create new Account</b>
+                        <a style="margin-left:20%; color:#fff;" href="cricCaptainReg.php"> <b>Create new Account</b>
                             <img src="./assets/new.gif" id="image" alt="Image description">
                         </a>
 
@@ -76,7 +76,7 @@
     <div class="bottom">
         <div class="cash">
             <img src="./assets/Cash Prizes.png" alt="">
-            <img style="width:200px; height:100px;" id="sponser" src="./assets/Yound India Log.png" alt="">
+            <img style="width:100px; height:100px;" id="sponser" src="./assets/Yound India Log.png" alt="">
             <img src="./assets/Registration FEE.png" alt="">
         </div>
     </div>

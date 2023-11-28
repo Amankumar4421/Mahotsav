@@ -5,6 +5,7 @@ session_start();
 $stdregValue = $_SESSION['stdreg'];
 
 //echo "<script>alert('$stdregValue');</script>";
+echo "<h2>For better experience, Open this page in Laptop/Desktop.</h2";
 ?>
 
 <!DOCTYPE html>
@@ -314,7 +315,7 @@ $stdregValue = $_SESSION['stdreg'];
             <h2>Team Registration</h2>
             <!-- <label for="teamSize">Select the number of team members:</label>
             <input type="number" name="teamSize" id="teamSize" min="1" required> -->
-            <input type="button" value="Create Registration Form" id="createFormButton">
+            <!-- <input type="button" value="Create Registration Form" id="createFormButton"> -->
 
 
 
@@ -326,7 +327,7 @@ $stdregValue = $_SESSION['stdreg'];
         </div>
         <h2>Payment details</h2>
         <div class="bankDetails">   
-            <img src="./assets/QR.jpg" alt="">
+            <img src="./assets/qrnew.jpg" alt="">
             <img style="height:100%" src="./assets/bankDetails.jpg" alt="">
         </div>
         <div class="other" id="othercont">

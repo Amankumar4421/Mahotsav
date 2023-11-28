@@ -56,9 +56,7 @@ if (isset($result)) {
             if (mysqli_num_rows($result) > 0) {
                 header("Location: cricCaptainreport.php");
             }
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($con);
-        }
+        } 
 
         $sql="select * from cricket where stid='$uname' and (status='Pending' or status='On Hold')";
         $result=mysqli_query($con,$sql);
@@ -72,6 +70,8 @@ if (isset($result)) {
                 echo "}";
                 echo "</script>";
                 exit;
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($con);
             }
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($con);
@@ -81,11 +81,9 @@ if (isset($result)) {
         $result=mysqli_query($con,$sql);
         if ($result) {
             if (mysqli_num_rows($result) == 0) {
-                header("Location: cricCaptainreport.php");
+                header("Location: cricreg.php");
             }
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($con);
-        }
+        } 
         
 
     } else {

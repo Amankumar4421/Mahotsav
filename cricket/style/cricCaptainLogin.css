@@ -14,15 +14,15 @@ body{
 }
 
 .nav #logo{
-    width: 180px;
-    height: 60px;
+    width: 240px;
+    height: 80px;
 }
 .nav #cricketLogo{
     width: 280px;
     height: 250px;
 }
 .nav #mahotsavLogo{
-    width: 200px;
+    width: 320px;
     height: 80px;
 }
 
@@ -135,9 +135,12 @@ h2{
         /* width: 30px; */
     }
     .bottom .cash img{
-        width: 150px;
+        display: block;
+        width: 200px;
+        padding: 3%;
     }
-    #sponser{
-        display: none;
+    .cash{
+        flex-direction: column;
     }
+    
 }

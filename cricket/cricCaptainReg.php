@@ -2,6 +2,7 @@
 if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
     echo "<script>alert('Please Try Again');</script>";
 }
+echo "<script>alert('Only captain can create his account and register the team.');</script>";
 ?>
 <!DOCTYPE html>
 <html>
