@@ -8,17 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="cricStyle.css">
-   
+
 
 </head>
 
 <body>
-<div id="loading-container">
-    <div class="loading-spinner">
+    <div id="loading-container">
+        <div class="loading-spinner">
 
+        </div>
+        <p>Sending Mail please wait....</p>
     </div>
-    <p>Sending Mail please wait....</p>
-  </div>
 
     <?php
 
@@ -31,7 +31,7 @@
 
         $id = $_GET['id'];
 
-        $sql = "SELECT * FROM cricteam WHERE id = '$id' ";
+        $sql = "SELECT * FROM cricteam WHERE id = '" . $id . "' ";
         $result = mysqli_query($con, $sql);
 
         if ($result) {
@@ -78,8 +78,10 @@
         <input type="text" name="remark" id="remark" placeholder="Enter your remarks" required>
     </div>
     <div class="request">
-        <button type="button" class="btn btn-success"id="bt1" onclick="updateStatus('Accepted')" disabled>Accept</button>
-        <button type="button" class="btn btn-danger" id="bt2" onclick="updateStatus('Rejected')" disabled>Decline</button>
+        <button type="button" class="btn btn-success" id="bt1" onclick="updateStatus('Accepted')"
+            disabled>Accept</button>
+        <button type="button" class="btn btn-danger" id="bt2" onclick="updateStatus('Rejected')"
+            disabled>Decline</button>
         <button type="button" class="btn btn-warning" id="bt3" onclick="updateStatus('On Hold')" disabled>Hold</button>
     </div>
 
@@ -88,58 +90,44 @@
 </html>
 <script>
 
-
-
-
-
-
-
-
-
     let rem1 = document.getElementById("remark");
-    let but1=document.getElementById("bt1");
-    let but2=document.getElementById("bt2");
-    let but3=document.getElementById("bt3");
-rem1.addEventListener("keyup", function(){
-    if(rem1.value!=""){
-      but1.disabled=false;
-      but2.disabled=false;
-      but3.disabled=false;
+    let but1 = document.getElementById("bt1");
+    let but2 = document.getElementById("bt2");
+    let but3 = document.getElementById("bt3");
+    rem1.addEventListener("keyup", function () {
+        if (rem1.value != "") {
+            but1.disabled = false;
+            but2.disabled = false;
+            but3.disabled = false;
 
-    }
-    else{
-        but1.disabled=true;
-      but2.disabled=true;
-      but3.disabled=true;
-    }
-});
-    
+        }
+        else {
+            but1.disabled = true;
+            but2.disabled = true;
+            but3.disabled = true;
+        }
+    });
+
     function updateStatus(status) {
+        setTimeout(function () {
+            // Your actual function code goes here
+            // For example, log a message to the console
+            console.log("Function completed!");
+            // Hide the loading container after your function completes
+            hideLoading();
+        }, 3000); // Replace 3000 with the actual time your function takes
 
+        function showLoading() {
+            document.getElementById('loading-container').style.display = 'flex';
+        }
 
-        setTimeout(function() {
-    // Your actual function code goes here
+        // Hide the loading container
+        function hideLoading() {
+            document.getElementById('loading-container').style.display = 'none';
+        }
 
-    // For example, log a message to the console
-    console.log("Function completed!");
-
-    // Hide the loading container after your function completes
-    hideLoading();
-  }, 3000); // Replace 3000 with the actual time your function takes
-
-function showLoading() {
-   
-  document.getElementById('loading-container').style.display = 'flex';
-}
-
-// Hide the loading container
-function hideLoading() {
-  document.getElementById('loading-container').style.display = 'none';
-}
-
-// Trigger the loading and the function
-showLoading();
-    
+        // Trigger the loading and the function
+        showLoading();
 
         // Assuming you have the ID of the row in a variable named 'rowId'
         var rowId = "<?php echo $id; ?>"; // Replace with the actual ID
@@ -158,9 +146,8 @@ showLoading();
         };
 
         // Send the data to the server
-        xhr.send("id=" + rowId + "&status=" + status + "&remark=" + remval);
-
-        
-
+        var data = "id=" + rowId + "&status=" + status + "&remark=" + encodeURIComponent(remval); // Use encodeURIComponent to handle special characters
+        xhr.send(data);
     }
+
 </script>

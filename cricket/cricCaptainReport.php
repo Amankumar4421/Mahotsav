@@ -58,7 +58,7 @@ if (isset($_POST['logout'])) {
 <?php
 
 
-    $sqlTeamMembers = "SELECT id FROM cricteam WHERE stid = '$stdregValue' ";
+    $sqlTeamMembers = "SELECT id FROM cricteam WHERE stid = '".$stdregValue." ' ";
     $resultTeamMembers = mysqli_query($con, $sqlTeamMembers);
     
 
@@ -72,7 +72,7 @@ if (isset($_POST['logout'])) {
     </form>
 
     <?php 
-    $sql="SELECT * FROM cricteam WHERE id = '$tid' ";
+    $sql="SELECT * FROM cricteam WHERE id = '".$tid."' ";
     $result = mysqli_query($con, $sql);
 
     if ($result) {

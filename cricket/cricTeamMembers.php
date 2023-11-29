@@ -16,7 +16,7 @@ include("connection.php");
 if (isset($_GET['id']) ) {
     $id = $_GET['id'];
 
-    $sqlTeamMembers = "SELECT * FROM cricteam WHERE id = '$id' ";
+    $sqlTeamMembers = "SELECT * FROM cricteam WHERE id = '".$id."' ";
     $resultTeamMembers = mysqli_query($con, $sqlTeamMembers);
 
     if ($resultTeamMembers) {

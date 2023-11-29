@@ -8,16 +8,16 @@ if (isset($_GET['reg'])) {
 
     try {
         // Perform the first SQL query
-        $sql = "SELECT college, regno, name, email, phone FROM criccaptain WHERE regno='$reg'";
-        $result = $con->query($sql);
+        $sql = "SELECT college, regno, name, email, phone FROM criccaptain WHERE regno='" . $reg . "'";
+        $result = mysqli_query($con, $sql);
 
         // Perform the second SQL query
-        $sql2 = "SELECT * FROM cricket WHERE stid='$reg'";
-        $result2 = $con->query($sql2);
+        $sql2 = "SELECT * FROM cricket WHERE stid='" . $reg . "'";
+        $result2 = mysqli_query($con, $sql2);
 
         // Check if the first query returned any rows
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
 
             $result1 = array(
                 'college' => $row['college'],
@@ -28,8 +28,8 @@ if (isset($_GET['reg'])) {
             );
 
             // Check if the second query returned any rows
-            if ($result2->num_rows > 0) {
-                $row2 = $result2->fetch_assoc();
+            if (mysqli_num_rows($result2) > 0) {
+                $row2 = mysqli_fetch_assoc($result2);
 
                 $result2 = array(
                     'utr' => $row2['utr'],

@@ -283,7 +283,7 @@ echo "<h2>For better experience, Open this page in Laptop/Desktop.</h2";
 <body>
     
     
-    <div class="header">
+<div class="header">
         <img src="./assets/logo.png" alt="">
         <h1>Cricket</h1>
         <button id="logoutButton" type="submit" name="logout">Logout</button>
@@ -295,38 +295,25 @@ echo "<h2>For better experience, Open this page in Laptop/Desktop.</h2";
                 <input type="text" name="college" class="search-box" id="col" placeholder="Search College...."
                     onclick="showDropdown()" required>
                 <div class="dropdown-content" id="dropdownList">
-
                     <?php
                     $sql = "SELECT * FROM college";
-                    $result = $con->query($sql);
+                    $result = mysqli_query($con, $sql);
                     if (!$result) {
-                        die("Query failed: " . $con->error);
+                        die("Query failed: " . mysqli_error($con));
                     }
 
-                    while ($row = $result->fetch_assoc()) {
-                        //   echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+                    while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='dropdown-item' onclick='selectItem(this)'>" . $row['name'] . "</div>";
                     }
                     ?>
-
                 </div>
             </div>
 
             <h2>Team Registration</h2>
-            <!-- <label for="teamSize">Select the number of team members:</label>
-            <input type="number" name="teamSize" id="teamSize" min="1" required> -->
-            <!-- <input type="button" value="Create Registration Form" id="createFormButton"> -->
-
-
-
-
             <div id="registrationForm"></div>
-            <!-- <button id="submitButton" style="display: none;">Submit</button> -->
-
-
         </div>
         <h2>Payment details</h2>
-        <div class="bankDetails">   
+        <div class="bankDetails">
             <img src="./assets/qrnew.jpg" alt="">
             <img style="height:100%" src="./assets/bankDetails.jpg" alt="">
         </div>
@@ -417,7 +404,7 @@ echo "<h2>For better experience, Open this page in Laptop/Desktop.</h2";
             headerCell3.innerHTML = '<b>Cell</b>';
             headerCell4.innerHTML = '<b>Email</b>';
             headerCell5.innerHTML = '<b>Captain</b>';
-            let a = 0;
+            let a = 0, b=0;
 
             for (let i = 0; i < 15; i++) {
 
@@ -484,22 +471,26 @@ echo "<h2>For better experience, Open this page in Laptop/Desktop.</h2";
                     this.value = '1';
 
                 });
-                studentidInput.addEventListener('change', function () {
-                    const selectedstudentid = this.value;
-
-                    fetch(`cricData.php?studentid=${selectedstudentid}`)
+                // studentidInput.addEventListener('change', function () {
+                //     const selectedstudentid = this.value;
+                if(a>0){
+                    fetch(`fetchAll.php?tim=${b}&reg=${regi}`)
                         .then(response => response.json())
-                        .then(cricData => {
-                            console.log(cricData);
-                            if (cricData.length != 0) {
-                                nameInput.value = cricData.name;
-                                cellInput.value = cricData.phone;
-                                emailInput.value = cricData.email;
+                        .then(tem => {
+                            console.log(tem);
+                            if (tem.length != 0) {
+                                studentidInput.value=tem.stid;
+                                nameInput.value = tem.name;
+                                cellInput.value = tem.phone;
+                                emailInput.value = tem.email;
 
                             }
                         })
                         .catch(error => console.error(error));
-                });
+                
+                    }
+                    b=b+1;
+                // });
 
 
                 if (a == 0) {
