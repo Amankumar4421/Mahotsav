@@ -82,7 +82,7 @@ $stevrs = mysqli_query($con, $stevq);
   <script>
     function fucn()
     {
-        window.location.replace("main.php");
+        window.location.replace("test.php");
     }
     function printf()
     {
