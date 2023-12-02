@@ -11,7 +11,8 @@ echo $str;
 
 
 
-function editsopt(eno){
+function editsopt(eno)
+{
 
     document.getElementById("sedi").hidden= false;
     document.getElementById("sdel").hidden = true;
@@ -20,6 +21,7 @@ function editsopt(eno){
     
 
 }
+
 
 // function fd()
 // {
