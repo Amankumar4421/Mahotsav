@@ -25,7 +25,9 @@ $c=0;
     //$ret = mysqli_fetch_assoc($res);
     echo "<div>";
    
-        echo "You Registered yourself for these events..<br><br>";
+        if(mysqli_num_rows($res)>0){
+            echo "Registered events..<br><br>";
+        }
         while ($re = mysqli_fetch_assoc($res)) {
             $event = $re["even"];
             $subevent = $re["sen"];
@@ -42,13 +44,13 @@ $c=0;
         
         if($c !=0)
         {
-            echo '<div id="contin">
+            echo '<br><div id="contin">
             <input type="checkbox" id="con" onclick="chek()"> Confirm
             <p id="hid">You have to confirm</p>
             </div>';
         }
     if($c==0){
-        echo "Not registered till now";
+        echo "Not registered in any event";
         echo "</div>";
     }
     echo "</div>";

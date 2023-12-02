@@ -20,6 +20,7 @@
 </head>
 <body>
 <?php
+session_start();
 $pid = $_SESSION['pid'];
 ?>
 

@@ -15,7 +15,7 @@ if(isset($re))
 {
     $_SESSION['pid']=$un;
     //echo "1";
-    $url = "main.php";
+    $url = "test.php";
     header( "refresh:1;URL=".$url);
 
 }
