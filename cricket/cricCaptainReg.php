@@ -74,10 +74,43 @@ echo "<script>alert('Only captain can create his account and register the team.'
                     <label for="branch_option" class="col-md-3 col-form-label"><b>Branch:</b></label>
                     <div class="col-md-9">
                         <select id="branch_option" name="branch_option" class="form-control">
-                            <option value="ECE">CSE</option>
-                            <option value="CSE">ECE</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
                             <option value="MEC">MEC</option>
                             <option value="CIVIL">CIVIL</option>
+                            <option value="AGE">AGE</option>
+                            <option value="BT">BT</option>
+                            <option value="BI">BI</option>
+                            <option value="BME">BME</option>
+                            <option value="CHEM">CHEM</option>
+                            <option value="CSE-AIML">CSE-AIML</option>
+                            <option value="CSE-CS">CSE-CS</option>
+                            <option value="CSE-CSBS">CSE-CSBS</option>
+                            <option value="CSE-DS">CSE-DS</option>
+                            <option value="IT">IT</option>
+                            <option value="EEE">EEE</option>
+                            <option value="FT">FT</option>
+                            <option value="RA">RA</option>
+                            <option value="TT">TT</option>
+                            <option value="B.Pharm">B.Pharm</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BCA">BCA</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="B.Sc(H&amp;A)">B.Sc(Hons)Agriculture</option>
+                            <option value="BA.LL.B">BA.LL.B</option>
+                            <option value="M.Tech-ES">M.Tech-ES</option>
+                            <option value="M.Tech-VLSI">M.Tech-VLSI</option>
+                            <option value="M.Tech-CSE">M.Tech-CSE</option>
+                            <option value="M.Tech-PE">M.Tech-PE</option>
+                            <option value="M.Tech-FPT">M.Tech-FPT</option>
+                            <option value="M.Tech-MD">M.Tech-MD</option>
+                            <option value="M.Tech-BT">M.Tech-BT</option>
+                            <option value="M.Tech-FM">M.Tech-FM</option>
+                            <option value="M.Tech-SE">M.Tech-SE</option>
+                            <option value="MBA">MBA</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MA(ENG)">MA(ENG)</option>
+                            <option value="M.Sc">M.Sc</option>
                         </select>
                     </div>
                 </div>
