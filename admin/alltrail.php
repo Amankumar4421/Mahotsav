@@ -276,8 +276,8 @@
                                 <option value="2" selected="selected"> Both </option>
                             </select>
                             <select id="sbranch_option" name="sbranch_option" class="sedited" >
-                                <option value="ECE">ECE</option>
-                                <option value="CSE">CSE</option>
+                                <option value="ECE">CSE</option>
+                                <option value="CSE">ECE</option>
                                 <option value="MEC">MEC</option>
                                 <option value="CIVIL">CIVIL</option>
                                 <option value="ALL" selected="selected">ALL</option>

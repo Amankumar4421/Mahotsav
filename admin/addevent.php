@@ -39,7 +39,7 @@ include("connection.php");
 
 // //$database = $dchoose;
 // echo $dno."<br>";
-$st3 = "insert into subeventheader(eno, subname, gender, branch) values('$dchoose','$name', '$gendertoenter', '$branch')";
+$st3 = "insert into subeventheader(eno, subname, gender, branch) values('".$dchoose. "',' ".$name."', ".$gendertoenter.", '".$branch."')";
 
 // echo $st3;
 
