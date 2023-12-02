@@ -218,8 +218,8 @@ include("connection.php");
                 </div>
             </div>
             <h1>Team Registration</h1>
-            <label for="teamSize">Select the number of team members:</label>
-            <input type="number" name="teamSize" id="teamSize" min="1" required>
+            <!-- <label for="teamSize">Select the number of team members:</label>
+            <input type="number" name="teamSize" id="teamSize" min="1" required> -->
             <input type="button" value="Create Registration Form" id="createFormButton">
 
 
@@ -234,7 +234,9 @@ include("connection.php");
 
         <script>
             var cc=0;
+            let teamSize=1;
             //search in dropdown
+
             var selectedSubeventName='';
             //filter dropbox
             function showDropdown() {
@@ -323,12 +325,29 @@ include("connection.php");
                 const dropdownContent = document.getElementById('dropdownList1');
                 dropdownContent.style.display = 'none';
             }
+ //getting team member count
+ function f1()
+{ fetch(`getteamcount.php?subev=${selectedSubeventName}`)
+                                .then(response => response.text())
+                                .then(data => {
+                                    // alert(`${selectedSubeventName}`);
+                                     console.log(data);
+                                   teamSize=data;
+                                    
+                                })
+                                .catch(error => console.error(error));}
+                                
+     
 
-
-
+          
             document.getElementById('createFormButton').addEventListener('click', function () {
                 event.preventDefault();
-                const teamSize = parseInt(document.querySelector('#teamSize').value);
+                //alert(selectedSubeventName);
+                f1();
+                
+
+        //   const teamSize = parseInt(document.querySelector('#teamSize').value);
+        setTimeout(() => {
                 const registrationForm = document.querySelector('#registrationForm');
                 registrationForm.innerHTML = '';
 
@@ -345,6 +364,7 @@ include("connection.php");
                     headerCell3.innerHTML = '<b>Captain</b>';
 
                     for (let i = 0; i < teamSize; i++) {
+                        console.log(teamSize);
                         const row = table.insertRow();
                         const cell1 = row.insertCell(0);
                         const cell2 = row.insertCell(1);
@@ -384,6 +404,11 @@ include("connection.php");
                             this.value = '1';
 
                         });
+                
+
+
+
+
                         mahotsavidInput.addEventListener('change', function () {
                             const selectedMahotsavid = this.value;
 
@@ -413,6 +438,7 @@ include("connection.php");
                     document.getElementById('submitButton').style.display = 'block';
 
                 }
+            },1);
             });
             // document.getElementById('submitButton').addEventListener('click', function () {
             //     document.querySelector('form').submit();
