@@ -1,4 +1,8 @@
 
+*{
+  padding: 0;
+  margin: 0;
+}
 .body{
   box-sizing: border-box;
   height: 100%;
@@ -207,7 +211,7 @@ text-align: center;
 .im{
   position: absolute;
   left: 50%;
-  top:59%;
+  top:45%;
   border-radius: 50%;
   overflow: hidden;
 }
