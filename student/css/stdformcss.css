@@ -1,9 +1,5 @@
-*{
-  margin: 0;
-  padding: 0;
- 
-}
-body{
+
+.body{
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -12,6 +8,7 @@ body{
 .whole{
   display: flex;
   flex-wrap: wrap;
+  background-color: #fff6c9;
 
 }
 @media  (max-width: 500px){
@@ -76,7 +73,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #d9d9d9;
+  background-color: #fff6c9;
   padding: 5%;
   padding-top: 8%;
   border-radius: 15px;
@@ -84,7 +81,7 @@ body{
 #event{
   width: 250px;
   height: 400px;
-  background-color: rgb(245, 244, 228);
+  background-color: #ffe87f;
   border-radius: 10px;
   text-align:left;
   padding-top: 1px;
@@ -103,7 +100,7 @@ body{
   min-height: 400px;
   margin-left: 50px;
   border-radius: 3%;
-  background-color: rgb(245, 244, 228);
+  background-color: #ffe87f;
 }
 h4{
   margin:7px;
@@ -120,7 +117,7 @@ text-align: center;
 }
 
 .detail {
-  background-color: #d9d9d9; 
+  background-color: #fff6c9; 
   padding-left: 110px;
   padding-top: 20px;
   padding-bottom: 20px; 
@@ -128,7 +125,7 @@ text-align: center;
  
 
   display: flex;
-flex-direction: column;
+  flex-direction: column;
   width: 190vb;
   min-height: 35%;
   
@@ -199,7 +196,7 @@ flex-direction: column;
   background-color: #518fec;
 }
 .info{
-  background-color: rgb(245, 244, 231);
+  background-color: #ffe87f;
   border-radius: 15px;
   padding-left:  10% ;
   min-height: 80vh;
@@ -210,10 +207,11 @@ flex-direction: column;
 .im{
   position: absolute;
   left: 50%;
-  top:43%;
+  top:59%;
   border-radius: 50%;
   overflow: hidden;
 }
+
 .custom-image:hover{
   transform: scale(1.2); 
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -246,7 +244,7 @@ flex-direction: column;
 .event-item {
   width: 200px; 
   height: 40px; 
-  background-color: rgb(245, 244, 228); 
+  background-color: #fff6c9; 
   color: #100d0d; 
   text-align: center;
   line-height: 50px; 
@@ -257,13 +255,13 @@ flex-direction: column;
 }
 
 .event-item:hover {
-  background-color: #e8e8f7; 
-  box-shadow:5px 5px 10px rgb(205, 195, 225);
+  background-color: #fcf2c0; 
+  box-shadow:1px 2px 4px #fff6c9;
 
 }
 .event-item.selected {
-background-color: #dddde8;
-box-shadow: 5px 5px 10px rgb(205, 195, 225);
+background-color: #ffefa8;
+box-shadow:1px 2px 4px #fff6c9;
 width: 90%;
 }
 
