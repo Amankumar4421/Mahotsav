@@ -426,6 +426,8 @@ include("connection.php");
                                         // console.log(data);
                                         if (data.alr == -1) {
                                             alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
+                                        } else if (data.alr == -2) {
+                                            alert(`${selectedMahotsavid} is not registered in this event individually!`);
                                         } else if (data.alr == 1) {
                                             alert(`${selectedMahotsavid} already registered in a team in this event!`);
                                         } else {
