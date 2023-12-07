@@ -53,7 +53,7 @@ echo '<!DOCTYPE html>
         <h4> Branch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["branch"].'</h4><br> 
         <h4> PayStatus &nbsp;&nbsp;:&nbsp;&nbsp;'.$pay.'</h4><br> 
         <div class="im">
-        <img src="images/gif.gif" alt="image" class="custom-image
+        <img src="./assets/gif.gif" alt="image" class="custom-image
         width="300" 
              height="300">
         </div>

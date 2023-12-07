@@ -335,7 +335,7 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '1') {
                         <div class="col-md-10">
 
                             <a href="sfreg.php"> Create new Account
-                                <img src="images/new.gif" id="image" alt="Image description">
+                                <img src="./assets/new.gif" id="image" alt="Image description">
                             </a>
 
                         </div>
