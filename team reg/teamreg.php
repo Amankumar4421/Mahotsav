@@ -167,6 +167,12 @@ include("connection.php");
         border-radius: 3px;
         text-align: left;
     }
+    #submitdiv{
+        display: flex;
+        justify-content: center;
+        margin-top: 2%;
+    }
+    
 </style>
 
 <body>
@@ -218,24 +224,26 @@ include("connection.php");
                 </div>
             </div>
             <h1>Team Registration</h1>
-            <label for="teamSize">Select the number of team members:</label>
-            <input type="number" name="teamSize" id="teamSize" min="1" required>
+            <!-- <label for="teamSize">Select the number of team members:</label>
+            <input type="number" name="teamSize" id="teamSize" min="1" required> -->
             <input type="button" value="Create Registration Form" id="createFormButton">
 
 
 
 
             <div id="registrationForm"></div>
-            <div id="submitdiv">
+            <div id="submitdiv" >
                 <button id="submitButton" style="display: none;" onclick="return validateForm();">Submit</button>
             </div>
 
         </div>
 
         <script>
-            var cc=0;
+            var cc = 0;
+            let teamSize = 0;
             //search in dropdown
-            var selectedSubeventName='';
+
+            var selectedSubeventName = '';
             //filter dropbox
             function showDropdown() {
 
@@ -316,103 +324,128 @@ include("connection.php");
             function selectItem1(item) {
                 const searchBox = document.querySelector('.search-box1');
                 searchBox.value = item.innerText;
-                 selectedSubeventName = item.innerText;
+                selectedSubeventName = item.innerText;
 
                 //alert(selectedSubeventName);
 
                 const dropdownContent = document.getElementById('dropdownList1');
                 dropdownContent.style.display = 'none';
             }
+            //getting team member count
+            function f1() {
+                fetch(`getteamcount.php?subev=${selectedSubeventName}`)
+                .then(response => response.text())
+                .then(data => {
+                    // alert(`${selectedSubeventName}`);
+                    console.log(data);
+                    teamSize = data;
+
+                })
+                .catch(error => console.error(error));
+            }
+
 
 
 
             document.getElementById('createFormButton').addEventListener('click', function () {
                 event.preventDefault();
-                const teamSize = parseInt(document.querySelector('#teamSize').value);
-                const registrationForm = document.querySelector('#registrationForm');
-                registrationForm.innerHTML = '';
+                //alert(selectedSubeventName);
+                f1();
 
-                if (teamSize > 0) {
-                    const table = document.createElement('table');
-                    table.classList.add('registration-table');
 
-                    const headerRow = table.insertRow();
-                    const headerCell1 = headerRow.insertCell(0);
-                    const headerCell2 = headerRow.insertCell(1);
-                    const headerCell3 = headerRow.insertCell(2);
-                    headerCell1.innerHTML = '<b>Mahotsavid</b>';
-                    headerCell2.innerHTML = '<b>Name</b>';
-                    headerCell3.innerHTML = '<b>Captain</b>';
+                //   const teamSize = parseInt(document.querySelector('#teamSize').value);
+                setTimeout(() => {
+                    const registrationForm = document.querySelector('#registrationForm');
+                    registrationForm.innerHTML = '';
 
-                    for (let i = 0; i < teamSize; i++) {
-                        const row = table.insertRow();
-                        const cell1 = row.insertCell(0);
-                        const cell2 = row.insertCell(1);
-                        const cell3 = row.insertCell(2);
+                    if (teamSize > 0) {
+                        const table = document.createElement('table');
+                        table.classList.add('registration-table');
 
-                        const mahotsavidInput = document.createElement('input');
-                        mahotsavidInput.type = 'text';
-                        mahotsavidInput.name = `mahotsavid[]`;
-                        mahotsavidInput.required = true;
+                        const headerRow = table.insertRow();
+                        const headerCell1 = headerRow.insertCell(0);
+                        const headerCell2 = headerRow.insertCell(1);
+                        const headerCell3 = headerRow.insertCell(2);
+                        headerCell1.innerHTML = '<b>Mahotsavid</b>';
+                        headerCell2.innerHTML = '<b>Name</b>';
+                        headerCell3.innerHTML = '<b>Captain</b>';
 
-                        const nameInput = document.createElement('input');
-                        nameInput.type = 'text';
-                        nameInput.name = `name[]`;
-                        nameInput.required = true;
-                        nameInput.setAttribute('readonly', 'true');
+                        for (let i = 0; i < teamSize; i++) {
+                            console.log(teamSize);
+                            const row = table.insertRow();
+                            const cell1 = row.insertCell(0);
+                            const cell2 = row.insertCell(1);
+                            const cell3 = row.insertCell(2);
 
-                        const captainInput = document.createElement('input');
-                        captainInput.type = 'radio';
-                        captainInput.name = `captain_${i}`;
-                        //alert(captainInput.name);
-                        captainInput.value = '0';
+                            const mahotsavidInput = document.createElement('input');
+                            mahotsavidInput.type = 'text';
+                            mahotsavidInput.name = `mahotsavid[]`;
+                            mahotsavidInput.required = true;
 
-                        // captainInput.required = true;
-                        // captainInput.value = 'false';
+                            const nameInput = document.createElement('input');
+                            nameInput.type = 'text';
+                            nameInput.name = `name[]`;
+                            nameInput.required = true;
+                            nameInput.setAttribute('readonly', 'true');
 
-                        captainInput.addEventListener('change', function () {
-                            cc=1;
-                            // Uncheck all other captain inputs when one is checked
-                            document.querySelectorAll('input[name^="captain"]').forEach((input) => {
-                                input.checked = false;
+                            const captainInput = document.createElement('input');
+                            captainInput.type = 'radio';
+                            captainInput.name = `captain_${i}`;
+                            //alert(captainInput.name);
+                            captainInput.value = '0';
+
+                            // captainInput.required = true;
+                            // captainInput.value = 'false';
+
+                            captainInput.addEventListener('change', function () {
+                                cc = 1;
+                                // Uncheck all other captain inputs when one is checked
+                                document.querySelectorAll('input[name^="captain"]').forEach((input) => {
+                                    input.checked = false;
+                                });
+
+                                this.checked = true;
+                            });
+                            captainInput.addEventListener('change', function () {
+
+                                this.value = '1';
+
                             });
 
-                            this.checked = true;
-                        });
-                        captainInput.addEventListener('change', function () {
 
-                            this.value = '1';
 
-                        });
-                        mahotsavidInput.addEventListener('change', function () {
-                            const selectedMahotsavid = this.value;
 
-                            fetch(`data.php?mahotsavid=${selectedMahotsavid}&subevent=${selectedSubeventName}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    // alert(`${selectedSubeventName}`);
-                                    // console.log(data);
-                                    if (data.alr == -1) {
-                                        alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
-                                    } else if (data.alr == 1) {
-                                        alert(`${selectedMahotsavid} already registered in this event!`);
-                                    } else {
-                                        nameInput.value = data.name; // Populate the "name" field with the fetched name
-                                    }
-                                    
-                                })
-                                .catch(error => console.error(error));
-                        });
 
-                        cell1.appendChild(mahotsavidInput);
-                        cell2.appendChild(nameInput);
-                        cell3.appendChild(captainInput);
+                            mahotsavidInput.addEventListener('change', function () {
+                                const selectedMahotsavid = this.value;
+
+                                fetch(`data.php?mahotsavid=${selectedMahotsavid}&subevent=${selectedSubeventName}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        // alert(`${selectedSubeventName}`);
+                                        // console.log(data);
+                                        if (data.alr == -1) {
+                                            alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
+                                        } else if (data.alr == 1) {
+                                            alert(`${selectedMahotsavid} already registered in this event!`);
+                                        } else {
+                                            nameInput.value = data.name; // Populate the "name" field with the fetched name
+                                        }
+
+                                    })
+                                    .catch(error => console.error(error));
+                            });
+
+                            cell1.appendChild(mahotsavidInput);
+                            cell2.appendChild(nameInput);
+                            cell3.appendChild(captainInput);
+                        }
+
+                        registrationForm.appendChild(table);
+                        document.getElementById('submitButton').style.display = 'block';
+
                     }
-
-                    registrationForm.appendChild(table);
-                    document.getElementById('submitButton').style.display = 'block';
-
-                }
+                }, 100);
             });
             // document.getElementById('submitButton').addEventListener('click', function () {
             //     document.querySelector('form').submit();

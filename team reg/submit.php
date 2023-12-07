@@ -11,7 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $college = $_POST['college'];
     $subevent = $_POST['subevent'];
 
-    $teamSize = $_POST['teamSize'];
+    $sqlTeamSize="select team_count from subeventheader where subname='".$subevent."'";
+    $resultTeamSize=mysqli_query($con,$sqlTeamSize);
+    $dataTeamSize = mysqli_fetch_assoc($resultTeamSize);
+    $teamSize=$dataTeamSize['team_count'];
+
+    // $teamSize = $_POST['teamSize'];
     $captain = -1;
     $col = $_POST['college'];
 
