@@ -427,7 +427,7 @@ include("connection.php");
                                         if (data.alr == -1) {
                                             alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
                                         } else if (data.alr == 1) {
-                                            alert(`${selectedMahotsavid} already registered in this event!`);
+                                            alert(`${selectedMahotsavid} already registered in a team in this event!`);
                                         } else {
                                             nameInput.value = data.name; // Populate the "name" field with the fetched name
                                         }

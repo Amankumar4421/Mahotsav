@@ -12,6 +12,11 @@ $str = "select * from eventheader";
 
 $eventrecords = mysqli_query($con, $str);
 
+$str2 = "select sno from student where regno='".$regid."'";
+$result=mysqli_query($con, $str2);
+$sno=mysqli_fetch_assoc($result);
+$mhid=$sno["sno"];
+
 while($eve = mysqli_fetch_assoc($eventrecords))
 {
     $dbname = $eve['no'];
@@ -22,7 +27,9 @@ while($eve = mysqli_fetch_assoc($eventrecords))
 
     foreach($vals as $val){
 
-        $str4 = "insert into ser values(".$val.", ".$dbname.", '".$regid."')";
+
+
+        $str4 = "insert into ser values(".$val.", ".$dbname.", '".$regid."', '".$mhid."')";
         mysqli_query($con, $str4);
 
     }

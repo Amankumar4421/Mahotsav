@@ -62,13 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
 
-        $sql3="SELECT regno FROM student WHERE sno='$mahotsavid'";
-        $result3=mysqli_query($con,$sql3);
-        $row3=mysqli_fetch_assoc($result3);
-        $regno=$row3['regno'];
+        // $sql3="SELECT regno FROM student WHERE sno='$mahotsavid'";
+        // $result3=mysqli_query($con,$sql3);
+        // $row3=mysqli_fetch_assoc($result3);
+        // $regno=$row3['regno'];
 
-        $sql4= "INSERT INTO ser (sen, even, stdreg) VALUES ('$subeventno', '$eventno', '$regno')";
-        $con->query($sql4);
+        // $sql4= "INSERT INTO ser (sen, even, stdreg) VALUES ('$subeventno', '$eventno', '$regno')";
+        // $con->query($sql4);
 
         if ($con->query($sql) === TRUE) {
             $count++;
