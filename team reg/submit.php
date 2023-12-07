@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<script type="text/javascript">alert("' . $rec . '");</script>';
     // $snon ="MR".$rec;
 
-    $sql1="SELECT eno FROM subeventheader WHERE subname='$subevent'";
+    $sql1="SELECT eno FROM subeventheader WHERE subname='". $subevent ."'";
     $result1=mysqli_query($con,$sql1);
     $row1=mysqli_fetch_assoc($result1);
     $eventno=$row1['eno'];
 
-    $sql2="SELECT no FROM subeventheader WHERE subname='$subevent'";
+    $sql2="SELECT no FROM subeventheader WHERE subname='". $subevent ."'";
     $result2=mysqli_query($con,$sql2);
     $row2=mysqli_fetch_assoc($result2);
     $subeventno=$row2['no'];
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // $college = $_POST['college'];
         // $subevent = $_POST['subevent'];
         // Create an SQL query to insert data into the "teamreg" table
-        $sql = "INSERT INTO teamreg (id, college , subevent, mhid, name, captain) VALUES ('$rec','$college','$subevent', '$mahotsavid', '$name', '$captain')";
+        $sql = "INSERT INTO teamreg (id, college , subevent, mhid, name, captain) VALUES ('". $rec ."','". $college ."','". $subevent ."', '". $mahotsavid ."', '". $name ."', ". $captain .")";
 
         
 

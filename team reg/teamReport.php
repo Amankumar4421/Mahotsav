@@ -112,10 +112,10 @@ if (!$result) {
         while ($row = mysqli_fetch_assoc($result)){
             $subeventName = $row['subname'];
 
-            $sql2="SELECT college,count(DISTINCT id) AS team_count FROM teamreg WHERE subevent= '$subeventName' GROUP BY college ORDER BY college ASC";
+            $sql2="SELECT college,count(DISTINCT id) AS team_count FROM teamreg WHERE subevent= '". $subeventName ."' GROUP BY college ORDER BY college ASC";
             $result2=mysqli_query($con, $sql2);
 
-            $sql3="SELECT COUNT(DISTINCT id) AS total FROM teamreg WHERE subevent= '$subeventName'";
+            $sql3="SELECT COUNT(DISTINCT id) AS total FROM teamreg WHERE subevent= '". $subeventName ."'";
             $result3=mysqli_query($con, $sql3);
             $row3 = mysqli_fetch_assoc($result3);
 

@@ -6,7 +6,7 @@ $stdreg = $_SESSION['stdreg'];
 
 $event_no = $_GET['name'];
 
-$str =  "select subname from subeventheader where no in(select sen from ser where stdreg='".$stdreg."' and even=".$event_no.")";
+$str =  "select subname from subeventheader where no in(select sen from ser where stdreg='". $stdreg ."' and even=". $event_no .")";
 
 include("connection.php");
 

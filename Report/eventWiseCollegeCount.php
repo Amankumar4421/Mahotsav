@@ -55,7 +55,7 @@
 
           echo "<tr><th width='10%'>S.No</th><th width='80%'>College Name</th><th width='10%'>Count</th></tr>";
 
-          $sql1 = "select distinct(college) as clg from student where regno in (select stdreg from ser where sen ='$subEventNo')";
+          $sql1 = "select distinct(college) as clg from student where regno in (select stdreg from ser where sen =". $subEventNo .")";
           $result1 = mysqli_query($con, $sql1);
 
           $sl=1;
@@ -65,7 +65,7 @@
               while ($row1 = mysqli_fetch_assoc($result1)) {
                 $collegeName = $row1['clg'];
 
-                $sql2 = "SELECT count(stdreg) as cnt from ser where sen ='$subEventNo' and stdreg in (select regno from student where college = '$collegeName')";
+                $sql2 = "SELECT count(stdreg) as cnt from ser where sen =".$subEventNo." and stdreg in (select regno from student where college = '". $collegeName ."')";
                 $result2 = mysqli_query($con, $sql2);
                 $row2 = mysqli_fetch_assoc($result2);
                 

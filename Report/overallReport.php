@@ -44,26 +44,26 @@
               $eve_no = $eveq["no"];
               $eve_name = $eveq["name"];
               echo "<td>" . $eve_name . "</td>";
-              $abc2 = "select * from subeventheader where eno=" .$eve_no;
+              $abc2 = "select * from subeventheader where eno=". $eve_no ."";
               $subqr = mysqli_query($con, $abc2);
               while ($subq = mysqli_fetch_assoc($subqr)) {
                   $subev_no = $subq["no"];
                   $subev_name = $subq["subname"];
                   echo "<td>" . $subev_name . "</td>";
-                  $trd ="select count(*) from ser where even =" .$eve_no ." and sen =" .$subev_no;
+                  $trd ="select count(*) from ser where even =". $eve_no ." and sen =". $subev_no ."";
                   $red = mysqli_query($con, $trd);
                   $re = mysqli_fetch_assoc($red);
                   $dg = $re["count(*)"];
                   echo "<td style='text-align:center'>" . $dg . "</td>";
 
 
-                  $trd ="select count(regno) as male from student where regno in (select stdreg from ser where even =" .$eve_no ." and sen =" .$subev_no.") and gender=1";
+                  $trd ="select count(regno) as male from student where regno in (select stdreg from ser where even =". $eve_no ." and sen =". $subev_no .") and gender=1";
                   $red = mysqli_query($con, $trd);
                   $re = mysqli_fetch_assoc($red);
                   $dg = $re["male"];
                   echo "<td style='text-align:center'>" . $dg . "</td>";
 
-                  $trd ="select count(regno) as female from student where regno in (select stdreg from ser where even =" .$eve_no ." and sen =" .$subev_no.") and gender=0";
+                  $trd ="select count(regno) as female from student where regno in (select stdreg from ser where even =". $eve_no ." and sen =". $subev_no .") and gender=0";
                   $red = mysqli_query($con, $trd);
                   $re = mysqli_fetch_assoc($red);
                   $dg = $re["female"];

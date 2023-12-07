@@ -5,8 +5,8 @@ $edit_no = $_GET['sdeleted'];
 
 
 
-$st4 = "delete from subeventheader where no=".$edit_no;
-$st5 = "delete from ser where sen=".$edit_no;
+$st4 = "delete from subeventheader where no=".$edit_no."";
+$st5 = "delete from ser where sen=".$edit_no."";
 
 
 

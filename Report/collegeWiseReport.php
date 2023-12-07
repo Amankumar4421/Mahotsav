@@ -71,18 +71,18 @@ th,td{
 
                 $college = $row1['clg'];
                 echo "<tr><td>".$college."<br> ";
-                $s = "SELECT state,district FROM `student` where college='$college'";
+                $s = "SELECT state,district FROM `student` where college='".$college."'";
                 $r = mysqli_query($con, $s);
                 $r1 = mysqli_fetch_assoc($r);
                 $dist = $r1['district'];
                 $state = $r1['state'];
 
-                $s = "SELECT name FROM `district` where no='$dist'";
+                $s = "SELECT name FROM `district` where no='".$dist."'";
                 $r = mysqli_query($con, $s);
                 if($r1 = mysqli_fetch_assoc($r))
                   echo $r1['name'].", ";
 
-                $s = "SELECT name FROM `state` where no='$state'";
+                $s = "SELECT name FROM `state` where no=". $state ."";
                 $r = mysqli_query($con, $s);
                 if($r1 = mysqli_fetch_assoc($r))
                   echo $r1['name']."</td>";

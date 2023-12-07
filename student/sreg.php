@@ -60,7 +60,7 @@ $snon ="MR".$rec;
 
 
 $str = "insert into student(regno, name, phone, gender, email, branch, dob, state, district, college,sno) values
-('".$regid."','".$name."',".$cell.",".$gender.", '".$mail."','".$branch."','". $dob."', '".$state."', '".$district."', '".$coll."', '".$snon."')";
+('". $regid ."','". $name ."',". $cell .",". $gender .", '". $mail ."','". $branch ."','". $dob ."', '". $state ."', '". $district ."', '". $coll ."', '". $snon ."')";
 
 
 mysqli_query($con, $str);

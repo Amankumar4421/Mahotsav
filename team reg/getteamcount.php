@@ -7,7 +7,7 @@ if (isset($_GET['subev'])) {
   
 
     // Perform the SQL query to get the team id
-    $sql1 = "SELECT team_count FROM subeventheader WHERE subname='$subevent'";
+    $sql1 = "SELECT team_count FROM subeventheader WHERE subname='". $subevent ."'";
     $res = mysqli_query($con, $sql1);
     
     if ($res) {

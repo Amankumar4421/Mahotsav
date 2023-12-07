@@ -1,24 +1,21 @@
 <?php
 function getPaymentData($mysqli) {
     $payments = [];
-    $paymentSql = "SELECT pid, stdreg , SUM(amount) as total_amount
-    FROM payment
-    GROUP BY pid"; 
-
     
-  $sum="SELECT SUM(amount) as total_amoun FROM payment ";
-  $sumResult = $mysqli->query($sum);
-  
-
-    $row = $sumResult->fetch_assoc();
+    // Query to get total amount
+    $sumResult = mysqli_query($mysqli, "SELECT SUM(amount) as total_amoun FROM payment");
+    $row = mysqli_fetch_assoc($sumResult);
     $payments['SUM'] = $row['total_amoun'];
 
-    $paymentResult = $mysqli->query($paymentSql);
+    // Query to get payment data
+    $paymentSql = "SELECT pid, stdreg, SUM(amount) as total_amount FROM payment GROUP BY pid";
+    $paymentResult = mysqli_query($mysqli, $paymentSql);
 
-    if ($paymentResult->num_rows > 0) {
-        while ($row = $paymentResult->fetch_assoc()) {
+    if ($paymentResult) {
+        while ($row = mysqli_fetch_assoc($paymentResult)) {
             $payments[$row['pid']] = $row['total_amount'];
         }
+        mysqli_free_result($paymentResult);
     }
 
     return $payments;
@@ -26,28 +23,25 @@ function getPaymentData($mysqli) {
 
 function getStdRegData($mysqli, $pid) {
     $stdregData = [];
-    $stdregSql = "SELECT p.pid, p.stdreg, p.amount, p.time, s.sno , s.phone FROM payment p
+
+    // Query to get total amount for a specific pid
+    $sumResult = mysqli_query($mysqli, "SELECT SUM(amount) as total_amount FROM payment WHERE pid='$pid'");
+    $row = mysqli_fetch_assoc($sumResult);
+    $stdregData['sum'] = $row['total_amount'];
+
+    // Query to get student registration data
+    $stdregSql = "SELECT p.pid, p.stdreg, p.amount, p.time, s.sno, s.phone FROM payment p
     LEFT JOIN student s ON p.stdreg = s.regno
-    WHERE p.pid = '$pid'"; 
+    WHERE p.pid = '$pid'";
 
-  $sum="SELECT SUM(amount) as total_amount FROM payment where pid='$pid' ";
-  $sumResult = $mysqli->query($sum);
-  
+    $stdregResult = mysqli_query($mysqli, $stdregSql);
 
-    $row = $sumResult->fetch_assoc();
-    $stdregData['sum']= $row['total_amount'];
-    
- 
-
-
-    $stdregResult = $mysqli->query($stdregSql);
-
-    if ($stdregResult->num_rows > 0) {
-        while ($row = $stdregResult->fetch_assoc()) {
+    if ($stdregResult) {
+        while ($row = mysqli_fetch_assoc($stdregResult)) {
             if (!isset($stdregData[$row['pid']])) {
                 $stdregData[$row['pid']] = [];
             }
-          
+
             $stdregData[$row['pid']][] = [
                 'stdreg' => $row['stdreg'],
                 'amount' => $row['amount'],
@@ -56,8 +50,9 @@ function getStdRegData($mysqli, $pid) {
                 'phone'  => $row['phone']
             ];
         }
+        mysqli_free_result($stdregResult);
     }
-   
+
     return $stdregData;
 }
 ?>

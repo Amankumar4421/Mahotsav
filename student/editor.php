@@ -68,7 +68,7 @@
                                 </button>
                             </h2>';
 
-                            $sts = "select no, subname from subeventheader where eno=" . $eveno . " and gender in (" . $sgender . ",2) and branch in ('" . $sbranch . "','ALL')";
+                            $sts = "select no, subname from subeventheader where eno=". $eveno ." and gender in (". $sgender .",2) and branch in ('" . $sbranch . "','ALL')";
 
                             $records = mysqli_query($con, $sts);
 

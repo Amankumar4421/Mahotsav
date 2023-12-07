@@ -8,7 +8,7 @@ $edit_no = $_GET['edited'];
 
 $edit_string = $_GET['editor'];
 
-$st2 = "update eventheader set name='".$edit_string." 'where no=".$edit_no;
+$st2 = "update eventheader set name='".$edit_string." 'where no=".$edit_no."";
 
 /*
 $st3 = "select name from eventheader where no=".$edit_no;

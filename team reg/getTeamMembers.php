@@ -91,7 +91,7 @@ if (isset($_GET['college']) && isset($_GET['subevent'])) {
     $college = $_GET['college'];
     $subevent = $_GET['subevent'];
 
-    $sqlTeamMembers = "SELECT * FROM teamreg WHERE college = '$college' AND subevent = '$subevent' group by id";
+    $sqlTeamMembers = "SELECT * FROM teamreg WHERE college = '". $college ."' AND subevent = '". $subevent ."' group by id";
     $resultTeamMembers = mysqli_query($con, $sqlTeamMembers);
 
     if ($resultTeamMembers) {

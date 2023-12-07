@@ -34,7 +34,7 @@ $c=0;
             // echo $re['even']."&nbsp;&nbsp;&nbsp;";
             // echo $re['sen']."<br>";
 
-            $str3 = "select subname from subeventheader where no =" . $subevent;
+            $str3 = "select subname from subeventheader where no =". $subevent ."";
             // echo $str3;
             $seres = mysqli_query($con, $str3);
             $ser = mysqli_fetch_assoc($seres);

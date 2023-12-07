@@ -1,6 +1,6 @@
 <?php
 
-$dbname= $_GET['name'];
+$dbname = $_GET['name'];
 // echo "<script> console.log(".$dbname.") </script>";
 include("connection.php");
 
@@ -14,7 +14,7 @@ include("connection.php");
 
 
 
-$str = "select * from subeventheader where eno=".$dbname;
+$str = "select * from subeventheader where eno=" . $dbname . "";
 
 $results = mysqli_query($con, $str);
 // $result12 = mysqli_fetch_assoc($results);
@@ -23,9 +23,9 @@ $results = mysqli_query($con, $str);
 
 // {
 
-   
 
-    $count=0;
+
+$count = 0;
 
 echo '<table style="margin-left: 10px;">
 <thead>
@@ -35,49 +35,44 @@ echo '<table style="margin-left: 10px;">
     <td style="width:25%"> OPtions</td>
 </thead>';
 
-while($result = mysqli_fetch_assoc($results)){
+while ($result = mysqli_fetch_assoc($results)) {
     $gendr = null;
 
-    if($result['gender']==0)
-    {
+    if ($result['gender'] == 0) {
         $gendr = 'Female';
-    }
-    else if($result['gender']==1)
-    {
+    } else if ($result['gender'] == 1) {
         $gendr = 'Male';
-    }
-    else
-    {
+    } else {
         $gendr = 'Both';
     }
 
-$sno = $result['no'];
-$sname = $result['subname'];
-$ck = 0;
+    $sno = $result['no'];
+    $sname = $result['subname'];
+    $ck = 0;
 
-$stdd = "select * from ser where sen=".$sno;
-// echo $stdd;
-$sdfs = mysqli_query($con, $stdd);
-$sdf = mysqli_fetch_assoc($sdfs);
+    $stdd = "select * from ser where sen=" . $sno . "";
+    // echo $stdd;
+    $sdfs = mysqli_query($con, $stdd);
+    $sdf = mysqli_fetch_assoc($sdfs);
 
-if(isset($sdf)){
-    $ck = 1;
-}
+    if (isset($sdf)) {
+        $ck = 1;
+    }
 
 
-echo "<tr>";
+    echo "<tr>";
 
-echo "<td style='background-color:#bccaeb ;
-padding-left:5px ;color: #060606 ;'>".$result['subname']."</td><td style='background-color:#bccaeb ;
-padding-left:5px ;color: #060606 ;'>".$gendr."</td><td style='background-color:#bccaeb ;
-padding:5px ;color: #060606 ;'>".$result['branch']."</td>";
-echo "<td ><input type='button' onclick='editsopt(".$sno.")' value='EDIT' style='background-color: #0d6efd;
+    echo "<td style='background-color:#bccaeb ;
+padding-left:5px ;color: #060606 ;'>" . $result['subname'] . "</td><td style='background-color:#bccaeb ;
+padding-left:5px ;color: #060606 ;'>" . $gendr . "</td><td style='background-color:#bccaeb ;
+padding:5px ;color: #060606 ;'>" . $result['branch'] . "</td>";
+    echo "<td ><input type='button' onclick='editsopt(" . $sno . ")' value='EDIT' style='background-color: #0d6efd;
 color: white;
 height:30px;
 width:50px;
 border-radius:5px;
 border: none;
-cursor: pointer;'> <input type='button' onclick='deletesopt(".$sno.")'  value='DELETE'
+cursor: pointer;'> <input type='button' onclick='deletesopt(" . $sno . ")'  value='DELETE'
 style='background-color:#dc3545;
     color: white;
     width:70px;
@@ -85,15 +80,14 @@ style='background-color:#dc3545;
     border-radius:5px;
     border: none;
     cursor: pointer;'></td> ";
-echo "</tr>";
+    echo "</tr>";
 
-$count=$count+1;
+    $count = $count + 1;
 
 }
 echo '</table>';
 
-if($count==0)
-{
+if ($count == 0) {
     echo "<br><br><br>No items  added......";
 }
 

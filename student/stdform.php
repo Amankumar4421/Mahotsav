@@ -10,12 +10,12 @@ include("connection.php");
 $paystatus=0;
 
 
-$str1 = "select * from student where regno='".$stdreg."'";
+$str1 = "select * from student where regno='". $stdreg ."'";
 
 $results = mysqli_query($con, $str1);
 $result = mysqli_fetch_assoc($results);
 
-$pstring = "select * from payment where stdreg='".$stdreg."'";
+$pstring = "select * from payment where stdreg='". $stdreg ."'";
 $presults = mysqli_query($con, $pstring);
 $presult = mysqli_fetch_assoc($presults);
 if(isset($presult)){
@@ -97,7 +97,7 @@ echo '<!DOCTYPE html>
             border-radius:7px;"> EVENTS </h4>';
 
 
-            $str2 = "select distinct no, name from eventheader a join ser b on a.no=b.even where b.stdreg='".$stdreg."'";
+            $str2 = "select distinct no, name from eventheader a join ser b on a.no=b.even where b.stdreg='". $stdreg ."'";
             $eventts = mysqli_query($con, $str2);
             $eventt = null;
             echo '<div class="event-list">';
@@ -114,7 +114,7 @@ echo '<!DOCTYPE html>
         </div>
         <div id="total_events" class="side_div" style="text-align:center; padding-top:25px;">';
 
-        $stotal = "select count(*) from ser where stdreg='".$stdreg."'";
+        $stotal = "select count(*) from ser where stdreg='". $stdreg ."'";
 
         $total_event_count = mysqli_query($con, $stotal);
         $tev = mysqli_fetch_assoc($total_event_count);

@@ -19,7 +19,7 @@ $total_count = $c['count(*)'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>General Report</title>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -66,7 +66,7 @@ $total_count = $c['count(*)'];
             color: black;
         }
 
-        
+
 
         h1,
         h2 {
@@ -126,56 +126,64 @@ $total_count = $c['count(*)'];
             background-color: #9c6f40;
             color: black;
         }
-
     </style>
 
-<style type="text/css" media="print">
-  .container{
-    display: none;
-  }
-  th {
-            background-color:#968e84;
+    <style type="text/css" media="print">
+        .container {
+            display: none;
+        }
+
+        th {
+            background-color: #968e84;
             color: black;
         }
-h3 ,h1 , h2{
-    color: black;
-}
-  /* table {
+
+        h3,
+        h1,
+        h2 {
+            color: black;
+        }
+
+        /* table {
     display: table;
   } */
-</style>
+    </style>
 
 </head>
 
 <body>
     <div class="container">
-        
+
         <form method="post">
 
-            <label for="event"><h3>Select Event:</h3></label>
+            <label for="event">
+                <h3>Select Event:</h3>
+            </label>
             <select name="event" id="event">
                 <option value="">Select an event</option>
                 <?php
                 $sql = "SELECT * FROM eventheader";
-                $result = $con->query($sql);
+                $result = mysqli_query($con, $sql);
                 if (!$result) {
-                    die("Query failed: " . $con->error);
+                    die("Query failed: " . mysqli_error($con));
                 }
-                while ($row = $result->fetch_assoc()) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     echo "<option value='" . $row['no'] . "'>" . $row['name'] . "</option>";
                 }
                 ?>
             </select>
             <br>
 
-            <label for="subevent"><h3>Select Subevent:</h3></label>
+            <label for="subevent">
+                <h3>Select Subevent:</h3>
+            </label>
             <select name="subevent" id="subevent">
                 <option value="">Select a subevent</option>
             </select></br></br>
             <input type="submit" value="Submit" onclick=" return fun()">
         </form>
     </div>
-    
+
 </body>
 
 </html>
@@ -192,39 +200,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_id = $_POST['event'];
 
     // Validate and sanitize input
-
     $subevent_id = mysqli_real_escape_string($con, $subevent_id);
     $event_id = mysqli_real_escape_string($con, $event_id);
 
     $sql = "SELECT * FROM student s
             INNER JOIN ser r ON s.regno = r.stdreg
-            WHERE r.even = $event_id AND r.sen = $subevent_id";
+            WHERE r.even = ". $event_id ." AND r.sen =". $subevent_id ."";
 
-    $result = $con->query($sql);
+    $result = mysqli_query($con, $sql);
 
     if ($result === false) {
-        die("Query failed: " . $con->error);
+        die("Query failed: " . mysqli_error($con));
     }
 
     // Retrieve the event name from the database
     $event_name = ""; // Initialize an empty string
-    $event_query = "SELECT name FROM eventheader WHERE no = $event_id";
-    $event_result = $con->query($event_query);
-    if ($event_result->num_rows > 0) {
-        $event_row = $event_result->fetch_assoc();
+    $event_query = "SELECT name FROM eventheader WHERE no =". $event_id ."";
+    $event_result = mysqli_query($con, $event_query);
+    if ($event_result) {
+        $event_row = mysqli_fetch_assoc($event_result);
         $event_name = $event_row['name'];
     }
 
     // Retrieve the subevent name from the database
     $subevent_name = ""; // Initialize an empty string
-    $subevent_query = "SELECT subname FROM subeventheader WHERE no = $subevent_id";
-    $subevent_result = $con->query($subevent_query);
-    if ($subevent_result->num_rows > 0) {
-        $subevent_row = $subevent_result->fetch_assoc();
+    $subevent_query = "SELECT subname FROM subeventheader WHERE no =". $subevent_id ."";
+    $subevent_result = mysqli_query($con, $subevent_query);
+    if ($subevent_result) {
+        $subevent_row = mysqli_fetch_assoc($subevent_result);
         $subevent_name = $subevent_row['subname'];
     }
 
-    echo "<h2>Registered Students for the Selected Event: " . $event_name . " and Subevent: " . $subevent_name . "</h2>";
+    echo "<h2>Registered Students for the Selected Event: $event_name and Subevent: $subevent_name</h2>";
     ?>
 
     <div class="print-button">
@@ -232,15 +239,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <?php
-    // echo "<h2>Registered Students for the Selected Subevent:</h2>";
-
-    if ($result->num_rows > 0) {
+    if (mysqli_num_rows($result) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th >Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th><th>Email</th>";
+        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th><th>Email</th>";
         echo "</tr>";
 
-        while ($row = $result->fetch_assoc()) {
+        while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . $row['sno'] . "</td>";
             echo "<td>" . $row['regno'] . "</td>";
@@ -258,14 +263,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <script>
-    function fun(){
-        var eve=document.getElementById("event");
-        var sub=document.getElementById("subevent");
-        if(eve.value==0 || sub.value==0){
+    function fun() {
+        var eve = document.getElementById("event");
+        var sub = document.getElementById("subevent");
+        if (eve.value == 0 || sub.value == 0) {
             alert("Please select event and subevent");
             return false;
         }
-        
+
     }
     document.getElementById('event').addEventListener('change', function () {
         var eventId = this.value;

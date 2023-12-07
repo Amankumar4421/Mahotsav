@@ -8,7 +8,7 @@ $_SESSION['stdreg']=$uname;
 
 
 
-$str = "select name, dob from student where regno= '".$uname."'";
+$str = "select name, dob from student where regno= '". $uname ."'";
 //echo $str;
 
 
