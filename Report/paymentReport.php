@@ -193,7 +193,7 @@ $mysqli->close();
     <script>
         // Function to load payment details from the server using Fetch API
         function loadPaymentDetails() {
-            fetch('index.php?action=getPaymentDetails')
+            fetch('paymentReport.php?action=getPaymentDetails')
                 .then(response => response.json())
                 .then(data => {
                     const paymentTable = document.getElementById("paymentTable");
@@ -250,7 +250,7 @@ $mysqli->close();
         function showStdRegDetails(pid) {
 
 
-            fetch(`index.php?action=getStdRegDetails&pid=${pid}`)
+            fetch(`paymentReport.php?action=getStdRegDetails&pid=${pid}`)
                 .then(response => response.json())
                 .then(data => {
                     const stdregDetails = document.getElementById("stdregDetails");
