@@ -8,13 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <style>
         body{
-            background-color: #f6f6f6;
+            background-color: #fffcf9;
         }
         input{
             font-size: 1.2rem;
         }
         .accordion-item{
-            background-color: #c1dedb;
+            background-color: #fff6c9;
         }
     </style>
 </head>
@@ -63,7 +63,7 @@
 
                         echo '<div class="accordion-item mb-2">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" style="background-color:#0d6efd; color:white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse'.$eveno.'" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <button class="accordion-button" style="background-color:#ffe87f; color:black" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse'.$eveno.'" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                     <strong>' . $evename . '</strong>
                                 </button>
                             </h2>';
