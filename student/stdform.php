@@ -38,38 +38,24 @@ echo '<!DOCTYPE html>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
 </head>
-<body>
+<body style="background-color:#fff6c9;display:flex;flex-direction:column;align-items:center;">
 <div class="whole">
-        <div class="detail">
-    
-        <h1 id="text">Student Details</h1>
-        <div class="info">
-        <br>        <br>        <br>        <br>
-        <h4> Reg No  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'. $result["regno"].' </h4><br>
-        <h4> Unq ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["sno"].'</h4><br>
-        <h4> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'. $result["name"].' </h4><br>
-        <h4> DOB &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["dob"].'</h4><br>
-        <h4> College &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["college"].'</h4><br>
-        <h4> Branch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["branch"].'</h4><br> 
-        <h4> PayStatus &nbsp;&nbsp;:&nbsp;&nbsp;'.$pay.'</h4><br> 
-        <div class="im">
-        <img src="./assets/gif.gif" alt="image" class="custom-image
-        width="300" 
-             height="300">
+    <div class="detail">
+        <div id="text">
+            <div style="font-size:160%;">Student Details</div> 
+            <input type="button" id="butto" onclick="exit()" style="font-family:Arial, Helvetica, sans-serif;font-size:140%" value="Logout" ">
         </div>
+        <div class="info">
+            <h4> Reg No  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'. $result["regno"].' </h4><br>
+            <h4> Unq ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["sno"].'</h4><br>
+            <h4> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'. $result["name"].' </h4><br>
+            <h4> DOB &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["dob"].'</h4><br>
+            <h4> College &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["college"].'</h4><br>
+            <h4> Branch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;'.$result["branch"].'</h4><br> 
+            <h4> PayStatus &nbsp;&nbsp;:&nbsp;&nbsp;'.$pay.'</h4><br> 
+        </div>
+    </div>    
 </div>
-
-
-</div>
-
-        
-<div class="right">
-<input type="button" id="butto"
-
-  onclick="exit()" value="Logout" ">
-   </div>
-    
-    </div>
    ';
   
    
@@ -83,57 +69,60 @@ echo '<!DOCTYPE html>
     }
     echo '</div>
     <div id="main">
-    <h3 id="text1" >Event Details</h3>
-        <div id="event">
-         
-            <div style="margin-top: 35px;">
-            <ul style="list-style: none; text-decoration: none; font-size: large;">
-            <h4 style="position: -webkit-sticky;
-            position: sticky;
-            top: 0px; 
-            text-align:center ;
-            padding:5%;
-            background-color:#85aded;
-            border-radius:7px;"> EVENTS </h4>';
+        <h3 id="text1" >Event Details</h3>
+        <div style="width:90%;height:100%;display:flex;justify-content:center;align-items:center;">
+            <div id="event"> 
+                <div style="margin-top: 35px;">
+                    <ul style="list-style: none; text-decoration: none; font-size: large;">
+                        <h4 style="position: -webkit-sticky;
+                                    position: sticky;
+                                    top: 0px; 
+                                    text-align:center ;
+                                    padding:5%;
+                                    background-color:#85aded;
+                                    border-radius:7px;"> 
+                                    EVENTS 
+                        </h4>';
 
 
-            $str2 = "select distinct no, name from eventheader a join ser b on a.no=b.even where b.stdreg='". $stdreg ."'";
-            $eventts = mysqli_query($con, $str2);
-            $eventt = null;
-            echo '<div class="event-list">';
-            
-            while($eventt = mysqli_fetch_assoc($eventts)){
-                $evenum = $eventt['no'];
-                $dod = $eventt["name"];
-                echo '<li class="event-item" onclick=get_side_bar('.$evenum.');selectEvent(this)>'.$dod.'</li>';
+                        $str2 = "select distinct no, name from eventheader a join ser b on a.no=b.even where b.stdreg='". $stdreg ."'";
+                        $eventts = mysqli_query($con, $str2);
+                        $eventt = null;
+                        echo '<div class="event-list">';
+                        
+                        while($eventt = mysqli_fetch_assoc($eventts)){
+                            $evenum = $eventt['no'];
+                            $dod = $eventt["name"];
+                            echo '<li class="event-item" onclick=get_side_bar('.$evenum.');selectEvent(this)>'.$dod.'</li>';
 
-            }
-                
-            echo '</ul>
+                        }
+                            
+                        echo 
+                    '</ul>
+                </div>
+            </div>
+            <div id="total_events" class="side_div" style="text-align:center; padding-top:25px;">';
+
+                $stotal = "select count(*) from ser where stdreg='". $stdreg ."'";
+
+                $total_event_count = mysqli_query($con, $stotal);
+                $tev = mysqli_fetch_assoc($total_event_count);
+
+                $tevs = $tev['count(*)'];
+                if($tevs == 0)
+                {
+                    echo "You must register in any of the events...";
+                }
+                else{
+                echo "You are enrolled in ".$tevs." events.";
+                }
+                echo 
+            '</div>
+            <div id="list_of_events" style="height:100%;" class="side_div" hidden> 
+            </div>
         </div>
-        </div>
-        <div id="total_events" class="side_div" style="text-align:center; padding-top:25px;">';
-
-        $stotal = "select count(*) from ser where stdreg='". $stdreg ."'";
-
-        $total_event_count = mysqli_query($con, $stotal);
-        $tev = mysqli_fetch_assoc($total_event_count);
-
-        $tevs = $tev['count(*)'];
-        if($tevs == 0)
-        {
-            echo "You must register in any of the events...";
-        }
-        else{
-        echo "You are enrolled in ".$tevs." events.";
-        }
-
-        echo '</div>
-        <div id="list_of_events" class="side_div" hidden> 
-        </div>
-
     </div>
-    </div>
+ </div>
     
 </body>';
 if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 300) {
@@ -184,7 +173,8 @@ document.addEventListener("click", function (event) {
 
         // Create a container element
         var container = document.createElement('div');
-        container.style.marginTop = '100px';
+        container.style.width = '70%';
+        container.style.height = '100%';
 
         // Create a table
         var table = document.createElement('table');
@@ -240,6 +230,3 @@ document.addEventListener("click", function (event) {
     }
 </script>
 </html>
-
-
-
