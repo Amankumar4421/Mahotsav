@@ -10,76 +10,24 @@
   font-family: 'Ubuntu', sans-serif;
 }
 .whole{
+  width: 90%;
   display: flex;
-  flex-wrap: wrap;
-  background-color: #fff6c9;
-
-}
-@media  (max-width: 500px){
-  .detail{
-      width: 68vw !important;
-
-  }
-  #event{
-   
-    margin-top: 19% !important;
-    width: 100vw !important;
-    margin-left: 7% !important;
-    padding-left: 5% !important;
-  }
-   #text{
-    margin-top: 13% !important;
-      margin-left: -10% !important;
-      width: 100% !important;
-     
-  }
-  .info{
-      width: 80vw !important;
-      line-height: 2vh !important;
-      margin-left: -30%  !important;
-      padding-left: 9% !important;
-      
-  } 
-  img{
-      display: none;
-      
-  }
-  #butto {
-    width: 20% !important;
-  }
-
-  .decor{
-  margin-left: -20% !important;
-  
-  }
- #main{
-  
-  width: 90% !important;
- }
- #text1{
-  margin-bottom: 200% !important;
-  width: 50% !important;
- }
-
- .side_div{
-        margin-top: 15% !important;
-        margin-left: 0px !important;
-        min-width: 80% !important;
-        
- }
- #butt1{
-  position: fixed !important;
-  top: 94% !important;
-  left: 60vw !important;
- }
-}
-#main{
-  display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: #fff6c9;
-  padding: 5%;
-  padding-top: 8%;
+
+}
+  
+ 
+#main{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  background-color: #fff6c9;
   border-radius: 15px;
 }
 #event{
@@ -92,7 +40,6 @@
   
   line-height: 2vh;
   overflow-y: scroll;
-  margin-left: 2%;
 }
 
 #event::-webkit-scrollbar {
@@ -100,9 +47,8 @@
   height: 0;
 }
 .side_div{
-  min-width: 800px;
-  min-height: 400px;
-  margin-left: 50px;
+  width: 90%;
+  height: 100%;
   border-radius: 3%;
   background-color: #ffe87f;
 }
@@ -121,56 +67,31 @@ text-align: center;
 }
 
 .detail {
+  width: 90%;
   background-color: #fff6c9; 
-  padding-left: 110px;
-  padding-top: 20px;
-  padding-bottom: 20px; 
   border-radius: 10px; 
- 
-
   display: flex;
   flex-direction: column;
-  width: 190vb;
-  min-height: 35%;
-  
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
 #text {
-  font-size: 4vb;
-  width: 50vb;
-  height: 5vh;
-  font-family: 'Ubuntu', sans-serif;
-  text-align: center;
-  justify-content: center;
-  border-radius: 6px;
-  margin-left: 60vb;
-  color: #131111; /* Text color */
-  margin-bottom: 20px; /* Spacing below the heading */
-  
-  
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding-left: 4%;
+ padding-right: 4%;
+ height: 70px;
+ font-size: large;
 }
 #text1 {
-  font-size: 4vb;
-  width: 50vb;
-  height: 5vh;
   font-family: 'Ubuntu', sans-serif;
-  text-align: center;
-  justify-content: center;
-  border-radius: 6px;
-  margin-left: 90vb;
   color: #131111; /* Text color */
-  margin-bottom: 20px; /* Spacing below the heading */
-  
-  
 }
 
 /* Style for h4 elements */
-.detail h4 {
-  font-size: 18px;
-  color: #555; /* Text color */
-  margin: 10px 0; /* Spacing around each h4 element */
-}
+
 
 /* Style for the button */
  #butto {
@@ -180,9 +101,6 @@ text-align: center;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  position: absolute;
-  top:5px;
-  left: 80%;
 }
 #butt1 {
   background-color: #2d7ef6; 
@@ -202,11 +120,7 @@ text-align: center;
 .info{
   background-color: #ffe87f;
   border-radius: 15px;
-  padding-left:  10% ;
-  min-height: 80vh;
-  line-height: 10px;
-  width: 100vb;
-  margin-left: 10%;
+  
 }
 .im{
   position: absolute;
@@ -269,23 +183,9 @@ box-shadow:1px 2px 4px #fff6c9;
 width: 90%;
 }
 
-#main h3{
-
-
-  position: absolute;
-  margin-left: 25%;
-  margin-top: -40%;
-}
 .decor{
 color: #013114;
-/* background-color: #fafafa; */
 padding: 2px;
-width: 50vw !important;
-
-position: relative;
-left:10vb;
-line-height: 5vh;
-border-radius: 5px;
 font-family: 'Ubuntu', sans-serif;
 }
 .decor::before{
