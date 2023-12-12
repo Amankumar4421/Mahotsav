@@ -7,14 +7,26 @@ $pw = $_GET['passW'];
 
 include("connection.php");
 $str = "select * from payid where pid='".$un."' and pwd='".$pw."'";
-
-
 $res = mysqli_query($con, $str);
 $re = mysqli_fetch_assoc($res);
+
+
 if(isset($re))
 {
     $_SESSION['pid']=$un;
-    //echo "1";
+    
+
+    $expireAfter = 30 * 60;
+
+    $expire = time() + $expireAfter;
+
+    $_SESSION['expire'] = $expire;
+
+    $sql = "insert into psession(ssid,pid) values('".$expire."','".$un."')";
+    mysqli_query($con, $sql);
+
+
+
     $url = "test.php";
     header( "refresh:1;URL=".$url);
 

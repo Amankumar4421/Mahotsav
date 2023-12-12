@@ -1,3 +1,15 @@
+<?php
+session_start();
+if(!isset($_SESSION['pid'])){
+    header("Location: index.html");
+}
+if(isset($_SESSION['expire']) && $_SESSION['expire'] < time()) {
+    header("Location:logout.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +32,6 @@
 </head>
 <body>
 <?php
-session_start();
 $pid = $_SESSION['pid'];
 ?>
 

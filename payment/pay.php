@@ -34,6 +34,17 @@ else{
 
 $str = "insert into payment values('".$pid."', '".$sid."',".$a.",".$b.", ".$c.",current_timestamp())";
 mysqli_query($con, $str);
+
+$expire = $_SESSION['expire'];
+$sql = "select amount from psession where ssid='".$expire."'";
+$result = mysqli_query($con,$sql);
+$res = mysqli_fetch_assoc($result);
+$amount = $res['amount']+$c;
+
+$sql1 = "UPDATE psession SET amount='".$amount."' WHERE ssid=".$expire;
+mysqli_query($con, $sql1);
+
+
 echo "<script>alert('CONFIRMATION SUCCESSFUL');</script>";
 include("access.php");
 }
