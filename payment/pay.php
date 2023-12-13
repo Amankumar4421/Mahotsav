@@ -32,7 +32,9 @@ echo "<script>alert('Already paid.');</script>";
 }
 else{
 
-$str = "insert into payment values('".$pid."', '".$sid."',".$a.",".$b.", ".$c.",current_timestamp())";
+$expire = $_SESSION['expire'];
+
+$str = "insert into payment values(".$expire.",'".$pid."', '".$sid."',".$a.",".$b.", ".$c.",current_timestamp())";
 mysqli_query($con, $str);
 
 $expire = $_SESSION['expire'];
