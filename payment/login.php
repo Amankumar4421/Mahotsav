@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if(isset($_SESSION['expire'])){
+    header("Location:test.php");
+}
+
 $un = $_GET['userN'];
 $pw = $_GET['passW'];
 

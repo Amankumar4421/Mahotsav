@@ -93,6 +93,12 @@ if(isset($_GET['ssid'])){
             background-color: #9c6f40;
             color: black;
         }
+        @media print {
+            .print-button {
+                display: none;
+            }
+            
+        }
 
     </style>
 </head>
@@ -145,18 +151,7 @@ if(isset($_GET['ssid'])){
 </html>
 <script>
     document.getElementById("print").addEventListener("click", function () {
-        const printButton = document.getElementById("print");
-        const exitButton = document.getElementById("exit");
-        printButton.style.display = "none";
-        exitButton.style.display = "none";
-
         window.print();
-        printButton.style.display = "block";
-        exitButton.style.display = "block";
-
-        printButton.style.marginLeft = "45%";
-        exitButton.style.marginLeft = "55%";
-
     });
     
 </script>

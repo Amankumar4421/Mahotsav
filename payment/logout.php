@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['pid'])){
+    header("Location:index.html");
+}
 
 include("connection.php");
 $current_time=time();

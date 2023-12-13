@@ -4,7 +4,9 @@ if(!isset($_SESSION['pid'])){
     header("Location: index.html");
 }
 if(isset($_SESSION['expire']) && $_SESSION['expire'] < time()) {
-    header("Location:logout.php");
+    echo "<center><h2>Your Session Expired !</h2></center>";
+    $url = "logout.php";
+    header("refresh:2;URL=".$url);
 }
 
 
