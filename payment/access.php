@@ -9,7 +9,7 @@ $stdname = "select * from student where regno='" . $sid . "'";
 $srsds = mysqli_query($con, $stdname);
 $srsd = mysqli_fetch_assoc($srsds);
 
-$stevq = "select name from eventheader where no in(select distinct even from ser where stdreg='" . $sid . "')";
+$stevq = "select name,no from eventheader where no in(select distinct even from ser where stdreg='" . $sid . "')";
 // echo $stevq;
 $stevrs = mysqli_query($con, $stevq);
 
@@ -27,6 +27,13 @@ $stevrs = mysqli_query($con, $stevq);
     body {
       background-color: #f6f6f6;
     }
+    @media print {
+        #bu1, #bu2{
+            display: none;
+        }
+        
+    }
+    
   </style>
 </head>
 
@@ -34,7 +41,7 @@ $stevrs = mysqli_query($con, $stevq);
 
   <div class="container">
     <div class="row justify-content-center mt-5">
-      <div class="col-6">
+      <div class="col-10">
         <table class="table">
           <tr class="table-secondary">
             <th>NAME: </th>
@@ -51,14 +58,25 @@ $stevrs = mysqli_query($con, $stevq);
           <?php
           $sno = 1;
           while ($stevr = mysqli_fetch_assoc($stevrs)) {
-            echo '<tr><td>' . $sno++ . '</td>';
+            
             $ad = $stevr["name"];
-            $stdgs = "select count(*) from ser where stdreg='" . $sid . "' and even=(select no from eventheader where name='" . $ad . "')";
+            $eventno = $stevr["no"];
+            
+            echo '<tr><td>';
+            echo $sno++.'. '.$ad.'</td><td>';
+
+            $stdgs = "select sen from ser where stdreg='" . $sid . "' and even=(select no from eventheader where name='" . $ad . "')";
             $rscount = mysqli_query($con, $stdgs);
-            $rcount = mysqli_fetch_assoc($rscount);
-            $ac = $rcount['count(*)'];
-            echo '<td>';
-            echo $ad . '&nbsp;(' . $ac . ')';
+            // $rcount = mysqli_fetch_assoc($rscount);
+            
+            while($row=mysqli_fetch_assoc($rscount)){
+              $s1 = "select subname from subeventheader where no='" . $row['sen'] . "'";
+              $r1 = mysqli_query($con, $s1);
+              $v = mysqli_fetch_assoc($r1);
+              echo $v['subname'].", ";
+            }
+
+            
             echo '</td></tr>';
           }
           if ($srd['acc'] == 1) {

@@ -57,6 +57,6 @@ $c=0;
     echo "<br>";
     echo "<br>";
 } else {
-    echo "Not in our database";
+    echo "Enter correct Reg.No & password";
 }
 ?>

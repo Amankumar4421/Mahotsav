@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+if(!isset($_SESSION['pid'])){
+    header("Location: index.html");
+}
+
+
 $pid = $_SESSION['pid'];
 $sid = $_SESSION['sid'];
 include("connection.php");

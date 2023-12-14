@@ -112,6 +112,7 @@ if(isset($_GET['ssid'])){
                 <thead>
                     <th>Student Id</th>
                     <th>Amount</th>
+                    <th>Name</th>
                     <th>Accomodation</th>
                     <th>Food</th>
                     <th>Time</th>
@@ -122,6 +123,10 @@ if(isset($_GET['ssid'])){
                     <tr>
                         <td><?php echo $row["stdreg"]; ?></td>
                         <td><?php echo $row["amount"]; ?></td>
+                        <td><?php $sq1 = "select name from student where regno='".$row['stdreg']."'";
+                            $r1 = mysqli_query($con,$sq1);
+                            $re1 = mysqli_fetch_assoc($r1);
+                            echo $re1['name']; ?></td>
                         <td><?php echo $row["acc"]; ?></td>
                         <td><?php echo $row["food"]; ?></td>
                         <td><?php echo $row["time"]; ?></td>
