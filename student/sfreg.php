@@ -196,9 +196,7 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
            class="topRed"
 
            ></div>
-                <div style="
-              
-            " class="c-100-20 topBlue"></div>
+                <div class="c-100-20 topBlue"></div>
                 <div class="c-100-50 topGreen"></div>
             </div>
             <div id="left" style="
