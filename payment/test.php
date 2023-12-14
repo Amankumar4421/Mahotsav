@@ -47,7 +47,7 @@ $pid = $_SESSION['pid'];
     <div id="details" class="bg-white p-4 mt-4 rounded shadow">
         <form>
             <div class="form-group">
-                <input type="text" name="reg" id="reg" required class="form-control" placeholder="RegNo">
+                <input type="text" name="reg" id="reg" required class="form-control" placeholder="RegNo Or MHId">
             </div>
             <div class="form-group">
                 Date of Birth <input type="date" name="dob" id="dob" required class="form-control">
