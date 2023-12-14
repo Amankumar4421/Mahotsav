@@ -60,14 +60,15 @@ echo '<!DOCTYPE html>
 
 
 
-if ($paystatus == 0) {
-    echo '<div class="right" >
-        <input type="button" id="butt1" value="EDIT/REGISTER" onclick="editor()">
-    </div>';
-}
+
 echo '</div>
     <div id="main">
-        <h3 id="text1" >Event Details</h3>
+        <div class="head">
+            <h2 id="text1" >Event Details</h2>';
+            if ($paystatus == 0) {
+                echo '<input type="button" id="butt1" value="EDIT/REGISTER" onclick="editor()">';
+            }
+        echo '</div>
         <div style="width:90%;height:100%;display:flex;justify-content:center;align-items:center;flex-direction:column;border-top-right-radius: 15px;
         border-top-left-radius: 15px;">
             <div style="width:100%;display:flex;justify-content:center;align-items:center;background-color:#ffe87f;border-top-right-radius: 15px;
@@ -84,7 +85,7 @@ echo '</div>
                         if ($tevs == 0) {
                             echo "You must register in any of the events...";
                         } else {
-                            echo "You are enrolled in " . $tevs . " events.";
+                            echo "<h3>You are enrolled in " . $tevs . " events.</h3>";
                         }
                 echo  '</div>
             </div>
