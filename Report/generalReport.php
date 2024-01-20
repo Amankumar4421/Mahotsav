@@ -231,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $subevent_name = $subevent_row['subname'];
     }
 
-    echo "<h2>Registered Students for the Selected Event: $event_name and Subevent: $subevent_name</h2>";
+    echo "<h2>Registered Students for : $subevent_name</h2>";
     ?>
 
     <div class="print-button">
@@ -247,7 +247,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . $row['sno'] . "</td>";
+            echo "<td><a href='getteam.php?sno=" . $row['sno'] . "'>" . $row['sno'] . "</a></td>";
+
+
             echo "<td>" . $row['regno'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['college'] . "</td>";
