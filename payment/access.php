@@ -35,8 +35,21 @@ $stevrs = mysqli_query($con, $stevq);
           width: 400px !important;
           height: 100px;
         }
-        
+        td,th{
+          font-size: 0.8rem;
+        }
+        .footer{
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          position: fixed;
+          bottom: 10px;
+        }
     }
+    .footer{
+      display: none;
+    }
+    
     
   </style>
 </head>
@@ -104,6 +117,10 @@ $stevrs = mysqli_query($con, $stevq);
       </div>
     </div>
   </div>
+  <div class="footer">
+          <p>Signature</p>
+          <p>Seal</p>
+  </div>
 
   <script>
     function fucn()
@@ -113,8 +130,10 @@ $stevrs = mysqli_query($con, $stevq);
     function printf()
     {
         document.getElementsByTagName('img')[0].style.display='block';
+        document.getElementsByClassName('footer')[0].style.display='flex';
         window.print();
         document.getElementsByTagName('img')[0].style.display='none';
+        document.getElementsByClassName('footer')[0].style.display='none';
         return false;
     }
   </script>
