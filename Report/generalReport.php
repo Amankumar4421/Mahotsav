@@ -7,11 +7,6 @@ $c = mysqli_fetch_assoc($cs);
 $total_count = $c['count(*)'];
 
 ?>
-<div id='total'>
-    <h1>Total Registered Student:
-        <?php echo $total_count ?>
-    </h1>
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,11 +142,32 @@ $total_count = $c['count(*)'];
         /* table {
     display: table;
   } */
+  @media print {
+            img{
+                width: 400px !important;
+                height: 100px;
+            }
+            .logo{
+                display: flex  !important;
+                justify-content: center;
+            }
+        }
+        .logo{
+            display: none;
+        }
     </style>
 
 </head>
 
 <body>
+<div class="logo">
+        <img src="./Mahotsav Logo.png" width="0" height="0" alt="logo" >
+    </div>
+<div id='total'>
+    <h1>Total Registered Student:
+        <?php echo $total_count ?>
+    </h1>
+</div>
     <div class="container">
 
         <form method="post">

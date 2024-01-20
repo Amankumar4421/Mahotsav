@@ -22,11 +22,26 @@
           display: none;
       }
     }
+    @media print {
+        img{
+            width: 400px !important;
+            height: 100px;
+        }
+        .logo{
+            display: flex  !important;
+            justify-content: center;
+        }
+    }
+    .logo{
+        display: none;
+    }
   </style>
 </head>
 
 <body>
-
+<div class="logo">
+        <img src="./Mahotsav Logo.png" alt="logo" >
+    </div>
     <h3 class="text-center p-2 bg-dark">Event Wise College Count</h3>
     <button type="button" class="btn btn-secondary m-1" id="printButton">Print</button>
 

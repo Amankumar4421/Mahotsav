@@ -89,10 +89,26 @@
             background-color: #9c6f40;
             color: black;
         }
+        @media print {
+            img{
+                width: 400px !important;
+                height: 100px;
+            }
+            .logo{
+                display: flex  !important;
+                justify-content: center;
+            }
+        }
+        .logo{
+            display: none;
+        }
 
     </style>
 </head>
 <body>
+<div class="logo">
+        <img src="./Mahotsav Logo.png" alt="logo" >
+    </div>
     <div class="container">
         <h1>Gender wise Report</h1>
         <table>
