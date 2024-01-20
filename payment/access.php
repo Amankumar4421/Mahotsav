@@ -31,6 +31,10 @@ $stevrs = mysqli_query($con, $stevq);
         #bu1, #bu2{
             display: none;
         }
+        img{
+          width: 400px !important;
+          height: 100px;
+        }
         
     }
     
@@ -40,8 +44,10 @@ $stevrs = mysqli_query($con, $stevq);
 <body>
 
   <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-10">
+    <div class="row justify-content-center">
+      <img src="./Mahotsav Logo.png" width="0px" height="0px" alt="logo" >
+      <h2 class="text-center">Participant Registration Form</h2>
+      <div class="col-12">
         <table class="table">
           <tr class="table-secondary">
             <th>NAME: </th>
@@ -50,6 +56,10 @@ $stevrs = mysqli_query($con, $stevq);
           <tr class="table-secondary" >
             <th>M Id: </th>
             <th><?php echo $srsd['sno']; ?></th>
+          </tr>
+          <tr class="table-secondary" >
+            <th>College Name: </th>
+            <th><?php echo $srsd['college']; ?></th>
           </tr>
           <tr>
             <td>EVENTS:</td>
@@ -82,10 +92,8 @@ $stevrs = mysqli_query($con, $stevq);
           if ($srd['acc'] == 1) {
             echo '<tr><td>Accomodation</td><td>☑️</td></tr>';
           }
-          if ($srd['food'] == 1) {
-            echo '<tr><td>Food</td><td>☑️</td></tr>';
-          }
-          echo '<tr><td>Paid</td><td>✅</td></tr>';
+
+          echo '<tr><td>Paid</td><td>Rs.'. $srd['amount'] .' ✅</td></tr>';
           echo '<tr><td>Time:</td><td>' . $srd['time'] . '</td></tr>';
           ?>
           <tr>
@@ -104,7 +112,10 @@ $stevrs = mysqli_query($con, $stevq);
     }
     function printf()
     {
-        window.print();return false;
+        document.getElementsByTagName('img')[0].style.display='block';
+        window.print();
+        document.getElementsByTagName('img')[0].style.display='none';
+        return false;
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

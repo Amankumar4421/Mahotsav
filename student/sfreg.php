@@ -364,15 +364,9 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
                                     class="form-control">
                             </div>
                         </div>
-                        <div class="form-group row mt-3">
-                            <div class="col-md-4 text-right">
-                                <input type="reset" class="btn btn-secondary">
-                            </div>
-                            <div class="col-md-8 text-start">
-
-                                <input type="submit" value="Register" id="registered" disabled class="btn btn-primary">
-
-                            </div>
+                        <div class="form-group row mt-3 justify-content-center">
+                            <input type="submit" value="Register" id="registered" disabled class="btn btn-primary ml-3 mb-3">
+                            <input type="reset" class="btn btn-secondary ml-3 mb-3">
                         </div>
                     </form>
                 </div>

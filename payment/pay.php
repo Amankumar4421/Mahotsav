@@ -17,13 +17,6 @@ else{
     $a = 0;
 }
 
-if(isset($_GET['food']))
-{
-$b = $_GET['food'];
-}
-else{
-    $b = 0;
-}
 $c = $_GET['fees'];
 
 $st1 = "select * from payment where stdreg='".$sid."'";
@@ -39,7 +32,7 @@ else{
 
 $expire = $_SESSION['expire'];
 
-$str = "insert into payment values(".$expire.",'".$pid."', '".$sid."',".$a.",".$b.", ".$c.",current_timestamp())";
+$str = "insert into payment values(".$expire.",'".$pid."', '".$sid."',".$a.", ".$c.",current_timestamp())";
 mysqli_query($con, $str);
 
 $expire = $_SESSION['expire'];
