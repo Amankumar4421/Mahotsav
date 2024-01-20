@@ -7,11 +7,6 @@ $c = mysqli_fetch_assoc($cs);
 $total_count = $c['count(*)'];
 
 ?>
-<div id='total'>
-    <h1>Total Registered Student:
-        <?php echo $total_count ?>
-    </h1>
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,11 +142,35 @@ $total_count = $c['count(*)'];
         /* table {
     display: table;
   } */
+  @media print {
+            table{
+                width: 100% !important;
+            }
+            img{
+                width: 400px !important;
+                height: 100px;
+            }
+            .logo{
+                display: flex  !important;
+                justify-content: center;
+            }
+        }
+        .logo{
+            display: none;
+        }
     </style>
 
 </head>
 
 <body>
+<div class="logo">
+        <img src="./Mahotsav Logo.png" width="0" height="0" alt="logo" >
+    </div>
+<div id='total'>
+    <h1>Total Registered Student:
+        <?php echo $total_count ?>
+    </h1>
+</div>
     <div class="container">
 
         <form method="post">
@@ -242,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th><th>Email</th>";
+        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
         echo "</tr>";
 
         while ($row = mysqli_fetch_assoc($result)) {
@@ -255,7 +274,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<td>" . $row['college'] . "</td>";
             echo "<td>" . $row['gender'] . "</td>";
             echo "<td>" . $row['phone'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
+            // echo "<td>" . $row['email'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";

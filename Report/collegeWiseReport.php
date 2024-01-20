@@ -26,10 +26,25 @@ th,td{
     white-space:break-spaces; 
   }
   }
+  @media print {
+      img{
+          width: 400px !important;
+          height: 100px;
+      }
+      .logo{
+          display: flex  !important;
+          justify-content: center;
+      }
+  }
+  .logo{
+      display: none;
+  }
 </style>
 
 <body>
-
+<div class="logo">
+        <img src="./Mahotsav Logo.png" alt="logo" >
+    </div>
   <h1 class="text-center">College Wise Report</h1>
   <button type="button" class="btn btn-secondary m-2 text-right" onclick="fun()"  id="printButton">Print</button>
 

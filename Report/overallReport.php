@@ -12,15 +12,30 @@
   <title>Overall Report</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <style>
-    @media print {
-      #printButton {
+
+  @media print {
+    #printButton {
           display: none;
       }
-  }
+            img{
+                width: 400px !important;
+                height: 100px;
+            }
+            .logo{
+                display: flex  !important;
+                justify-content: center;
+            }
+        }
+        .logo{
+            display: none;
+        }
   </style>
 </head>
 
 <body>
+<div class="logo">
+        <img src="./Mahotsav Logo.png" alt="logo" >
+    </div>
 
   <div class="container">
     <h2 class="text-center mt-4">Overall Report</h2>
@@ -38,7 +53,7 @@
         <?php
           $abc = "select * from eventheader";
           $eveqr = mysqli_query($con, $abc);
-
+        
           while ($eveq = mysqli_fetch_assoc($eveqr)) {
               echo "<tr style='font-size:19pxpx;'>";
               $eve_no = $eveq["no"];
@@ -55,6 +70,8 @@
                   $re = mysqli_fetch_assoc($red);
                   $dg = $re["count(*)"];
                   echo "<td style='text-align:center'>" . $dg . "</td>";
+
+                  
 
 
                   $trd ="select count(regno) as male from student where regno in (select stdreg from ser where even =". $eve_no ." and sen =". $subev_no .") and gender=1";
@@ -74,6 +91,8 @@
               }
           }
           ?>
+
+          
 
         </tbody>
       </table>

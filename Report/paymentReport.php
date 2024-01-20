@@ -154,9 +154,25 @@ $mysqli->close();
     /* table {
     display: table;
   } */
+  @media print {
+            img{
+                width: 400px !important;
+                height: 100px;
+            }
+            .logo{
+                display: flex  !important;
+                justify-content: center;
+            }
+        }
+        .logo{
+            display: none;
+        }
 </style>
 
 <body>
+<div class="logo">
+        <img src="./Mahotsav Logo.png"  width="0" height="0" alt="logo" >
+    </div>
     <h1>Payment Details</h1>
     <div class="print-button">
         <button id="print">Print</button>
