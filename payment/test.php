@@ -63,23 +63,28 @@ $pid = $_SESSION['pid'];
 
     <div id="opt" class="bg-white p-4 mt-4 rounded shadow" hidden>
         <form action="pay.php">
-            <div class="form-check">
-                <input type="checkbox" name="acco" value="1" class="form-check-input"> Accommodation
-            </div>
-            <div class="form-check">
-                <input type="checkbox" name="food" value="1" class="form-check-input"> Food
-            </div>
 
-            <div class="form-check">
-                <input type="radio" name="fees" value="100" class="form-check-input" checked="checked"> ₹100
+            <div class="form-check mb-3">
+                <input type="radio" name="fees" value="350" class="form-check-input" checked="checked"> Rs.350 - Sports & Games (Men)
             </div>
-            <div class="form-check">
-                <input type="radio" name="fees" value="300" class="form-check-input"> ₹300
+            <div class="form-check mb-3">
+                <input type="radio" name="fees" value="250" class="form-check-input"> Rs.250 - Sports & Games (Women)
             </div>
-            <div class="form-check">
-                <input type="radio" name="fees" value="500" class="form-check-input"> ₹500
+            <div class="form-check mb-3">
+                <input type="radio" name="fees" value="250" class="form-check-input"> Rs.250 - Culturals
             </div>
-
+            <div class="form-check mb-3">
+                <input type="radio" name="fees" value="150" class="form-check-input"> Rs.150 - Vignan Group
+            </div>
+            <div class="form-check mb-3">
+                <input type="radio" name="fees" value="100" class="form-check-input"> Rs.100 - Visitors
+            </div>
+            <div class="form-check mb-3">
+                <input type="radio" name="fees" value="0" class="form-check-input"> Free entry - Para Sports/School children
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" name="acco" value="1" class="form-check-input"> Accommodation - mark only for longer distances
+            </div>
             <button type="submit" class="btn btn-success">Done</button>
         </form>
     </div>

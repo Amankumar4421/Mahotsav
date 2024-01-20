@@ -10,7 +10,7 @@ if(isset($_GET['ssid'])){
     // $row = mysqli_fetch_assoc($result);
     // $total_students = $row['total_students'];
 
-    $sql="SELECT stdreg, acc, food, amount,time  FROM payment where ssid='".$expire."'";
+    $sql="SELECT stdreg, acc, amount,time  FROM payment where ssid='".$expire."'";
     $result = mysqli_query($con, $sql);
     // $row = mysqli_fetch_assoc($result);
     // $student_count = $row['student_count'];
@@ -114,7 +114,6 @@ if(isset($_GET['ssid'])){
                     <th>Amount</th>
                     <th>Name</th>
                     <th>Accomodation</th>
-                    <th>Food</th>
                     <th>Time</th>
                 </thead>
                 <?php 
@@ -128,7 +127,6 @@ if(isset($_GET['ssid'])){
                             $re1 = mysqli_fetch_assoc($r1);
                             echo $re1['name']; ?></td>
                         <td><?php echo $row["acc"]; ?></td>
-                        <td><?php echo $row["food"]; ?></td>
                         <td><?php echo $row["time"]; ?></td>
                     </tr> 
                 <?php }
