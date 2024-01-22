@@ -293,7 +293,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['college'] . "</td>";
 
-            $sqli="SELECT * from payment where stdreg ='$regno' ";
+            $sqli="SELECT * from payment where stdreg = '".$regno."'";
             $re=mysqli_query($con,$sqli);
             $rowCount = mysqli_num_rows($re);
             if($rowCount > 0){
@@ -325,7 +325,7 @@ else{
             echo "<td>" . $cnt++ . "</td>";
             echo "<td><a href='getteam.php?sno=" . $row['mhid'] . "&subevent_name=" . urlencode($subevent_name) . "'>" . $row['mhid'] . "</a></td>";
 
-            $sql5="select * from student where sno='$row[mhid]'";
+            $sql5="select * from student where sno='".$row['mhid']."'";
             $r=mysqli_query($con,$sql5);
             $rm=mysqli_fetch_assoc($r);
 
@@ -334,7 +334,7 @@ else{
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['college'] . "</td>";
 
-            $sqli="SELECT * from payment where stdreg ='$regno' ";
+            $sqli="SELECT * from payment where stdreg ='". $regno ."'";
             $re=mysqli_query($con,$sqli);
             $rowCount = mysqli_num_rows($re);
             if($rowCount > 0){

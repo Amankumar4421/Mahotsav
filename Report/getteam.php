@@ -136,7 +136,7 @@ $p=0;
                
 
                 while($row = mysqli_fetch_assoc($result)){
-                    $sql2="select phone from student where sno ='$row[mhid]'";
+                    $sql2="select phone from student where sno ='".$row['mhid']."'";
                     $result2=mysqli_query($con,$sql2);                
                     $row2 = mysqli_fetch_assoc($result2);
                     echo "<tr>";
@@ -146,12 +146,12 @@ $p=0;
                         echo "<td>" . $mhid . "</td>";
                         echo "<td>" . $row['captain'] . "</td>";
 
-                        $sq="SELECT regno from student where sno ='$mhid' ";
+                        $sq="SELECT regno from student where sno = '". $mhid . "' ";
                         $res=mysqli_query($con,$sq);
                         $ro = mysqli_fetch_assoc($res);
                         $regno = $ro['regno'];
 
-                        $sqli="SELECT * from payment where stdreg ='$regno' ";
+                        $sqli="SELECT * from payment where stdreg ='". $regno ."'";
                         $re=mysqli_query($con,$sqli);
                         $rowCount = mysqli_num_rows($re);
                         if($rowCount > 0){
