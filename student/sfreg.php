@@ -360,8 +360,8 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '0') {
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">&nbsp;</label>
                             <div class="col-md-9">
-                                <input type="text" name="other" id="other" disabled hidden placeholder="Others"
-                                    class="form-control">
+                                <input type="text" name="other" id="other" disabled hidden placeholder="Enter College Name"
+                                    class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row mt-3 justify-content-center">

@@ -235,6 +235,8 @@ include("connection.php");
             <div id="submitdiv" >
                 <button id="submitButton" style="display: none;" onclick="return validateForm();">Submit</button>
             </div>
+            <p id='text' hidden>All student should be paid and not register in other team.</p>
+
 
         </div>
 
@@ -426,12 +428,16 @@ include("connection.php");
                                          console.log(data.alr);
                                         if (data.alr == -1) {
                                             alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
+                                            document.getElementById('submitButton').disabled = true;
                                         } else if (data.alr == -2) {
                                             alert(`${selectedMahotsavid} is not paid!`);
+                                            document.getElementById('submitButton').disabled = true;
                                         } else if (data.alr == 1) {
                                             alert(`${selectedMahotsavid} already registered in a team in this event!`);
+                                            document.getElementById('submitButton').disabled = true;
                                         } else {
                                             nameInput.value = data.name; // Populate the "name" field with the fetched name
+                                            document.getElementById('submitButton').disabled = false;
                                         }
 
                                     })
@@ -445,6 +451,7 @@ include("connection.php");
 
                         registrationForm.appendChild(table);
                         document.getElementById('submitButton').style.display = 'block';
+                        document.getElementById("text").hidden=false;
 
                     }
                 }, 100);

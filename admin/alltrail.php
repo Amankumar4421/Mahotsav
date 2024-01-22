@@ -218,7 +218,7 @@
 
                     <div id="add_item" hidden>
                         <div style="margin-left: 25px;">
-                            <label for="sub_event_name"> Event Name </label>
+                            <label for="sub_event_name"> SubEvent Name </label>
                             <input type="text" id="sub_event_name" name="sub_event_name"
                                 style="margin-left: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                             <br><br>
@@ -239,11 +239,12 @@
                                 <option value="CIVIL">CIVIL</option>
                                 <option value="ALL" selected="selected">ALL</option>
                             </select>
+                            
                             <br>
                             <br>
 
-                            <input type="submit" value="ADD" style="margin-left: 5%;">
-                            <input type="button" value="CANCEL" style="margin-left: 5%;" onclick="closeaddeve()">
+                            <input type="submit" class="btn12" value="ADD" style="margin-left: 5%;">
+                            <input type="button" value="CANCEL" class="btn13" style="margin-left: 5%;" onclick="closeaddeve()">
 
                         </div>
 
@@ -276,8 +277,8 @@
                                 <option value="2" selected="selected"> Both </option>
                             </select>
                             <select id="sbranch_option" name="sbranch_option" class="sedited" >
-                                <option value="ECE">CSE</option>
-                                <option value="CSE">ECE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="CSE">CSE</option>
                                 <option value="MEC">MEC</option>
                                 <option value="CIVIL">CIVIL</option>
                                 <option value="ALL" selected="selected">ALL</option>
