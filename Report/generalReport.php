@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //for team
-    
+    echo  $subevent_name;
     $sql2="SELECT team_count from subeventheader where subname ='$subevent_name' ";
     $res=mysqli_query($con,$sql2);
     $row=mysqli_fetch_assoc($res);
@@ -265,7 +265,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result === false) {
         die("Query failed: " . mysqli_error($con));
     }
-}
+
 
 
     echo "<h2>Registered Students for : $subevent_name</h2>";
@@ -331,7 +331,7 @@ else{
         echo "No students registered for the selected subevent.";
     }
 }
-
+}
 
 ?>
 <script>
