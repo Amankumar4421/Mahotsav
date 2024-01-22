@@ -423,11 +423,11 @@ include("connection.php");
                                     .then(response => response.json())
                                     .then(data => {
                                         // alert(`${selectedSubeventName}`);
-                                        // console.log(data);
+                                         console.log(data.alr);
                                         if (data.alr == -1) {
                                             alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
                                         } else if (data.alr == -2) {
-                                            alert(`${selectedMahotsavid} is not registered in this event individually!`);
+                                            alert(`${selectedMahotsavid} is not paid!`);
                                         } else if (data.alr == 1) {
                                             alert(`${selectedMahotsavid} already registered in a team in this event!`);
                                         } else {
