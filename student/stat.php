@@ -41,7 +41,7 @@ if ($o == 2) {
     }
 
     echo $sd;
-    echo '</select>';
+    echo '<option value="others"> other</option> </select>';
 }
 
 ?>
