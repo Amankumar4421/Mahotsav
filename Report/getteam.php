@@ -89,11 +89,12 @@
 
 include("connection.php");
 
-if (isset($_GET['sno'])) {
+if (isset($_GET['sno']) ) {
     $sno = $_GET['sno'];
+    $subevent_name = urldecode($_GET['subevent_name']);
     // echo $sno;
 
-    $sqlTeamMembers = "SELECT id FROM teamreg WHERE mhid='" . $sno . "'";
+    $sqlTeamMembers = "SELECT id FROM teamreg WHERE mhid='" . $sno . "' and subevent='" . $subevent_name . "' ";
     $resultTeamMembers = mysqli_query($con, $sqlTeamMembers);
 $p=0;
     if ($resultTeamMembers) {

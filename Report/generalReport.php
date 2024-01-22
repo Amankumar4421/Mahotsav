@@ -222,16 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subevent_id = mysqli_real_escape_string($con, $subevent_id);
     $event_id = mysqli_real_escape_string($con, $event_id);
 
-    $sql = "SELECT * FROM student s
-            INNER JOIN ser r ON s.regno = r.stdreg
-            WHERE r.even = ". $event_id ." AND r.sen =". $subevent_id ."";
-
-    $result = mysqli_query($con, $sql);
-
-    if ($result === false) {
-        die("Query failed: " . mysqli_error($con));
-    }
-
+    
     // Retrieve the event name from the database
     $event_name = ""; // Initialize an empty string
     $event_query = "SELECT name FROM eventheader WHERE no =". $event_id ."";
@@ -250,6 +241,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $subevent_name = $subevent_row['subname'];
     }
 
+    //for team
+    
+    $sql2="SELECT team_count from subeventheader where subname ='$subevent_name' ";
+    $res=mysqli_query($con,$sql2);
+    $row=mysqli_fetch_assoc($res);
+
+    //if($row['team_count']>1){
+    $sql3=" SELECT * from teamreg where subevent ='$subevent_name' and captain='1'";
+        $rs=mysqli_query($con,$sql3);
+ // $row1=mysqli_fetch_assoc($rs);
+  //echo $row1['mhid'];
+    //}
+    
+
+        //for solo
+        $sql = "SELECT * FROM student s
+            INNER JOIN ser r ON s.regno = r.stdreg
+            WHERE r.even = ". $event_id ." AND r.sen =". $subevent_id ."";
+
+    $result = mysqli_query($con, $sql);
+
+    if ($result === false) {
+        die("Query failed: " . mysqli_error($con));
+    }
+}
+
+
     echo "<h2>Registered Students for : $subevent_name</h2>";
     ?>
 
@@ -258,6 +276,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <?php
+    echo $subevent_name;
+    if($row['team_count']==1)
+{
+
     if (mysqli_num_rows($result) > 0) {
         echo "<table>";
         echo "<tr>";
@@ -266,8 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td><a href='getteam.php?sno=" . $row['sno'] . "'>" . $row['sno'] . "</a></td>";
-
+            echo "<td>" . $row['sno'] . "</a></td>";
 
             echo "<td>" . $row['regno'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
@@ -282,6 +303,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "No students registered for the selected subevent.";
     }
 }
+else{
+    if (mysqli_num_rows($rs) > 0) {
+        echo "<table>";
+        echo "<tr>";
+        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
+        echo "</tr>";
+
+        while ($row = mysqli_fetch_assoc($rs)) {
+            echo "<tr>";
+            echo "<td><a href='getteam.php?sno=" . $row['mhid'] . "&subevent_name=" . urlencode($subevent_name) . "'>" . $row['mhid'] . "</a></td>";
+
+            $sql5="select * from student where sno='$row[mhid]'";
+            $r=mysqli_query($con,$sql5);
+            $rm=mysqli_fetch_assoc($r);
+
+           echo "<td>" . $rm['regno'] . "</td>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['college'] . "</td>";
+            echo "<td>" . $rm['gender'] . "</td>";
+            echo "<td>" . $rm['phone'] . "</td>";
+            // echo "<td>" . $rm['email'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No students registered for the selected subevent.";
+    }
+}
+
+
 ?>
 <script>
     function fun() {
