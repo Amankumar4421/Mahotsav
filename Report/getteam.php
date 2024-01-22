@@ -130,7 +130,7 @@ $p=0;
            
 
             echo "<table>";
-                echo "<thead><th>S.No.</th><th>Team Member</th><th>Mahotsav ID</th><th>Captain</th> <th>phone</th> </thead>";
+                echo "<thead><th>S.No.</th><th>Team Member</th><th>Mahotsav ID</th><th>Captain</th><th>PayStatus</th> <th>phone</th> </thead>";
                 $sql="select * from teamreg where id='".$rowTeamMembers["id"]."'";
                 $result=mysqli_query($con,$sql);                
                
@@ -142,8 +142,25 @@ $p=0;
                     echo "<tr>";
                     echo "<td>" . $cnt++ . "</td>";
                         echo "<td>" . $row['name'] . "</td>";
-                        echo "<td>" . $row['mhid'] . "</td>";
+                        $mhid = $row['mhid'];
+                        echo "<td>" . $mhid . "</td>";
                         echo "<td>" . $row['captain'] . "</td>";
+
+                        $sq="SELECT regno from student where sno ='$mhid' ";
+                        $res=mysqli_query($con,$sq);
+                        $ro = mysqli_fetch_assoc($res);
+                        $regno = $ro['regno'];
+
+                        $sqli="SELECT * from payment where stdreg ='$regno' ";
+                        $re=mysqli_query($con,$sqli);
+                        $rowCount = mysqli_num_rows($re);
+                        if($rowCount > 0){
+                            echo "<td>Paid</td>";
+                        }
+                        else{
+                            echo"<td>Not Paid</td>";
+                        }
+
                         echo "<td>" . $row2['phone'] . "</td>";
                     echo "</tr>";
                 }
