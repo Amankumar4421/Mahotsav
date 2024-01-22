@@ -167,9 +167,7 @@ $total_count = $c['count(*)'];
         <img src="./Mahotsav Logo.png" width="0" height="0" alt="logo" >
     </div>
 <div id='total'>
-    <h1>Total Registered Student:
-        <?php echo $total_count ?>
-    </h1>
+    <h1>General Report</h1>
 </div>
     <div class="container">
 
@@ -242,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //for team
-    echo  $subevent_name;
+    // echo  $subevent_name;
     $sql2="SELECT team_count from subeventheader where subname ='$subevent_name' ";
     $res=mysqli_query($con,$sql2);
     $row=mysqli_fetch_assoc($res);
@@ -276,19 +274,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <?php
-    echo $subevent_name;
+    // echo $subevent_name;
     if($row['team_count']==1)
 {
 
     if (mysqli_num_rows($result) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
+        echo "<th>S.No.</th><th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
         echo "</tr>";
-
+        $cnt=1;
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . $row['sno'] . "</a></td>";
+            echo "<td>" . $cnt++ . "</td>";
+            echo "<td><a>" . $row['sno'] . "</a></td>";
 
             echo "<td>" . $row['regno'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
@@ -307,11 +306,12 @@ else{
     if (mysqli_num_rows($rs) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
+        echo "<th>S.No.</th><th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
         echo "</tr>";
-
+        $cnt=1;
         while ($row = mysqli_fetch_assoc($rs)) {
             echo "<tr>";
+            echo "<td>" . $cnt++ . "</td>";
             echo "<td><a href='getteam.php?sno=" . $row['mhid'] . "&subevent_name=" . urlencode($subevent_name) . "'>" . $row['mhid'] . "</a></td>";
 
             $sql5="select * from student where sno='$row[mhid]'";
