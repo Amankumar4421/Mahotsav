@@ -11,7 +11,7 @@
     $row = mysqli_fetch_assoc($result);
     $male = $row['male'];
 
-    $sql="select count(*) as female from student where gender=2";
+    $sql="select count(*) as female from student where gender=0";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $female = $row['female'];

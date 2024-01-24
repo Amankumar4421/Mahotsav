@@ -3,9 +3,19 @@ $d = $_GET["name"];
 $e = $_GET["date"];
 
 session_start();
-$_SESSION["sid"] = $d;
-
 include("connection.php");
+
+if(substr( $d, 0, 2 ) === "MR"){
+    $sqi = "select regno from student where sno='" . $d . "'";
+    $res = mysqli_query($con, $sqi);
+    $result = mysqli_fetch_assoc($res);
+    $_SESSION["sid"] = $result['regno'];
+}
+else{
+    $_SESSION["sid"] = $d;
+}
+
+
 
 echo "<br>";
 echo "<br>";

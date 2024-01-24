@@ -78,12 +78,32 @@
             background-color: #9c6f40;
             color: black;
         }
+        @media print {
+    #printButton {
+          display: none;
+      }
+            img{
+                width: 400px !important;
+                height: 100px;
+            }
+            .logo{
+                display: flex  !important;
+                justify-content: center;
+            }
+        }
+        .logo{
+            display: none;
+        }
 
     </style>
 </head>
 <body>
+<div class="logo">
+        <img src="./Mahotsav Logo.png" alt="logo" >
+    </div>
 </body>
-</html>
+
+
 <?php
     
 
@@ -101,7 +121,7 @@ $p=0;
         // $rowTeamMembers = mysqli_fetch_assoc($resultTeamMembers);
         // echo $rowTeamMembers['id'];
 
-        
+        $cnt=1;
         while ($rowTeamMembers = mysqli_fetch_assoc($resultTeamMembers)) {
             echo"<h2>".$rowTeamMembers['id']."</h2>";
             //echo $sno;      
@@ -110,25 +130,42 @@ $p=0;
            
 
             echo "<table>";
-                echo "<thead><th>Team Member</th><th>Mahotsav ID</th><th>Captain</th> <th>phone</th> </thead>";
+                echo "<thead><th>S.No.</th><th>Team Member</th><th>Mahotsav ID</th><th>Captain</th><th>PayStatus</th> <th>phone</th> </thead>";
                 $sql="select * from teamreg where id='".$rowTeamMembers["id"]."'";
                 $result=mysqli_query($con,$sql);                
                
 
                 while($row = mysqli_fetch_assoc($result)){
-                    $sql2="select phone from student where sno ='$row[mhid]'";
+                    $sql2="select phone from student where sno ='".$row['mhid']."'";
                     $result2=mysqli_query($con,$sql2);                
                     $row2 = mysqli_fetch_assoc($result2);
                     echo "<tr>";
+                    echo "<td>" . $cnt++ . "</td>";
                         echo "<td>" . $row['name'] . "</td>";
-                        echo "<td>" . $row['mhid'] . "</td>";
+                        $mhid = $row['mhid'];
+                        echo "<td>" . $mhid . "</td>";
                         echo "<td>" . $row['captain'] . "</td>";
+
+                        $sq="SELECT regno from student where sno = '". $mhid . "' ";
+                        $res=mysqli_query($con,$sq);
+                        $ro = mysqli_fetch_assoc($res);
+                        $regno = $ro['regno'];
+
+                        $sqli="SELECT * from payment where stdreg ='". $regno ."'";
+                        $re=mysqli_query($con,$sqli);
+                        $rowCount = mysqli_num_rows($re);
+                        if($rowCount > 0){
+                            echo "<td>Paid</td>";
+                        }
+                        else{
+                            echo"<td>Not Paid</td>";
+                        }
+
                         echo "<td>" . $row2['phone'] . "</td>";
                     echo "</tr>";
                 }
             echo "</table>";
         }
-      //  echo $p;
         
     } else {
         echo "Error fetching team members";
@@ -139,3 +176,18 @@ $p=0;
 
 mysqli_close($con);
 ?>
+<div class="print-button">
+        <button id="print">Print</button>
+    </div>
+    <script>
+    document.getElementById("print").addEventListener("click", function () {
+        const printButton = document.getElementById("print");
+        printButton.style.display = "none";
+
+        window.print();
+        printButton.style.display = "block";
+        printButton.style.marginLeft = "47%";
+
+    });
+</script>
+</html>

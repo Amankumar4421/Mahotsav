@@ -308,18 +308,18 @@ if (isset($queryParameters['reg']) && $queryParameters['reg'] === '1') {
                 <h2 class="text-center">Login Form</h2><br>
                 <form action="slogin.php" name="f" onclick="return fun()">
                     <div class="form-group form-row">
-                        <label for="regNo" class="col-md-4 col-form-label"><b>Reg Number</b></label>
-                        <div class="col-md-8">
+                        <label for="regNo" class="col-md-5 col-form-label"><b>Reg No. / MRid</b></label>
+                        <div class="col-md-7">
                             <input type="text" class="form-control" name="uname" id="sid"
-                                placeholder="Enter Registration Number">
+                                placeholder="Enter RegNo/MRid">
                             <p id="ckd" clas="form-control" hidden></p>
 
 
                         </div>
                     </div>
                     <div class="form-group form-row">
-                        <label for="dob" class="col-md-4 col-form-label"><b>Date of Birth</b></label>
-                        <div class="col-md-8">
+                        <label for="dob" class="col-md-5 col-form-label"><b>Date of Birth</b></label>
+                        <div class="col-md-7">
                             <input type="date" name="date" class="form-control" id="dob">
                         </div>
                     </div>

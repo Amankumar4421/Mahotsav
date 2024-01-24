@@ -25,7 +25,8 @@ function getStdRegData($mysqli, $pid) {
     $stdregData = [];
 
     // Query to get total amount for a specific pid
-    $sumResult = mysqli_query($mysqli, "SELECT SUM(amount) as total_amount FROM payment WHERE pid='$pid'");
+    $sql  = "SELECT SUM(amount) as total_amount FROM payment WHERE pid='$pid'";
+    $sumResult = mysqli_query($mysqli,$sql );
     $row = mysqli_fetch_assoc($sumResult);
     $stdregData['sum'] = $row['total_amount'];
 

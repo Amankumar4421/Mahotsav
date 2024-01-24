@@ -167,9 +167,7 @@ $total_count = $c['count(*)'];
         <img src="./Mahotsav Logo.png" width="0" height="0" alt="logo" >
     </div>
 <div id='total'>
-    <h1>Total Registered Student:
-        <?php echo $total_count ?>
-    </h1>
+    <h1>General Report</h1>
 </div>
     <div class="container">
 
@@ -242,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //for team
-   // echo  $subevent_name;
+
     $sql2="SELECT team_count from subeventheader where subname ='$subevent_name' ";
     $res=mysqli_query($con,$sql2);
     $row=mysqli_fetch_assoc($res);
@@ -276,23 +274,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <?php
-   // echo $subevent_name;
+
     if($row['team_count']==1)
 {
 
     if (mysqli_num_rows($result) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
+        echo "<th>S.No.</th><th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>PayStatus</th><th>Gender</th><th>Phone</th>";
         echo "</tr>";
-
+        $cnt=1;
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . $row['sno'] . "</a></td>";
-
-            echo "<td>" . $row['regno'] . "</td>";
+            echo "<td>" . $cnt++ . "</td>";
+            echo "<td><a>" . $row['sno'] . "</a></td>";
+            $regno = $row['regno'];
+            echo "<td>" . $regno . "</td>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['college'] . "</td>";
+
+            $sqli="SELECT * from payment where stdreg = '".$regno."'";
+            $re=mysqli_query($con,$sqli);
+            $rowCount = mysqli_num_rows($re);
+            if($rowCount > 0){
+                echo "<td>Paid</td>";
+            }
+            else{
+                echo"<td>Not Paid</td>";
+            }
+
             echo "<td>" . $row['gender'] . "</td>";
             echo "<td>" . $row['phone'] . "</td>";
             // echo "<td>" . $row['email'] . "</td>";
@@ -307,20 +317,33 @@ else{
     if (mysqli_num_rows($rs) > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>Gender</th><th>Phone</th>";
+        echo "<th>S.No.</th><th>Mahotsav Id</th><th>Reg Id</th><th>Name</th><th>College</th><th>PayStatus</th><th>Gender</th><th>Phone</th>";
         echo "</tr>";
-
+        $cnt=1;
         while ($row = mysqli_fetch_assoc($rs)) {
             echo "<tr>";
+            echo "<td>" . $cnt++ . "</td>";
             echo "<td><a href='getteam.php?sno=" . $row['mhid'] . "&subevent_name=" . urlencode($subevent_name) . "'>" . $row['mhid'] . "</a></td>";
 
-            $sql5="select * from student where sno='$row[mhid]'";
+            $sql5="select * from student where sno='".$row['mhid']."'";
             $r=mysqli_query($con,$sql5);
             $rm=mysqli_fetch_assoc($r);
 
-           echo "<td>" . $rm['regno'] . "</td>";
+            $regno = $rm['regno'];
+           echo "<td>" . $regno . "</td>";
             echo "<td>" . $row['name'] . "</td>";
             echo "<td>" . $row['college'] . "</td>";
+
+            $sqli="SELECT * from payment where stdreg ='". $regno ."'";
+            $re=mysqli_query($con,$sqli);
+            $rowCount = mysqli_num_rows($re);
+            if($rowCount > 0){
+                echo "<td>Paid</td>";
+            }
+            else{
+                echo"<td>Not Paid</td>";
+            }
+
             echo "<td>" . $rm['gender'] . "</td>";
             echo "<td>" . $rm['phone'] . "</td>";
             // echo "<td>" . $rm['email'] . "</td>";

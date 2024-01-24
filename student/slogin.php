@@ -4,15 +4,26 @@ $uname = $_GET['uname'];
 $dob = $_GET['date'];
 
 session_start();
-$_SESSION['stdreg']=$uname;
+include("connection.php");
+
+if(substr( $uname, 0, 2 ) === "MR"){
+    $sqi = "select regno from student where sno='" . $uname . "'";
+    $res = mysqli_query($con, $sqi);
+    $rslt = mysqli_fetch_assoc($res);
+    $_SESSION["stdreg"] = $rslt['regno'];
+}
+else{
+    $_SESSION["stdreg"] = $uname;
+}
+
+// $_SESSION['stdreg']=$uname;
 
 
 
-$str = "select name, dob from student where regno= '". $uname ."'";
+$str = "select name, dob from student where regno= '". $uname ."' or sno = '". $uname."'";
 //echo $str;
 
 
-include("connection.php");
 $results = mysqli_query($con, $str);
 $result = mysqli_fetch_assoc($results);
 if(isset($result))

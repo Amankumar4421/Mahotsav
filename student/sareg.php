@@ -2,7 +2,7 @@
 
 $n = $_GET['name'];
 include("connection.php");
-$str = "select * from student where regno='". $n ."'";
+$str = "select * from student where regno='". $n ."' or sno='". $n ."'";
 // echo $str;
 $dgd = mysqli_query($con, $str);
 $dg = mysqli_fetch_assoc($dgd);
