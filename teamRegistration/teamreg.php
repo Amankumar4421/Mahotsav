@@ -281,7 +281,7 @@ include("connection.php");
                 });
 
                 dropdownContent.style.display = 'block ';
-                console.log(dropdownContent);
+                //console.log(dropdownContent);
                 createform();
 
             }
@@ -326,7 +326,7 @@ include("connection.php");
                 });
 
                 dropdownContent.style.display = 'block ';
-                console.log(dropdownContent);
+               // console.log(dropdownContent);
                 createform();
             }
 
@@ -346,7 +346,7 @@ include("connection.php");
                 .then(response => response.text())
                 .then(data => {
                     // alert(`${selectedSubeventName}`);
-                    console.log(data);
+                   // console.log(data);
                     teamSize = data;
 
                 })
@@ -355,7 +355,11 @@ include("connection.php");
 
 
            // const collegeInput = '';
+
+           const arr=[];
         const createform = function () {
+            document.getElementById('submitButton').disabled = false;
+                document.getElementById('submitButton').style.backgroundColor='green';
                 event.preventDefault();
                 //alert(selectedSubeventName);
                 f1();
@@ -383,7 +387,7 @@ include("connection.php");
                         const mahotsavidsSet =new Set();
 
                         for (let i = 0; i < teamSize; i++) {
-                            console.log(teamSize);
+                            //console.log(teamSize);
                             const row = table.insertRow();
                             const cell1 = row.insertCell(0);
                             const cell2 = row.insertCell(1);
@@ -444,25 +448,7 @@ include("connection.php");
                                         // alert(`${selectedSubeventName}`);
                                          //console.log(data);
 
-                                        //  if (mahotsavidsSet.has(selectedMahotsavid))
-                                        //  {
-                                        // alert(`Duplicate entry: ${selectedMahotsavid} already added`);
-                                        // //mahotsavidsSet.delete(selectedMahotsavid);
-                                        // document.getElementById('submitButton').disabled = true;
-
-                                        // //mahotsavidInput.name = '';
-                                        // //nameInput.name=' ';
-                                      
-
-
-                                        // }
-                                        // else {
-                                        //     // If not a duplicate, add it to the set
-                                        //     mahotsavidsSet.add(selectedMahotsavid);
-                                        //     console.log(mahotsavidsSet);
-                                        //     // Enable the submit button
-                                        //     document.getElementById('submitButton').disabled = false;
-                                        // }
+                                       
 
                                         if (data.alr == -1) {
                                             alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
@@ -481,14 +467,25 @@ include("connection.php");
                                         } else {
                                             nameInput.value = data.name; // Populate the "name" field with the fetched name
                                             collegeInput.value=data.college;
+                                           arr.push(collegeInput.value);
+                                           if(new Set(arr).size>1)
+                                           {document.getElementById('submitButton').disabled = true;
+                                            document.getElementById('submitButton').style.backgroundColor='red';
+
+                                           }
+                                           else{
                                             document.getElementById('submitButton').disabled = false;
                                             document.getElementById('submitButton').style.backgroundColor='green';
-
+                                           }
                                         }
 
                                         if(collegeInput.value!==searchBox.value){
                    // console.log(collegeInput.value);
                 alert(`This student doesn't belong to ${searchBox.value}  `);
+                document.getElementById('submitButton').disabled = true;
+                document.getElementById('submitButton').style.backgroundColor='red';
+
+
                 //return false;
                 }
                                         //return false;
@@ -531,7 +528,7 @@ include("connection.php");
             // });
 
             function validateForm() {
-                //console.log("sdfd");
+               // console.log(arr);
 
                 
 
