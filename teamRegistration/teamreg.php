@@ -248,6 +248,10 @@ include("connection.php");
             var selectedSubeventName = '';
             //filter dropbox
             const searchBox = document.querySelector('.search-box');
+            //const searchBox1 = document.querySelector('.search-box');
+            searchBox.addEventListener('onclick',()=>{
+                alert("sdf");
+            });
 
             function showDropdown() {
 
@@ -280,6 +284,8 @@ include("connection.php");
 
                 dropdownContent.style.display = 'block ';
                 console.log(dropdownContent);
+                createform();
+
             }
 
             function selectItem(item) {
@@ -323,6 +329,7 @@ include("connection.php");
 
                 dropdownContent.style.display = 'block ';
                 console.log(dropdownContent);
+                createform();
             }
 
             function selectItem1(item) {
@@ -349,9 +356,8 @@ include("connection.php");
             }
 
 
-            const collegeInput = document.createElement('input');
-
-            document.getElementById('createFormButton').addEventListener('click', function () {
+           // const collegeInput = '';
+        const createform = function () {
                 event.preventDefault();
                 //alert(selectedSubeventName);
                 f1();
@@ -376,6 +382,8 @@ include("connection.php");
                         headerCell3.innerHTML = '<b>Captain</b>';
                         headerCell4.innerHTML = '<b>college</b>';
 
+                        const mahotsavidsSet =new Set();
+
                         for (let i = 0; i < teamSize; i++) {
                             console.log(teamSize);
                             const row = table.insertRow();
@@ -395,6 +403,7 @@ include("connection.php");
                             nameInput.required = true;
                             nameInput.setAttribute('readonly', 'true');
 
+                             const collegeInput = document.createElement('input');
                             collegeInput.type = 'text';
                             collegeInput.name = `college_name[]`;
                             collegeInput.required = true;
@@ -436,22 +445,54 @@ include("connection.php");
                                     .then(data => {
                                         // alert(`${selectedSubeventName}`);
                                          //console.log(data);
+
+                                        //  if (mahotsavidsSet.has(selectedMahotsavid))
+                                        //  {
+                                        // alert(`Duplicate entry: ${selectedMahotsavid} already added`);
+                                        // //mahotsavidsSet.delete(selectedMahotsavid);
+                                        // document.getElementById('submitButton').disabled = true;
+
+                                        // //mahotsavidInput.name = '';
+                                        // //nameInput.name=' ';
+                                      
+
+
+                                        // }
+                                        // else {
+                                        //     // If not a duplicate, add it to the set
+                                        //     mahotsavidsSet.add(selectedMahotsavid);
+                                        //     console.log(mahotsavidsSet);
+                                        //     // Enable the submit button
+                                        //     document.getElementById('submitButton').disabled = false;
+                                        // }
+
                                         if (data.alr == -1) {
                                             alert(`${selectedMahotsavid} is not registered in Mahotsav!`);
                                             document.getElementById('submitButton').disabled = true;
+                                            document.getElementById('submitButton').style.backgroundColor='red';
+
                                         } else if (data.alr == -2) {
                                             alert(`${selectedMahotsavid} is not paid!`);
                                             document.getElementById('submitButton').disabled = true;
+                                            document.getElementById('submitButton').style.backgroundColor='red';
+
                                         } else if (data.alr == 1) {
                                             alert(`${selectedMahotsavid} already registered in a team in this event!`);
                                             document.getElementById('submitButton').disabled = true;
+                                            document.getElementById('submitButton').style.backgroundColor='red';
                                         } else {
                                             nameInput.value = data.name; // Populate the "name" field with the fetched name
                                             collegeInput.value=data.college;
                                             document.getElementById('submitButton').disabled = false;
+                                            document.getElementById('submitButton').style.backgroundColor='green';
+
                                         }
 
-                                       
+                                        if(collegeInput.value!==searchBox.value){
+                   // console.log(collegeInput.value);
+                alert(`This student doesn't belong to ${searchBox.value}  `);
+                //return false;
+                }
                                         //return false;
                             
                             // else{
@@ -483,7 +524,10 @@ include("connection.php");
 
                     }
                 }, 100);
-            });
+            }
+            
+
+            document.getElementById('createFormButton').addEventListener('click', createform);
             // document.getElementById('submitButton').addEventListener('click', function () {
             //     document.querySelector('form').submit();
             // });
@@ -491,11 +535,7 @@ include("connection.php");
             function validateForm() {
                 //console.log("sdfd");
 
-                if(collegeInput.value!==searchBox.value){
-                   // console.log(collegeInput.value);
-                alert(`This student doesn't belong to ${searchBox.value}  `);
-                return false;
-                }
+                
 
                 if (cc == 0) {
                     alert("Please select a captain");
