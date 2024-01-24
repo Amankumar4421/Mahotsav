@@ -249,9 +249,7 @@ include("connection.php");
             //filter dropbox
             const searchBox = document.querySelector('.search-box');
             //const searchBox1 = document.querySelector('.search-box');
-            searchBox.addEventListener('onclick',()=>{
-                alert("sdf");
-            });
+           
 
             function showDropdown() {
 
