@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //for team
-    echo  $subevent_name;
+   // echo  $subevent_name;
     $sql2="SELECT team_count from subeventheader where subname ='$subevent_name' ";
     $res=mysqli_query($con,$sql2);
     $row=mysqli_fetch_assoc($res);
@@ -276,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <?php
-    echo $subevent_name;
+   // echo $subevent_name;
     if($row['team_count']==1)
 {
 
