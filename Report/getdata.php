@@ -3,12 +3,12 @@ function getPaymentData($con) {
     $payments = [];
     
     // Query to get total amount
-    $sumResult = mysqli_query($con, "SELECT SUM(amount) as total_amoun FROM payment");
+    $sumResult = mysqli_query($con, "SELECT SUM(amount) as total_amoun FROM visitor");
     $row = mysqli_fetch_assoc($sumResult);
     $payments['SUM'] = $row['total_amoun'];
 
     // Query to get payment data
-    $paymentSql = "SELECT pid, stdreg, SUM(amount) as total_amount FROM payment GROUP BY pid";
+    $paymentSql = "SELECT pid, regno, SUM(amount) as total_amount FROM visitor GROUP BY pid";
     $paymentResult = mysqli_query($con, $paymentSql);
 
     if ($paymentResult) {
@@ -25,15 +25,13 @@ function getStdRegData($con, $pid) {
     $stdregData = [];
 
     // Query to get total amount for a specific pid
-    $sql  = "SELECT SUM(amount) as total_amount FROM payment WHERE pid='$pid'";
+    $sql  = "SELECT SUM(amount) as total_amount FROM visitor WHERE pid='$pid'";
     $sumResult = mysqli_query($con,$sql );
     $row = mysqli_fetch_assoc($sumResult);
     $stdregData['sum'] = $row['total_amount'];
 
     // Query to get student registration data
-    $stdregSql = "SELECT p.pid, p.stdreg, p.amount, p.time, s.sno, s.phone FROM payment p
-    LEFT JOIN student s ON p.stdreg = s.regno
-    WHERE p.pid = '$pid'";
+    $stdregSql = "SELECT pid, regno, amount, time, vid, phone FROM visitor WHERE pid = '$pid'";
 
     $stdregResult = mysqli_query($con, $stdregSql);
 
@@ -44,10 +42,10 @@ function getStdRegData($con, $pid) {
             }
 
             $stdregData[$row['pid']][] = [
-                'stdreg' => $row['stdreg'],
+                'stdreg' => $row['regno'],
                 'amount' => $row['amount'],
                 'time'   => $row['time'],
-                'mohid'  => $row['sno'],
+                'mohid'  => $row['vid'],
                 'phone'  => $row['phone']
             ];
         }
@@ -56,4 +54,23 @@ function getStdRegData($con, $pid) {
 
     return $stdregData;
 }
+
+
+
+// Handle requests, fetch data, and serve data using functions from db_functions.php
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getPaymentDetails') {
+    $paymentData = getPaymentData($con);
+    header('Content-Type: application/json');
+    echo json_encode($paymentData);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getStdRegDetails') {
+    $pid = $_GET['pid'];
+    $stdregData = getStdRegData($con, $pid);
+    header('Content-Type: application/json');
+    echo json_encode($stdregData);
+    exit;
+}
+
 ?>

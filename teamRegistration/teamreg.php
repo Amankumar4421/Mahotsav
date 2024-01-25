@@ -486,7 +486,7 @@ include("connection.php");
 
                                         }
 
-                                        if(collegeInput.value!==searchBox.value){
+                                        if(collegeInput.value.trim()!==searchBox.value.trim()){
                    // console.log(collegeInput.value);
                 alert(`This student doesn't belong to ${searchBox.value}  `);
                 //return false;

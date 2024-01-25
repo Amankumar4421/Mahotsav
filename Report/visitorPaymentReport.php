@@ -1,25 +1,6 @@
 <?php
 include('connection.php');
-include('db.php');
-
-
-// Handle requests, fetch data, and serve data using functions from db_functions.php
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getPaymentDetails') {
-    $paymentData = getPaymentData($con);
-    header('Content-Type: application/json');
-    echo json_encode($paymentData);
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getStdRegDetails') {
-    $pid = $_GET['pid'];
-    $stdregData = getStdRegData($con, $pid);
-    header('Content-Type: application/json');
-    echo json_encode($stdregData);
-    exit;
-}
-
-$con->close();
+include('getdata.php');
 ?>
 
 <!DOCTYPE html>
@@ -178,16 +159,15 @@ $con->close();
         </tbody>
     </table>
 
-    <h2>Registered Student Details by PID:<span id="payid">)</span></h2>
+    <h2>Registered Visitor Details by PID:<span id="payid">-</span></h2>
     <table>
         <thead>
             <tr>
-                <th>Registration no:</th>
+                <th>RegNo/AadharNo</th>
                 <th>Amount</th>
                 <th>Time</th>
-                <th>Mahotsav Id</th>
-                <th>Phone Number
-                <td>
+                <th>MVR Id</th>
+                <th>Phone Number</th>
 
             </tr>
         </thead>
@@ -198,9 +178,10 @@ $con->close();
     <script>
         // Function to load payment details from the server using Fetch API
         function loadPaymentDetails() {
-            fetch('paymentReport.php?action=getPaymentDetails')
+            fetch('visitorPaymentReport.php?action=getPaymentDetails')
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     const paymentTable = document.getElementById("paymentTable");
                     paymentTable.innerHTML = "";
 
@@ -228,9 +209,9 @@ $con->close();
                     // Set the text and apply the bold style
                     totalSumCell0.textContent = "TOTAL SUM";
                     totalSumCell1.textContent = data['SUM'];
-                    totalSumCell0.style.fontWeight = 'bold';
+                    // totalSumCell0.style.fontWeight = 'bold';
                     totalSumCell0.style.color = '#6b3c02';
-                    totalSumCell1.style.fontWeight = 'bold';
+                    // totalSumCell1.style.fontWeight = 'bold';
                     totalSumCell1.style.color = '#4a2a01';
 
                 })
@@ -255,7 +236,7 @@ $con->close();
         function showStdRegDetails(pid) {
 
 
-            fetch(`paymentReport.php?action=getStdRegDetails&pid=${pid}`)
+            fetch(`visitorPaymentReport.php?action=getStdRegDetails&pid=${pid}`)
                 .then(response => response.json())
                 .then(data => {
                     const stdregDetails = document.getElementById("stdregDetails");
@@ -281,9 +262,9 @@ $con->close();
                         // Set the text and apply the bold style
                         totalSumCell0.textContent = "TOTAL SUM";
                         totalSumCell1.textContent = data['sum'];
-                        totalSumCell0.style.fontWeight = 'bold';
+                        // totalSumCell0.style.fontWeight = 'bold';
                         totalSumCell0.style.color = '#6b3c02';
-                        totalSumCell1.style.fontWeight = 'bold';
+                        // totalSumCell1.style.fontWeight = 'bold';
                         totalSumCell1.style.color = '#4a2a01';
                     }
                     else {
@@ -292,7 +273,6 @@ $con->close();
                 })
                 .catch(error => console.error(error));
         }
-
 
 
         loadPaymentDetails();
