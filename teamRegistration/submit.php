@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // $sql4= "INSERT INTO ser (sen, even, stdreg) VALUES ('$subeventno', '$eventno', '$regno')";
         // $con->query($sql4);
 
-        if ($con->query($sql) === TRUE) {
+        if (mysqli_query($con,$sql) === TRUE) {
             $count++;
             //echo '<script type="text/javascript">alert(" REGISTRATION SUCCESSFUL ");</script>';
 
