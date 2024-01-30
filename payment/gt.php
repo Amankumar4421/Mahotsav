@@ -52,13 +52,13 @@ $c=0;
             $c = $c+1;
         }
         
-        if($c !=0)
-        {
+        // if($c !=0)
+        // {
             echo '<br><div id="contin">
             <input type="checkbox" id="con" onclick="chek()"> Confirm
             <p id="hid">You have to confirm</p>
             </div>';
-        }
+        // }
     if($c==0){
         echo "Not registered in any event";
         echo "</div>";
